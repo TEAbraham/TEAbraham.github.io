@@ -37,6 +37,10 @@ p {
          color: white;
 }
 
+.navbar-header{ 
+        color: white;
+}
+
 .navbar-brand {
                background-color: rgb(17, 177, 177);
                font-family: times new roman;
@@ -47,7 +51,12 @@ p {
 
 @media (max-width: 480px) {
   .navbar {
-    background-color: rgb(17, 177, 177);
+        background-color: rgb(17, 177, 177);
+        color: white;
+}
+
+.navbar-header{ 
+        color: white;
 }
 
   .navbar-brand {
