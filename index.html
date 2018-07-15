@@ -1,34 +1,141 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Thomas Abraham</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Web Visualization-Weather Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <header>
-        <h1>Dev Bio</h1>
-      </header>
-    
-      <main class="container">
-        <section id="main-bio">
-          <section id="figure">
-            <h2 id="bio-name">Thomas Abraham</h2>
-            <img src="assets/beaubar.jpg" id="bio-image" title="Beau's First Day Out" style="width:750px;height:900px">
-          </section>
-          <p>This is Tom and Beau.  See Beau nap.  See Tom code. See Beau bark.  See Tom drink.  See Tom and Beau do whatever else it is that they do.</p>
-        </section>
-    
-        <aside id="contact-info">
-          <h2>Contact Info</h2>
-          <ul>
-            <li><strong>Email:</strong> <a href="thomas.e.abraham@gmail.com">thomas.e.abraham@gmail.com</a></li>
-            <li><strong>Github:</strong> <a href="github.com/TEAbraham">TEAbraham</a></li>
-            <li><strong>Portfolio:</strong> <a href="#">coming soon</a></li>
-          </ul>
-        </aside>
-      </main>
-</body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="index.html">Latitude</a>
+      </div>
 
-</html>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visualizations <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="lat_temps.html">Latitude vs. Max Temperature</a></li>
+              <li><a href="lat_hum.html">Latitude vs. Humidity</a></li>
+              <li><a href="lat_cloud.html">Latitude vs. Cloudiness</a></li>
+              <li><a href="lat_wind.html">Latitude vs. Wind Speed</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="glob_temps.html">Global Temperatures</a></li>
+              <li><a href="glob_hum.html">Global Humidity</a></li>
+              <li><a href="glob_cloud.html">Global Cloudiness</a></li>
+              <li><a href="glob_wind.html">Global Wind Speed</a></li>
+            </ul>
+          </li>
+          <li><a href="comparison.html">Comparison</a></li>
+          <li><a href="data.html">Data</a></li>
+          <li><a target="_blank" href="https://github.com/DavisCardwell/api-challenge">Repo</a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+
+  <!-- Creates the Overall Grid -->
+  <div class="container">
+
+    <div class="row">
+
+        <div class="col-md-6 pad top"> <br>
+          <h3>Summary: Global Weather Plots</h3> <br>
+        </div>
+
+        <div class="col-md-6 pad top"> <br>
+          <h3>Visualizations</h3> <br>
+        </div>
+
+      </div>
+
+    <div class="row">
+
+        <div class="col-md-6 pad top"> <br>
+
+          <div class="pull-left">
+            <img src="assets/images/output_39_0.png" alt="Latitude vs. Max Temperature" width="200" height="175">
+          </div>
+
+          <div class="text-left">
+            <p> The purpose of this project was to analyze how weather changes as you get closer to the
+                equator.  To accomplish this analysis, we first pulled data from the OpenWeatherMap
+                API to assemble a dataset of over 500 cities. </p> <br>
+            <p> After assembling the dataset, Matplotlib was used to plot various aspects of weather
+                vs. latitude. Factors analyzed included: temperature, cloudiness, wind-speed and humidity. </p> <br>
+            <p> Additionally, Matplotlib was used to plot aspects of the weather using longitude
+                vs. latitude. The intent was to visualize a world map using weather plots. This site
+                provides the source data and visualizations created as part of the analysis,
+                as well as explanations and descriptions of any trends and correlations witnessed. </p>
+          </div>
+
+        </div>
+
+        <div class="col-md-3 pad top"> <br>
+
+          <div class="pull-right">
+            <a href="lat_temps.html"><img src="assets/images/output_39_0.png" alt="Latitude vs. Max Temperature" width="100%" height="100%"></a>
+            <a href="lat_wind.html"><img src="assets/images/output_45_0.png" alt="Latitude vs. Wind Speed" width="100%" height="100%"></a>
+          </div>
+
+       </div>
+
+       <div class="col-md-3 pad top"> <br>
+
+        <div class="pull-right">
+          <a href="lat_hum.html"><img src="assets/images/output_41_0.png" alt="Latitude vs. Humidity" width="100%" height="100%"></a>
+          <a href="lat_cloud.html"><img src="assets/images/output_43_0.png" alt="Latitude vs. Cloudiness" width="100%" height="100%"></a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6 pad top"> <br>
+        <!-- Nothing here, blank columns -->
+      </div>
+
+      <div class="col-md-3 pad top"> <br>
+
+        <div class="pull-right">
+          <a href="glob_temps.html"><img src="assets/images/output_48_0.png" alt="Global Temperatures" width="100%" height="100%"></a>
+          <a href="glob_wind.html"><img src="assets/images/output_57_0.png" alt="Global Wind Speed" width="100%" height="100%"></a>
+
+        </div>
+
+      </div>
+
+      <div class="col-md-3 pad top"> <br>
+
+        <div class="pull-right">
+          <a href="glob_hum.html"><img src="assets/images/output_51_0.png" alt="Global Humidity" width="100%" height="100%"></a>
+          <a href="glob_cloud.html"><img src="assets/images/output_54_0.png" alt="Global Cloudiness" width="100%" height="100%"></a>
+        </div>
+
+      </div>
+
+  </div>
+
+  </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  </html>
