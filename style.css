@@ -50,16 +50,16 @@ p {
 
 
 @media (max-width: 480px) {
-  .navbar {
+    .navbar {
         background-color: rgb(17, 177, 177);
         color: white;
 }
 
-.navbar-header{ 
+    .navbar-header{ 
         color: white;
 }
 
-  .navbar-brand {
+    .navbar-brand {
                  background-color: white;
                  font-family: times new roman;
                  font-weight: bold;
