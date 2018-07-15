@@ -1,5 +1,5 @@
 .card {
-  background-color: white;
+  background-color: #ffffff;
   padding-top: 20px;
   padding-right: 40px;
   padding-bottom: 20px;
@@ -12,18 +12,18 @@
 
 .navbar {
          padding-left: 50px;
-         color: white;
+         color: #ffffff;
 }
 
 .navbar-header{ 
-        color: white;
+        color: #ffffff;
 }
 
 .navbar-brand {
                background-color: rgb(17, 177, 177);
                font-family: times new roman;
                font-weight: bold;
-               color: white;
+               color: #ffffff;
 }
 
 body {
@@ -32,14 +32,14 @@ body {
 
 h1 {
      color: rgb(17, 177, 177);
-     background-color: white;
+     background-color: #ffffff;
      font-family: times new roman;
      font-weight: bold;
 }
 
 h3 {
      color: rgb(17, 177, 177);
-     background-color: white;
+     background-color: #ffffff;
      font-family: times new roman;
      font-weight: bold;
      text-align: center;
@@ -60,17 +60,17 @@ p {
 @media (max-width: 480px) {
     .navbar {
         background-color: rgb(17, 177, 177);
-        color: white;
+        color: #ffffff;
 }
 
     .navbar-header{ 
-        color: white;
+        color: #ffffff;
 }
 
     .navbar-brand {
-                 background-color: white;
+                 background-color: #ffffff;
                  font-family: times new roman;
                  font-weight: bold;
                  color: rgb(17, 177, 177);
-                 color: white;
+                 color: #ffffff;
 }
