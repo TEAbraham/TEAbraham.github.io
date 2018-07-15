@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Web Visualization-Weather Dashboard</title>
+  <title>Web Visualization Dashboard</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -11,7 +11,6 @@
 <body>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -19,10 +18,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a class="navbar-brand" href="index.html">Latitude</a>
+        <a class="navbar-brand" href="index.html">Lattitude</a>
       </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
@@ -55,7 +53,7 @@
     <div class="row">
 
         <div class="col-md-6 pad top"> <br>
-          <h3>Summary: Global Weather Plots</h3> <br>
+          <h3>Summary: Latitude vs. X</h3> <br>
         </div>
 
         <div class="col-md-6 pad top"> <br>
@@ -69,18 +67,16 @@
         <div class="col-md-6 pad top"> <br>
 
           <div class="pull-left">
-            <img src="assets/images/output_39_0.png" alt="Latitude vs. Max Temperature" width="200" height="175">
+            <img src="assets/lat_temps.png" alt="Latitude vs. Max Temperature" width="200" height="175">
           </div>
 
           <div class="text-left">
             <p> The purpose of this project was to analyze how weather changes as you get closer to the
                 equator.  To accomplish this analysis, we first pulled data from the OpenWeatherMap
                 API to assemble a dataset of over 500 cities. </p> <br>
-            <p> After assembling the dataset, Matplotlib was used to plot various aspects of weather
-                vs. latitude. Factors analyzed included: temperature, cloudiness, wind-speed and humidity. </p> <br>
-            <p> Additionally, Matplotlib was used to plot aspects of the weather using longitude
-                vs. latitude. The intent was to visualize a world map using weather plots. This site
-                provides the source data and visualizations created as part of the analysis,
+            <p> After assembling the dataset, we used Matplotlib to plot various aspects of the weather
+                vs. latitude. Factors we looked at included: temperature, cloudiness, wind speed and humidity.
+                This site provides the source data and visualizations created as part of the analysis,
                 as well as explanations and descriptions of any trends and correlations witnessed. </p>
           </div>
 
@@ -89,8 +85,8 @@
         <div class="col-md-3 pad top"> <br>
 
           <div class="pull-right">
-            <a href="lat_temps.html"><img src="assets/images/output_39_0.png" alt="Latitude vs. Max Temperature" width="100%" height="100%"></a>
-            <a href="lat_wind.html"><img src="assets/images/output_45_0.png" alt="Latitude vs. Wind Speed" width="100%" height="100%"></a>
+            <a href="lat_temps.html"><img src="assets/lat_temps.png" alt="Latitude vs. Max Temperature" width="100%" height="100%"></a>
+            <a href="lat_wind.html"><img src="assets/lat_wind.png" alt="Latitude vs. Wind Speed" width="100%" height="100%"></a>
           </div>
 
        </div>
@@ -98,44 +94,19 @@
        <div class="col-md-3 pad top"> <br>
 
         <div class="pull-right">
-          <a href="lat_hum.html"><img src="assets/images/output_41_0.png" alt="Latitude vs. Humidity" width="100%" height="100%"></a>
-          <a href="lat_cloud.html"><img src="assets/images/output_43_0.png" alt="Latitude vs. Cloudiness" width="100%" height="100%"></a>
+          <a href="lat_hum.html"><img src="assets/lat_hum.png" alt="Latitude vs. Humidity" width="100%" height="100%"></a>
+          <a href="lat_cloud.html"><img src="assets/lat_cloud.png" alt="Latitude vs. Cloudiness" width="100%" height="100%"></a>
         </div>
 
       </div>
 
     </div>
 
-    <div class="row">
-
-      <div class="col-md-6 pad top"> <br>
-        <!-- Nothing here, blank columns -->
-      </div>
-
-      <div class="col-md-3 pad top"> <br>
-
-        <div class="pull-right">
-          <a href="glob_temps.html"><img src="assets/images/output_48_0.png" alt="Global Temperatures" width="100%" height="100%"></a>
-          <a href="glob_wind.html"><img src="assets/images/output_57_0.png" alt="Global Wind Speed" width="100%" height="100%"></a>
-
-        </div>
-
-      </div>
-
-      <div class="col-md-3 pad top"> <br>
-
-        <div class="pull-right">
-          <a href="glob_hum.html"><img src="assets/images/output_51_0.png" alt="Global Humidity" width="100%" height="100%"></a>
-          <a href="glob_cloud.html"><img src="assets/images/output_54_0.png" alt="Global Cloudiness" width="100%" height="100%"></a>
-        </div>
-
-      </div>
-
-  </div>
+    
 
   </body>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
   </html>

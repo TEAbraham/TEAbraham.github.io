@@ -3,14 +3,14 @@ body {
 }
 
 h1 {
-     color: rgb(12, 173, 167);
+     color: rgb(17, 177, 177);
      background-color: white;
      font-family: times new roman;
      font-weight: bold;
 }
 
 h3 {
-     color: rgb(12, 173, 167);
+     color: rgb(17, 177, 177);
      background-color: white;
      font-family: times new roman;
      font-weight: bold;
@@ -25,7 +25,7 @@ img {
 
 p {
    font-family: sans-serif;
-   font-size: 12
+   font-size: 12;
 }
 
 .container {
@@ -34,24 +34,26 @@ p {
 
 .navbar {
          padding-left: 50px;
+         color: white;
 }
 
 .navbar-brand {
-               background-color: rgb(12, 173, 167);
+               background-color: rgb(17, 177, 177);
                font-family: times new roman;
                font-weight: bold;
                color: white;
 }
 
-/* Here we define a navbar style that will ONLY be applied at screen sizes below 480 pixels */
+
 @media (max-width: 480px) {
   .navbar {
-    background-color: rgb(12, 173, 167);
+    background-color: rgb(17, 177, 177);
 }
 
   .navbar-brand {
                  background-color: white;
                  font-family: times new roman;
                  font-weight: bold;
-                 color: rgb(12, 173, 167);
+                 color: rgb(17, 177, 177);
+                 color: white;
 }
