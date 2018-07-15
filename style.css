@@ -1,3 +1,23 @@
+.container {
+  background-color: white;
+}
+
+.navbar {
+         padding-left: 50px;
+         color: white;
+}
+
+.navbar-header{ 
+        color: white;
+}
+
+.navbar-brand {
+               background-color: rgb(17, 177, 177);
+               font-family: times new roman;
+               font-weight: bold;
+               color: white;
+}
+
 body {
     background-color: lightgray;
 }
@@ -27,27 +47,6 @@ p {
    font-family: sans-serif;
    font-size: 12;
 }
-
-.container {
-  background-color: white;
-}
-
-.navbar {
-         padding-left: 50px;
-         color: white;
-}
-
-.navbar-header{ 
-        color: white;
-}
-
-.navbar-brand {
-               background-color: rgb(17, 177, 177);
-               font-family: times new roman;
-               font-weight: bold;
-               color: white;
-}
-
 
 @media (max-width: 480px) {
     .navbar {
