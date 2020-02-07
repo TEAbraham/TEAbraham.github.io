@@ -1337,6 +1337,10 @@ section.lazy-placeholder:after {
   color: #475b34;
   text-align: left;
 }
+.cid-rOS5pTh2tF P {
+  color: #475b34;
+  text-align: left;
+}
 .cid-rOZlWIAFlT {
   padding-top: 60px;
   padding-bottom: 60px;
@@ -1618,7 +1622,7 @@ section.lazy-placeholder:after {
   color: #7f1933;
 }
 .cid-rNE1SjryiK .mbr-author-desc {
-  color: #7f1933;
+  color: #efefef;
 }
 @media (max-width: 991px) {
   .cid-rNE1SjryiK .mbr-figure,
