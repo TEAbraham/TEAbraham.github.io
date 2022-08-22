@@ -3,7 +3,7 @@ let topTitleDiv = "</h4>";
 let titleDiv =
   "<h1>Body Worn Cameras offer hope and reveal strain of police accountability efforts in New Orleans</h1>";
 
-let bylineDiv = "<p>By Thomas Abraham</p>";
+let bylineDiv = "<p></p>";
 
 let descriptionDiv =
   "<p>While investigating a single allegation of police misconduct, New Orleans Deputy Police Monitor Bonycle Sokunbi spent 350 hours pouring over footage captured by body-worn cameras. Especially in cases of use of force, Monitors can’t judge a case by the footage captured during the incident, “we're not looking at just that individual use of force. We're looking at what led up to it, all the tactics, and the behavior that took place.” </p><p></p>" +
@@ -47,7 +47,7 @@ let divChapter4 =
 
 let divChapter5 =
   "<h3>Conclusion</h3>" +
-  '<img src="images/new Income map.png">' +
+  '<img src="images/new income map.png">' +
   '<p class="imageCredit"><a href=></a></p>' +
   "<p></p>";
 
