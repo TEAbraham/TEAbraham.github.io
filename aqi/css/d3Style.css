@@ -8,11 +8,7 @@
 
 }
 
- body{
-  font-size: 20px ;
-  font-family: 'Helvetica Neue',Helvetica,sans-serif !important;
-  background-color: rgb(198,219,239) !important;
-}
+ body{font-family:'Helvetica Neue',Helvetica,sans-serif;background-image:url("../img/grey.png");background-repeat:repeat;margin:0;min-width:980px;}
 
 .axis-text-y{
   font-weight: 900;
