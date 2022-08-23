@@ -1,14 +1,12 @@
-/* Students:
- * =========
- * Add styling to your d3 chart with this file. */
-
 .btn-info {
 
   background-color: #54278f;
 
 }
 
- body{font-family:'Helvetica Neue',Helvetica,sans-serif;background-image:url("../img/grey.png");background-repeat:repeat;margin:0;min-width:980px;}
+html{width:900px;}
+
+body{font-family:'Helvetica Neue',Helvetica,sans-serif;background-image:url("../img/grey.png");background-repeat:repeat;margin:0;min-width:900px;overflow:scroll;}
 
 .axis-text-y{
   font-weight: 900;

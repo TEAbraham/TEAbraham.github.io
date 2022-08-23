@@ -1,15 +1,7 @@
-// var bdate = "20180601"
-// var edate = "20180630"
-
-// var pmurl = `data/pm10_20.csv`
-// var ozurl = `data/o3_20.csv`
-// var courl = `data/co_20.csv`
-// var sourl = `data/so2_20.csv`
-// var nourl = `data/no2_20.csv`
 var alldata = `data/values.csv`
 // Set up our chart
-var svgWidth = 1011;
-var svgHeight = 777;
+var svgWidth = 900;
+var svgHeight = 600;
 var margin = { top: 30, right: 40, bottom: 100, left: 100 };
 
 var width = svgWidth - margin.left - margin.right;
