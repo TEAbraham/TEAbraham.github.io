@@ -854,6 +854,7 @@ var vis = function(data) {
         })
         .on('click', function(d) {
           controller.selectPollutant(d);
+          iframe.contentWindow.postMessage(d, '*');
         });
 
     pollutantSelector.render = function(opt) {

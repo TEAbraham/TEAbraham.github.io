@@ -4,8 +4,9 @@
     <title>Visualization of Historical Data</title>
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/d3Style.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>	
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	  <script src="https://d3js.org/d3.v4.min.js"></script>	
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.min.css"/>
   </head>
@@ -35,26 +36,26 @@
         <div id="pollutant-selector"></div>
       </div>
     </section>
-    <section id="chart">
+    <section id="plot">
         <div>
-              <div style="text-align: center">
-                  <embed id ="emb" src="d3.html" height="600" width="900">
-              </div>
-          </div>
+            <div style="text-align: center">
+                <iframe id="iframe" src="d3.html" height="600" width="900" frameBorder="0"></iframe>
+            </div>
+        </div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/intro.min.js"></script>
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="lib/colorbrewer.js"></script>
     <script src="air-vis.js"></script>
-    <script>
+    <script type="text/javascript">
       introJs().setOptions({
         steps: [{
           title: 'Welcome',
-          intro: 'Chicago Air Quality Dashboard'
+          intro: 'This interactive beta compares the <b>D3</b>v4 and <b>D3</b>v5 libraries'
         },
         {
           element: document.querySelector('.map'),
-          intro: 'This <b>TEST</b> focuses on the map. <br/> I hope it worked!!'
+          intro: 'It uses the AirNow.org API to collect historic data from Chicago monitoring stations'
         },
         {
           title: 'Did this work?',

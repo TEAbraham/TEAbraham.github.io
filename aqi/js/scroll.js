@@ -377,5 +377,5 @@ d3.csv(alldata).then(alldata => {
         }
 
     })
-
+    return currentAxisLabelY
 })

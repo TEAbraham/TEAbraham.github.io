@@ -5,12 +5,17 @@
 	<title>D3 Project</title>
 	<link rel="stylesheet" href="css/d3Style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://d3js.org/d3.v5.min.js"></script>	
+	<script src="https://d3js.org/d3.v5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
 </head>
 <body style="overflow:hidden" scrolling="no">
 	<div id="chart">
 	</div>
 	<script type="text/javascript" src="js/scroll.js"></script>
+	<script>
+		window.addEventListener('message', function(event) {
+			d3.select((`#${event.data.toUpperCase()}`)).dispatch('click');
+		});
+	</script>
 </body>
 </html>

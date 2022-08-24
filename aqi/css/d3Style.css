@@ -4,8 +4,6 @@
 
 }
 
-html{width:900px;}
-
 body{font-family:'Helvetica Neue',Helvetica,sans-serif;background-image:url("../img/grey.png");background-repeat:repeat;margin:0;min-width:900px;overflow:scroll;}
 
 .axis-text-y{
