@@ -1,0 +1,88 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: #fff !important;
+  margin: 100px;
+}
+#main {
+  float: left;
+}
+#sidebar {
+  float: right;
+}
+#sequence {
+  width: 600px;
+  height: 70px;
+}
+#sequence text {
+  font-weight: 600;
+  fill: #fff;
+}
+#chart {
+  position: relative;
+}
+#chart path {
+  stroke: #fff;
+}
+#explanation {
+  position: absolute;
+  top: 260px;
+  left: 305px;
+  width: 140px;
+  text-align: center;
+  color: #666;
+  z-index: -1;
+}
+#percentage {
+  font-size: 2.5em;
+}
+.board {
+  width: 400px;
+  margin: 50px;
+}
+.crumbs {
+  width: 100%;
+  height: 50px;
+  font: 16px Raleway, sans-serif;
+  align-self: flex-start;
+}
+/* .crumbs .crumb {
+  position: relative;
+  display: inline-block;
+  padding: 1em;
+}
+.crumbs .crumb:not(:last-of-type):before {
+  content: '';
+  display: block;
+  position: absolute;
+  border-top: 5px solid transparent;
+  border-left: 10px solid #658ed0;
+  border-bottom: 5px solid transparent;
+  top: 21px;
+  right: -5px;
+} */
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.container .chart {
+  width: 800px;
+  height: 800px;
+  align-self: center;
+}
+/*********************
+ SVG Elements styling 
+ *********************/
+svg text {
+  text-anchor: middle;
+}
+.ark {
+  fill-rule: evenodd;
+  cursor: pointer;
+}
+.ark.-depth-0 {
+  fill: white;
+}

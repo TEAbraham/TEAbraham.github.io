@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Openings</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style.css">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+		<script src="lib/chessboardjs/js/chess.js"></script>
+		<script src="lib/chessboardjs/js/chessboard-0.3.0.js"></script>
+        <script src="lib/jquery/jquery-3.2.1.min.js"></script>
+        <!-- <script src="ChessDataViz.min.js"></script>
+        <link rel="stylesheet" href="ChessDataViz.min.css"> -->
+        <script src="js.js"></script>
+        <link rel="stylesheet" href="css.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="12-xl-col">
+                    <div id="hm2-combined">
+                        <div id="heatmap-example-2" class="cdv-heatmap"></div>
+                        <br>
+                        <button id="w-btn" class="button button-primary">White Queens</button>
+                        <button id="b-btn" class="button">Black Queens</button>
+                    </div>
+                    <script> d3.json('fangol.json', function(err, data) {
+                            var heatmapExample2 = new ChessDataViz.HeatMap('#heatmap-example-2', {
+                                colorScale: ['#393b79', '#e7ba52'],
+                                sizeScale: false,
+                                accessor: {
+                                    color: 'w',
+                                    piece: 'q'
+                                }
+                            }, data.heatmaps.checkSquares);
+                        
+                            var tip = d3.tip()
+                                .attr('class', 'd3-tip')
+                                .offset([25, -6])
+                                .html(function(d) {
+                                    return d3.format('.2s')(d);
+                                });
+                        
+                            heatmapExample2.dispatch.on('mouseenter', tip.show);
+                            heatmapExample2.dispatch.on('mouseleave', tip.hide);
+                            heatmapExample2.dataContainer.call(tip);
+                        
+                            var wButton = d3.select('#w-btn');
+                            var bButton = d3.select('#b-btn');
+                        
+                            wButton.on('click', function() {
+                                heatmapExample2.options({
+                                    accessor: {
+                                        color: 'w',
+                                        piece: 'q'
+                                    }
+                                });
+                        
+                                wButton.classed('button-primary', true);
+                                bButton.classed('button-primary', false);
+                            });
+                        
+                            bButton.on('click', function() {
+                                heatmapExample2.options({
+                                    accessor: {
+                                        color: 'b',
+                                        piece: 'q'
+                                    }
+                                });
+                        
+                                wButton.classed('button-primary', false);
+                                bButton.classed('button-primary', true);
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+    </div>
+    <div class="container">
+            <div class="row">
+                <div class="12-xl-col">
+                    <div id="hm-combined">
+                            <div id="heatmap" class="cdv-heatmap"></div>
+                            <select id="heatmap-selector">
+                                    <option value="squareUtilization">Square Utilization</option>
+                                    <option value="moveSquares">Move Squares</option>
+                                    <option value="captureSquares">Capture Squares</option>
+                                    <option value="checkSquares">Checking Squares</option>
+                            </select>
+                            <div id="piece-selectors-w"></div>
+                            <div id="piece-selectors-b"></div>
+                    </div>						
+                </div>
+            </div>	
+        </div>
+     <div id="board" hidden></div>
+     <div id="board2" hidden></div>      
+    </body>
+</html>

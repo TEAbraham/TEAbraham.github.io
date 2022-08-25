@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>AlphaBeau</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style.css">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+		<script src="lib/chessboardjs/js/chess.js"></script>
+		<script src="lib/chessboardjs/js/chessboard-0.3.0.js"></script>
+		<script src="lib/jquery/jquery-3.2.1.min.js"></script>
+	</head>
+	<body data-gr-c-s-loaded="true">
+		<div class="container" id="top">
+				<div>
+					<div id="sticky-wrapper" class="sticky-wrapper is-sticky" style="height: 38px;">
+						<ul class="main-nav" style="width: 800px; position: fixed; top: 20px; left: 600px;">
+							<a href="#chess" class="button">chess</a>
+							<a href="#ai" class="button">artificial intelligence</a>
+							<a href="#opening" class="button">opening</a>
+							<a href="#middle" class="button">middle</a>
+							<a href="#endgame" class="button">end game</a>
+						</ul>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="12-xl-col">
+						<h1>AlphaBeau<br><small><small>Reinforcement Learning &amp; Chess</small></small></h1>
+					</div>
+				</div>
+				<hr id="chess">
+		</div>
+		<div class="container">
+				<div class="row">
+					<div class="12-xl-col">
+							<div id="rand" class="board">
+								<script src="rand.js"></script>
+							</div>
+					</div>			
+				</div>
+				<hr id="ai">
+		</div>
+		<br>
+		<br>
+		<div class="container">
+			<div class="row">
+					<div class="12-xl-col">
+						<h3>Artificial Intelligence</h3>
+						<p>How we think...</p>
+						<p>MiniMax</p>
+							<div>
+							<iframe src="tree.html" height="500" width="1000"></iframe>
+							</div>
+							<!-- <div>
+							<iframe src="graph.html" height="600" width="1000"></iframe>
+							</div>	 -->
+						<p>Monte Carlo Tree Search</p>
+						<img src="img/MCTS.svg.png" alt="MCTS">
+						<img src="img/ACZ_Pipeline_neg.png" alt="pipeline"style="padding-left: 150px">
+						<img src="img/alpha_go_zero_cheat_sheet_neg.png" alt="pipeline">
+						<hr id="opening">
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="12-xl-col">
+					<h3>Opening</h3>
+					<p>How we learn...</p>
+					<p>Play</p>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="container">
+				<div class="row">
+					<div class="12-xl-col">
+						<script src="js.js"></script>
+						<link rel="stylesheet" href="css.css">
+						<div id="hm2-combined">
+							<div id="heatmap-example-2" class="cdv-heatmap"></div>
+							<br>
+							<button id="w-btn" class="button button-primary">White Queens</button>
+							<button id="b-btn" class="button">Black Queens</button>
+						</div>
+						<script> d3.json('fangol.json', function(err, data) {
+								var heatmapExample2 = new ChessDataViz.HeatMap('#heatmap-example-2', {
+									colorScale: ['#393b79', '#e7ba52'],
+									sizeScale: false,
+									accessor: {
+										color: 'w',
+										piece: 'q'
+									}
+								}, data.heatmaps.checkSquares);
+							
+								var tip = d3.tip()
+									.attr('class', 'd3-tip')
+									.offset([25, -6])
+									.html(function(d) {
+										return d3.format('.2s')(d);
+									});
+							
+								heatmapExample2.dispatch.on('mouseenter', tip.show);
+								heatmapExample2.dispatch.on('mouseleave', tip.hide);
+								heatmapExample2.dataContainer.call(tip);
+							
+								var wButton = d3.select('#w-btn');
+								var bButton = d3.select('#b-btn');
+							
+								wButton.on('click', function() {
+									heatmapExample2.options({
+										accessor: {
+											color: 'w',
+											piece: 'q'
+										}
+									});
+							
+									wButton.classed('button-primary', true);
+									bButton.classed('button-primary', false);
+								});
+							
+								bButton.on('click', function() {
+									heatmapExample2.options({
+										accessor: {
+											color: 'b',
+											piece: 'q'
+										}
+									});
+							
+									wButton.classed('button-primary', false);
+									bButton.classed('button-primary', true);
+								});
+							});
+						</script>
+					</div>
+				</div>
+		</div>
+		<div class="container">
+				<div class="row">
+					<div class="12-xl-col">
+						<div id="hm-combined">
+								<div id="heatmap" class="cdv-heatmap"></div>
+								<select id="heatmap-selector">
+										<option value="squareUtilization">Square Utilization</option>
+										<option value="moveSquares">Move Squares</option>
+										<option value="captureSquares">Capture Squares</option>
+										<option value="checkSquares">Checking Squares</option>
+								</select>
+								<div id="piece-selectors-w"></div>
+								<div id="piece-selectors-b"></div>
+						</div>						
+					</div>
+				</div>
+				<hr id="middle">	
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="12-xl-col">
+						<h3>Middle</h3>
+						<p>How we improve...</p>
+						<p>Training</p>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="12-xl-col">
+							<div id="op-combined">
+									<p>Move Tree</p>
+									<br>
+									<br>
+									<br>
+									<div class="cdv-openings" id="openings">
+										<div id="board" class="board" height="300" width="300">
+										</div>
+									</div>
+									<div class="caption">
+										<span id="variation"><br></span><span id="eco"><br></span>
+										<br>
+										<button id="all" class="button button-primary">All Openings</button>
+										<button id="d4" class="button">d4 Variations</button>
+										<button id="e4" class="button">e4 Variations</button>
+										<button id="c4" class="button">c4 Variations</button>
+										<button id="Nf3" class="button">Nf3 Variations</button>
+									</div>
+							</div>  
+					<script>d3.json('fangol.json', function(err, data) {
+							var openings = new ChessDataViz.Openings('#openings', {
+								arcThreshold: 0.002,
+								textThreshold: 0.03,
+								colors: d3.scale.ordinal().range(['#769656', '#8c6d31', '#843c39', '#7b4173', '#393b79'])
+							}, data.openings);
+
+							var tip = d3.tip()
+									.attr('class', 'd3-tip')
+									.direction(function(){
+										if ((d3.mouse(d3.event.target)[1] > 0) && (d3.mouse(d3.event.target)[0] > 0)){return 'se'} 
+										else  if ((d3.mouse(d3.event.target)[1] > 0) && !(d3.mouse(d3.event.target)[0] > 0)){return 'sw'} 
+										else if (!(d3.mouse(d3.event.target)[1] > 0) && (d3.mouse(d3.event.target)[0] > 0)){return 'ne'}  
+										else {return 'nw'}
+									})
+									.html(function(d, moves) {
+										var board, chess = new Chess()
+										board = ChessBoard('board', {position:'start'})
+										for (i = 0; i < moves.length; i++){
+											chess.move(moves[i])
+											board.position(chess.fen());
+										};
+										d3.json('eco.json', function(err, data){
+											for (i = 0; i < data.children.length; i++){
+												if (chess.fen().split(" ", 3).join(" ") == data.children[i].children['f']){
+													d3.select('#eco').text(data.children[i].children['name']);
+												}
+											}
+										})
+										d3.select('#variation').text(chess.pgn());
+										var percent = d.value / data.openings.value * 100;
+										var parent = d.value/d.parent.value * 100;
+										return(`<center>${d3.format('.2s')(d.value)} games out of ${d3.format('.2s')(data.openings.value)}   |   ${percent.toFixed(2)}%<br>${parent.toFixed(2)}% of parent`);
+									})
+									
+
+							openings.dispatch.on('mouseenter', tip.show);
+							openings.dispatch.on('mouseleave', tip.hide);
+							openings.dataContainer.call(tip);
+						
+							var allButton = d3.select('#all');
+							var d4Button = d3.select('#d4');
+							var e4Button = d3.select('#e4');
+							var c4Button = d3.select('#c4');
+							var Nf3Button = d3.select('#Nf3');
+						
+							allButton.on('click', function() {
+								allButton.classed('button-primary', true);
+								d4Button.classed('button-primary', false);
+								e4Button.classed('button-primary', false);
+								Nf3Button.classed('button-primary', false);
+								c4Button.classed('button-primary', false);
+								openings.data(data.openings);
+								var board, chess = new Chess()
+								board = ChessBoard('board', 'start');
+								d3.select('#variation').html("<br>");
+								d3.select('#eco').html("<br>");
+							});
+							d4Button.on('click', function() {
+								allButton.classed('button-primary', false);
+								d4Button.classed('button-primary', true);
+								e4Button.classed('button-primary', false);
+								Nf3Button.classed('button-primary', false);
+								c4Button.classed('button-primary', false);
+								openings.data(data.openings);
+								openings.data(data.openings.children[1]);
+								var board, chess = new Chess()
+								board = ChessBoard('board', 'start');
+								chess.move('d4');
+								board.position(chess.fen());
+								d3.select('#variation').text(chess.pgn());
+								d3.select('#eco').text("Queen's Pawn");
+							});
+							e4Button.on('click', function() {
+								allButton.classed('button-primary', false);
+								d4Button.classed('button-primary', false);
+								e4Button.classed('button-primary', true);
+								Nf3Button.classed('button-primary', false);
+								c4Button.classed('button-primary', false);
+								openings.data(data.openings);
+								openings.data(data.openings.children[0]);
+								var board, chess = new Chess()
+								board = ChessBoard('board', 'start');
+								chess.move('e4');
+								board.position(chess.fen());
+								d3.select('#variation').text(chess.pgn());
+								d3.select('#eco').text("King's Pawn");
+							});
+							Nf3Button.on('click', function() {
+								allButton.classed('button-primary', false);
+								d4Button.classed('button-primary', false);
+								e4Button.classed('button-primary', false);
+								Nf3Button.classed('button-primary', true);
+								c4Button.classed('button-primary', false);
+								openings.data(data.openings);
+								openings.data(data.openings.children[3]);
+								var board, chess = new Chess()
+								board = ChessBoard('board', 'start');
+								chess.move('Nf3');
+								board.position(chess.fen());
+								d3.select('#variation').text(chess.pgn());
+								d3.select('#eco').text("Reti Opening");
+							});
+							c4Button.on('click', function() {
+								allButton.classed('button-primary', false);
+								d4Button.classed('button-primary', false);
+								e4Button.classed('button-primary', false);
+								Nf3Button.classed('button-primary', false);
+								c4Button.classed('button-primary', true);
+								openings.data(data.openings);
+								openings.data(data.openings.children[2]);
+								var board, chess = new Chess()
+								board = ChessBoard('board', 'start');
+								chess.move('c4');
+								board.position(chess.fen());
+								d3.select('#variation').text(chess.pgn());
+								d3.select('#eco').text("English Opening");
+							});
+						});</script>
+					<br>
+					<br>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+					<div class="row">
+						<div class="12-xl-col">
+						<img src="img/excerpt.png" alt="excerpt" style="padding-left: 250px">
+						</div>
+				</div>
+				<hr id="endgame">
+			</div>
+			<div class="container">
+					<div class="row">
+						<div class="12-xl-col">
+							<h3>End Game</h3>
+							<p>Who we are...</p>
+							<p>Who we will be...</p>
+							<div id="paths-combined">
+									<div class="cdv-move-paths" id="movepaths"></div>
+									<div id="board2"></div>
+							</div>
+						</div>
+				</div>
+		</div>
+		<span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span>
+	</body>
+</html>

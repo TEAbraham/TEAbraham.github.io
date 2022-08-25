@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Openings</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style.css">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+		<script src="lib/chessboardjs/js/chess.js"></script>
+		<script src="lib/chessboardjs/js/chessboard-0.3.0.js"></script>
+        <script src="lib/jquery/jquery-3.2.1.min.js"></script>
+        <script src="ChessDataViz.min.js"></script>
+        <link rel="stylesheet" href="ChessDataViz.min.css">
+    </head>
+    <body>
+        <div class="container">
+                <div class="row">
+                    <div class="12-xl-col">
+                            <div id="op-combined">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div class="cdv-openings" id="openings">
+                                        <div id="board" class="board" height="300" width="300">
+                                        </div>
+                                    </div>
+                                    <div class="caption">
+                                        <span id="variation"><br></span><span id="eco"><br></span>
+                                        <br>
+                                        <button id="all" class="button button-primary">All Openings</button>
+                                        <button id="e4" class="button">e4 Variations</button>
+                                        <button id="d4" class="button">d4 Variations</button>
+                                        <button id="Nf3" class="button">Nf3 Variations</button>
+                                        <button id="c4" class="button">c4 Variations</button>
+                                    </div>
+                            </div>
+                            <script src="openings.js"></script>
+                    </div>
+                </div>
+        </div> 
+    </body>
+</html>

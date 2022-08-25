@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+    <head>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@3/dist/inspector.css">
+    </head>
+    <body>
+        <script type="module">
+        import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+        import define from "./collTree.js";
+
+        new Runtime().module(define, name => {
+        if (name === "radialTree") {
+            return new Inspector(document.querySelector("#radialTree"));
+        }
+        });
+
+        new Runtime().module(define, name => {
+        if (name === "tidyTree") {
+            return new Inspector(document.querySelector("#tidyTree"));
+        }
+        });
+        </script>
+        <div id="radialTree">
+        </div>
+        <div id="tidyTree">
+        </div>
+    </body>
+</html>
