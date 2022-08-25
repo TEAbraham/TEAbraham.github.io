@@ -61,11 +61,11 @@ d3.csv(alldata).then(alldata => {
             var date = formatDate(parseDate(d.Date))
             // var parameter = d.parameter;
             // var units = d.units;
-            if (d.parameter==="81102"){return (`PM10 Measures ${d.pm10} Micrograms Per Cubic Meter<hr>${date}`)}
-            else if (d.parameter==="44201"){return (`Ozone Measures ${d.o3} Parts Per Million<hr>${date}`)}
-            else if (d.parameter==="42101"){return (`CO Measures ${d.co} Parts Per Million<hr>${date}`)}
-            else if (d.parameter==="42401"){return (`SO2 Measures ${d.so2} Parts Per Billion<hr>${date}`)}
-            else if (d.parameter==="42602"){return (`NO2 Measures ${d.no2} Parts Per Billion<hr>${date}`)}
+            if (d.parameter==="81102"){return (`PM10 volume ${d.pm10} Micrograms Per Cubic Meter<hr>${date}`)}
+            else if (d.parameter==="44201"){return (`Ozone volume ${d.o3} Parts Per Million<hr>${date}`)}
+            else if (d.parameter==="42101"){return (`CO volume ${d.co} Parts Per Million<hr>${date}`)}
+            else if (d.parameter==="42401"){return (`SO2 volume ${d.so2} Parts Per Billion<hr>${date}`)}
+            else if (d.parameter==="42602"){return (`NO2 volume ${d.no2} Parts Per Billion<hr>${date}`)}
         });
 
     

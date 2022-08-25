@@ -512,7 +512,7 @@ var vis = function(data) {
       .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2 + 5) + ')');
 
     var outerRadius = width / 2;
-    var innerRadius = 25;
+    var innerRadius = 35;
 
     var angle = d3.scale.linear()
       .domain([0, 12])
@@ -520,8 +520,11 @@ var vis = function(data) {
     var radius = d3.scale.linear()
       .domain([0, d3.max(data.byStation, function(station) {
         return d3.max(station.byPollutant, function(pollutant) {
-          return d3.max(pollutant.byMonth, function(month) {
-            return month.y0 + month.y; 
+          return d3.max(pollutant.byMonth, function (month) {
+            if (month.pollutant !== ('pm10'||'no2')) {
+              return (month.y0 + month.y)/1;
+            }
+            else{return (month.y0 + month.y)/2;}
           });
         });
       })])
