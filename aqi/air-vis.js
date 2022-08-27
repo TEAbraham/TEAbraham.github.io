@@ -343,6 +343,9 @@ var vis = function(data) {
       mapSVG.selectAll('.location')
         .data(data.locations)
         .enter().append('circle')
+          .attr('id', function(d) {
+            return d.id;
+          })
           .attr('class', 'location')
           .attr('cx', function(d) {
             return d.x ;
