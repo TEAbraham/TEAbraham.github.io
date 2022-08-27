@@ -286,7 +286,8 @@ map.on("load", function () {
         property: 'police_district',
         type: 'exponential',
         stops: [
-          [1, '#ffffff'],
+          [0, '#ffffff'],
+          [1, '#ffc0cb'],
           [2, '#9b5fe0'],
           [3, '#16a4d8'],
           [4, '#60dbe8'],
