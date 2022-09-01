@@ -293,8 +293,8 @@ map.on("load", function () {
           [4, '#60dbe8'],
           [5, '#8bd346'],
           [6, '#efdf48'],
-          [7, '#f9a52c'],
-          [8, '#d64e12']
+          [7, '#d64e12'],
+          [8, '#f9a52c']
         ]
       },
       'circle-stroke-color': 'white',
