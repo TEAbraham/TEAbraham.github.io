@@ -16,7 +16,7 @@ let footerDiv =
 
 let divChapter0 =
   "<h3>Overview</h3>" +
-  "<img src='images/BodyCameraByDuration.png'>" +
+  // "<img src='images/BodyCameraByDuration.png'>" +
   '<p>Officers must turn their cameras on during almost any interaction with the public. Cameras must stay on until they leave the scene. </a></p>' +
   "<p>As admissible evidence in all misconduct investigations, body worn cameras have added a complex and time consuming new layer of legal responsibility for the Office of the Police Monitor–the top police accountability watchdog in New Orleans. Nonetheless, Bonycle  “can't imagine a world doing this adequately without body worn camera footage. The amount of guessing that takes place or assumptions that are made could be dangerous without it.” </p>";
 
@@ -52,8 +52,8 @@ let divChapter5 =
   "<p></p>";
 
 var config = {
-  style: "mapbox://styles/santialv951/cl2rqjuqg000i14qo8pzjgtvc",
-  accessToken: "pk.eyJ1Ijoic2FudGlhbHY5NTEiLCJhIjoiY2wxcWw5NmFmMDA4bDNjbXRkbnVjcGl2cCJ9.emo4lo_VYcNtbXMjf8rg9g",
+  style: "mapbox://styles/teabraham/cl1wq5k1h000g15qfgw672wgd/",
+  accessToken: "pk.eyJ1IjoidGVhYnJhaGFtIiwiYSI6ImNqa2l4cWxjcTAxZHUzcGwzaHRzbzhoNnMifQ.kgtlhEc0mUz0VCelTnco6w",
   showMarkers: false,
   markerColor: "#3FB1CE",
   theme: "light",
@@ -114,7 +114,7 @@ var config = {
         {
           layer: "bwc-point",
           opacity: 1,
-          duration: 3000
+          duration: 0
         },
       ],
       onChapterExit: [
