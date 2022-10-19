@@ -16,17 +16,7 @@
         
         <!-- Update these with your own fonts -->
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
-        
         <link rel="stylesheet" href="css/style.css">
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KK35E0PHN3"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-KK35E0PHN3');
-        </script>
     </head>
     <body>
         <header>
@@ -110,7 +100,12 @@
            
            <div class="about-me__body">
                <p>I am a data scientist and machine learning consultant who prides himself on the principles of perpetual education, humanism, and futurism. As a passionate student of both hard and soft sciences, I believe in an interdisciplinary and interpersonal approach to problem-solving.</p>
+           </div>
+           <div class="about-me__body"> 
                <p>According to Andrew Ng, a pioneer of online education and neural networks, "AI is the new electricity."  The rise of electricity transformed every major industry, and in so doing, transformed every culture and the face of our world.  We are witnessing the proliferation of AI at an even faster rate.  As a witness to the power of this technology and the breadth of its application, I am joining the effort to "democratize deep learning."</p>
+           </div>
+           <div></div>
+           <div class="about-me__body">
                <p>As a professional consultant and project manager, I help clients better understand their own data vis-à-vis how it's collected, structured, and processed.  With the clients' domain knowledge and my personal guidance, we decide what business solutions are "machine learnable" as well as scalable for sustainable growth.  It has been my passion and privilege to work across industries educating fellow team members about artificial intelligence as we learn how to build a better world together. </p>
            </div>
            
@@ -121,10 +116,21 @@
         <section class="my-work" id="work">
             <h2 class="section__title section__title--work">My work</h2>
             <p class="section__subtitle section__subtitle--work">A selection of my range of work</p>
+            <div class="segmented-control" style="width: 100%; color: #5FBAAC">
+                <input type="radio" name="sc-1-1" id="sc-1-1-1">
+                <input type="radio" name="sc-1-1" id="sc-1-1-2">
+                <input type="radio" name="sc-1-1" id="sc-1-1-3" checked>
+                <input type="radio" name="sc-1-1" id="sc-1-1-4">
             
+                <label for="sc-1-1-1" data-value="ALL">ALL</label>
+                <label for="sc-1-1-2" data-value="BIO">BIO</label>
+                <label for="sc-1-1-3" data-value="NLP">NLP</label>
+                <label for="sc-1-1-4" data-value="FIN">FIN</label>
+            </div>
+
             <div class="portfolio">
                 <!-- Portfolio item 01 -->
-                <a href="https://teabraham.github.io/breast_cancer" target="_blank" class="portfolio__item">
+                <a href="https://teabraham.github.io/breast_cancer" target="_blank" class="portfolio__item bio">
                     <div class="img__wrap">
                         <img src="img/EarlyBreastCancer.jpg" alt="" class="portfolio__img">
                         <p class="img__description">Breast Cancer<br>Exploratory Data Analysis</p>
@@ -132,7 +138,7 @@
                 </a>
                 
                 <!-- Portfolio item 02 -->
-                <a href="https://teabraham.github.io/brain_tumor" target="_blank" class="portfolio__item">
+                <a href="https://teabraham.github.io/brain_tumor" target="_blank" class="portfolio__item bio">
                     <div class="img__wrap">
                         <img src="img/BrainTumor.jpg" alt="" class="portfolio__img">
                         <p class="img__description">Brain Tumor<br>MRI Classification with Transfer Learning</p>
@@ -140,7 +146,7 @@
                 </a>
                 
                 <!-- Portfolio item 03 -->
-                <a href="https://colab.research.google.com/github/TEAbraham/Pneumonia/blob/main/Pneumonia_Classification.ipynb" target="_blank" class="portfolio__item">
+                <a href="https://colab.research.google.com/github/TEAbraham/Pneumonia/blob/main/Pneumonia_Classification.ipynb" target="_blank" class="portfolio__item bio">
                     <div class="img__wrap">
                         <img src="img/Pneumonia.jpg" alt="" class="portfolio__img">
                         <p class="img__description">Pneumonia<br>Chest X-ray Classification</p>
@@ -148,7 +154,7 @@
                 </a>
                 
                 <!-- Portfolio item 04 -->
-                <a href="https://teabraham.github.io/covid" target="_blank" class="portfolio__item">
+                <a href="https://teabraham.github.io/covid" target="_blank" class="portfolio__item bio">
                     <div class="img__wrap">
                         <img src="img/Covid.jpg" alt="" class="portfolio__img">
                         <p class="img__description">Covid and Pneumonia<br>Chest X-ray<br>Multi-Classification</p>
@@ -156,7 +162,7 @@
                 </a>
                 
                 <!-- Portfolio item 05 -->
-                <a href="https://colab.research.google.com/github/TEAbraham/Convolutions_Text_Classification/blob/main/Toxic_Comments_Classification.ipynb" target="_blank" class="portfolio__item">
+                <a href="https://colab.research.google.com/github/TEAbraham/Convolutions_Text_Classification/blob/main/Toxic_Comments_Classification.ipynb" target="_blank" class="portfolio__item nlp">
                     <div class="img__wrap">
                         <img src="img/1DCNN.png" alt="" class="portfolio__img">
                         <p class="img__description">Convolutions for Text Classification</p>
@@ -164,7 +170,7 @@
                 </a>
                 
                 <!-- Portfolio item 06 -->
-                <a href="https://colab.research.google.com/github/TEAbraham/Named_Entity_Recognition/blob/main/NER.ipynb" target="_blank" class="portfolio__item">
+                <a href="https://colab.research.google.com/github/TEAbraham/Named_Entity_Recognition/blob/main/NER.ipynb" target="_blank" class="portfolio__item nlp">
                     <div class="img__wrap">
                         <img src="img/NER.png" alt="" class="portfolio__img">
                         <p class="img__description">Named Entity Recognition</p>
@@ -172,7 +178,7 @@
                 </a>
                 
                 <!-- Portfolio item 07 -->
-                <a href="https://colab.research.google.com/github/TEAbraham/NLP_TF_Hub/blob/main/Transfer_Learning_NLP_TF_Hub.ipynb" target="_blank" class="portfolio__item">
+                <a href="https://colab.research.google.com/github/TEAbraham/NLP_TF_Hub/blob/main/Transfer_Learning_NLP_TF_Hub.ipynb" target="_blank" class="portfolio__item nlp">
                     <div class="img__wrap">
                         <img src="img/HUB.png" alt="" class="portfolio__img">
                         <p class="img__description">Transfer Learning and Hyper-parameter tuning with TensorFlow Hub</p>
@@ -180,14 +186,14 @@
                 </a>
                 
                 <!-- Portfolio item 08 -->
-                <a href="https://github.com/TEAbraham/Columbia-Capstone/blob/main/Nuveen/Nuveen%20Sales.pdf" target="_blank" class="portfolio__item">
+                <a href="https://teabraham.github.io/nuveen/nuveen.pdf" target="_blank" class="portfolio__item fin">
                     <div class="img__wrap">
                         <img src="img/rfr.png" alt="" class="portfolio__img">
                         <p class="img__description">Nuveen Sales Regression Analysis Slide Deck</p>
                     </div>
                 </a>
                 <!-- Portfolio item 09 -->
-                <a href="https://teabraham.github.io/Portfolio_Optimization/" target="_blank" class="portfolio__item">
+                <a href="https://teabraham.github.io/Portfolio_Optimization/" target="_blank" class="portfolio__item fin d3">
                     <div class="img__wrap">
                         <img src="img/opt.png" alt="" class="portfolio__img">
                         <p class="img__description">Portfolio Optimization with<br>TensorFlow and D3</p>
