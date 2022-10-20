@@ -713,7 +713,12 @@ header {
 .portfolio__item {
   background: var(--clr-accent);
   overflow: hidden;
-  visibility: visible;
+  /* visibility: visible; */
+  display: none;
+}
+
+.show {
+  display: grid;
 }
 
 /* line 576, ../sass/style.scss */

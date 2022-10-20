@@ -11,42 +11,39 @@ navLinks.forEach(link => {
     })
 })
 
+filterSelection('all')
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("portfolio__item");
+  if (c == 'all') c = '';
+  for (i = 0; i < x.length; i++) {
+    RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) AddClass(x[i], "show");
+  }
+}
+
+function AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
 var ALL = document.getElementById('sc-1-1-1');
 var BIO = document.getElementById('sc-1-1-2');
 var NLP = document.getElementById('sc-1-1-3');
 var FIN = document.getElementById('sc-1-1-4');
-
-ALL.onclick = function() {
-  for (let el of document.querySelectorAll('.portfolio__item')){
-    if ( el.style.visibility == 'collapse') {
-      el.style.visibility = 'visible';
-    }
-  }
-};
-
-BIO.onclick = function () {
-  for (let el of document.querySelectorAll('.portfolio__item') )el.style.visibility = 'collapse';
-  for (let el of document.querySelectorAll('.bio')){
-    if ( el.style.visibility == 'collapse') {
-      el.style.visibility = 'visible';
-    }
-  }
-};
-
-NLP.onclick = function () {
-  for (let el of document.querySelectorAll('.portfolio__item') )el.style.visibility = 'collapse';
-  for (let el of document.querySelectorAll('.nlp')){
-    if ( el.style.visibility == 'collapse') {
-      el.style.visibility = 'visible';
-    }
-  }
-};
-
-FIN.onclick = function () {
-  for (let el of document.querySelectorAll('.portfolio__item') )el.style.visibility = 'collapse';
-  for (let el of document.querySelectorAll('.fin')){
-    if ( el.style.visibility == 'collapse') {
-      el.style.visibility = 'visible';
-    }
-  }
-};
