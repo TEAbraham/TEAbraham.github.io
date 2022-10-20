@@ -705,7 +705,7 @@ header {
 /* line 564, ../sass/style.scss */
 .portfolio {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   padding: 1em;
 }
 
@@ -713,7 +713,6 @@ header {
 .portfolio__item {
   background: var(--clr-accent);
   overflow: hidden;
-  /* visibility: visible; */
   display: none;
 }
 
@@ -756,7 +755,7 @@ header {
   opacity: 0;
   z-index: -1;
   /* transition effect. not necessary */
-  transition: opacity .2s, visibility .2s;
+  transition: opacity .5s, visibility .5s;
 }
 
 /* line 612, ../sass/style.scss */
