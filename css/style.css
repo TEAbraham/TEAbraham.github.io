@@ -705,7 +705,7 @@ header {
 /* line 564, ../sass/style.scss */
 .portfolio {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   padding: 1em;
 }
 
@@ -719,7 +719,6 @@ header {
 
 .show {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 /* line 576, ../sass/style.scss */
