@@ -13,10 +13,12 @@
         <title>TEAbraham</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />  
-        
+
         <!-- Update these with your own fonts -->
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="https://unpkg.com/tippy.js@6"></script>
     </head>
     <body>
         <header>
@@ -30,12 +32,12 @@
                 <ul class="nav__list">
                     <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
                     <li class="nav__item"><a href="#services" class="nav__link">My Services</a></li>
-                    <li class="nav__item"><a href="#about" class="nav__link">About me</a></li>
                     <li class="nav__item"><a href="#work" class="nav__link">My Work</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">Myself</a></li>
                 </ul>
             </nav>
         </header>
-        
+
         <!-- Introduction -->
         <section class="intro" id="home">
             <h1 class="section__title section__title--intro">
@@ -44,165 +46,286 @@
             <p class="section__subtitle section__subtitle--intro">data scientist | machine learning engineer</p>
             <img src="img/Headshot.jpg" alt="TEDtalk" class="intro__img">
         </section>
-        
-        
+
+
         <!-- My services -->
         <section class="my-services" id="services">
             <h2 class="section__title section__title--services">What I do</h2>
             <div class="services">
-
                 <div class="service">
-                    <h3>Bioinformatics</h3>
-                    <p>Bioinformatics is a subdiscipline of biology and computer science concerned with the acquisition, storage, analysis, and dissemination of biological data.  Coming in different forms such as genomes, gene expression data, gene or protein interaction networks in bioinformatics, or many modalities of structural and functional imaging in neuroscience, led to the need for efficient
-                        and effective computational tools to analyze and interpret these data.</p>
-                </div> <!-- / service -->
-                
-                <div class="service">
-                    <h3>Natural Language Processing</h3>
-                    <p>Natural language processing (NLP) refers to the branch of computer science—and more specifically, the branch of artificial intelligence or AI—concerned with giving computers the ability to understand text and spoken words in much the same way human beings can.</p>
-                </div> <!-- / service -->
-              
-            </div> <!-- / services -->
-            <div class="services">
-
-                <div class="service">
-                    <h3>Computer Vision</h3>
-                    <p>Computer vision is an interdisciplinary scientific field that deals with how computers can gain high-level understanding from digital images or videos. From the perspective of engineering, it seeks to understand and automate tasks that the human visual system can do.</p>
-                </div> <!-- / service -->
- 
-                <div class="service">
-                    <h3>Generalized Linear Models</h3>
-                    <p>Machine learning is a a subfield of computer science and artificial intelligence which deals with building systems that can learn from data, instead of explicitly programmed instructions.  The core of these models are statistic algorithms, a subfield of mathematics which deals with finding relationship between variables to predict an outcome.</p>
-                </div> <!-- / service -->
-                
-            </div> <!-- / services -->
-            <div class="services">
-                <div class="service">
-                    <h3>MLOps and Dashboard Design</h3>
-                    <p>This includes the culmination of people, processes, practices and underpinning technologies that automate the deployment, monitoring, and management of machine learning (ML) models into production in a scalable and fully governed way to finally provide measurable business value from machine learning.</p>
-                </div> <!-- / service -->
-                
-                <div class="service">
-                    <h3>Data Visualization</h3>
-                    <p>Data visualization is the practice of translating information into a visual context, such as a map or graph, to make data easier for the human brain to understand and pull insights from. The main goal of data visualization is to make it easier to identify patterns, trends and outliers in large data sets. The term is often used interchangeably with others, including information graphics, information visualization and statistical graphics.</p>
+                    <h3>Data Science</h3>
+                    <p>Data science is an interdisciplinary academic field that uses statistics, scientific computing, scientific methods, processes, algorithms and systems to extract or extrapolate knowledge and insights from noisy, structured and unstructured data. Data science is a concept to unify statistics, data analysis, informatics, and their related methods in order to understand and analyze actual phenomena with data. It uses techniques and theories drawn from many fields within the context of mathematics, statistics, computer science, information science, and domain knowledge.  Services include but are not limited to:</p>
                 </div> <!-- / service -->
 
+                <div class="wrapper">
+                        <ul>
+                            <li>Data Strategy</li>
+                            <li>Decision Intelligence</li>
+                            <li>Data Mining</li>
+                            <li>Data Cleaning</li>
+                            <li>Exploratory Data Analysis</li>
+                            <li>Model Building and Evaluation</li>
+                            <li>Data Visualization</li>
+                            <li>Model Deployment</li>
+                        </ul>
+                </div> <!-- / service -->
+
+                <div class="service">
+                    <h3>Machine Learning and Artificial Intelligence</h3>
+                    <p>Machine learning programs can perform tasks without being explicitly programmed to do so. It involves computers learning from data provided so that they carry out certain tasks.  As a scientific endeavor, machine learning grew out of the quest for artificial intelligence. In the early days of AI as an academic discipline, some researchers were interested in having machines learn from data. They attempted to approach the problem with various symbolic methods, as well as what was then termed "neural networks"; these were mostly perceptrons and other models that were later found to be reinventions of the generalized linear models of statistics.  Probabilistic reasoning was also employed, especially in automated medical diagnosis.  Services include but are not limited to:</p>
+                </div> <!-- / service -->
+
+                <div class="wrapper">
+                        <ul>
+                            <li>Applied Machine Learning</li>
+                            <li>Supervised Learning</li>
+                            <li>Regression</li>
+                            <li>Bayesian Methods</li>
+                            <li>Classification Algorithms</li>
+                            <li>Unsupervised Learning</li>
+                            <li>Clustering Methods</li>
+                            <li>Recommendation Systems</li>
+                            <li>Sequential Data Models</li>
+                            <li>Association Analysis</li>
+                            <li>Applied Artificial Intelligence</li>
+                            <li>Intelligent Agents and Uniformed Search</li>
+                            <li>Heuristic Search</li>
+                            <li>Adversarial Search and Games</li>
+                            <li>Constraint Satisfaction Problems</li>
+                            <li>Reinforcement Learning</li>
+                            <li>Logical Agents</li>
+                            <li>Natural Language Processing</li>
+                            <li>Deep Learning</li>
+                            <li>Robotics</li>
+                        </ul>
+                </div> <!-- / service -->
+
+                <div class="service">
+                    <h3>Education</h3>
+                    <p>Formerly the Director of Development for a non-profit that supported both social and educational justice in the third world, I currently serve as an educator in the aforementioned fields and courses listed below.  In just two years, I have tutored undergraduate students from the University of Toronto, Simon Fraser University, Purdue University, the Universities of Illinois, Michigan, North Carolina, and Southern California; taught graduate and post-graduate students from the Massachusetts Institute of Technology, California Institute of Technology, Columbia University, Hong Kong University of Science and Technology, and the Indian Institutes of Technology; as well as worked collaboratively with executives from J.P. Morgan Chase and the Walmart Corporation.</p>
+                </div> <!-- / service -->
+
+                <div class="wrapper">
+                        <ul>
+                            <li>Advanced Excel</li>
+                            <li>Advanced SQL</li>
+                            <li>Intro-Advanced Python</li>
+                            <li>Intro-Advanced R</li>
+                            <li>Intro-Advanced Algorithms</li>
+                            <li>Graph Theory</li>
+                            <li>Computability Theory</li>
+                            <li>Logic and Reasoning</li>
+                            <li>Discrete Mathematics</li>
+                            <li>Probability and Statistics</li>
+                            <li>Formal Languages and Finite Automata</li>
+                            <li>Parallel Processing</li>
+                            <li>Linear Algebra</li>
+                            <li>Multivariate Calculus</li>
+                            <li>Scientific Computing</li>
+                            <li>Data Analytics</li>
+                            <li>Linear Optimization</li>
+                            <li>Physics</li>
+                            <li>Philosophy</li>
+                            <li>Journalism</li>
+                            <li>Data Science</li>
+                            <li>Data Visualization</li>
+                            <li>Dashboard Design</li>
+                            <li>Advanced Operations Research</li>
+                            <li>Machine Learning</li>
+                            <li>Image Processing-Computer Vision</li>
+                            <li>Neural Networks-Deep Learning</li>
+                            <li>Intro - Artificial Intelligence</li>
+                        </ul>
+                </div> <!-- / service -->
             </div> <!-- / services -->
-            
-            <a href="#work" class="btn">My Work</a>
+
+            <a href="#about" class="btn">About Me</a>
         </section>
-        
-        
-        <!-- About me -->
-        <section class="about-me" id="about">
-           <h2 class="section__title section__title--about">Who I am</h2>
-           <p class="section__subtitle section__subtitle--about">principal consultant & project manager</p>
-           
-           <div class="about-me__body">
-               <p>I am a data scientist and machine learning consultant who prides himself on the principles of perpetual education, humanism, and futurism. As a passionate student of both hard and soft sciences, I believe in an interdisciplinary and interpersonal approach to problem-solving.</p>
-           </div>
-           <div class="about-me__body"> 
-               <p>According to Andrew Ng, a pioneer of online education and neural networks, "AI is the new electricity."  The rise of electricity transformed every major industry, and in so doing, transformed every culture and the face of our world.  We are witnessing the proliferation of AI at an even faster rate.  As a witness to the power of this technology and the breadth of its application, I am joining the effort to "democratize deep learning."</p>
-           </div>
-           <div></div>
-           <div class="about-me__body">
-               <p>As a professional consultant and project manager, I help clients better understand their own data vis-à-vis how it's collected, structured, and processed.  With the clients' domain knowledge and my personal guidance, we decide what business solutions are "machine learnable" as well as scalable for sustainable growth.  It has been my passion and privilege to work across industries educating fellow team members about artificial intelligence as we learn how to build a better world together. </p>
-           </div>
-           
-           <img src="img/Officiant.jpg" alt="Studio" class="about-me__img">
-        </section>
-        
+
         <!-- My Work -->
         <section class="my-work" id="work">
-            <h2 class="section__title section__title--work">My work</h2>
-            <p class="section__subtitle section__subtitle--work">A selection of my range of work</p>
-            <div id="selection" class="segmented-control" style="width: 100%; color: #5FBAAC">
+            <h2 class="section__title section__title--work">What I did</h2>
+            <div id="selection1" class="segmented-control" style="width: 100%; color: #CDB2A5">
                 <input type="radio" name="sc-1-1" id="sc-1-1-1" checked>
                 <input type="radio" name="sc-1-1" id="sc-1-1-2">
                 <input type="radio" name="sc-1-1" id="sc-1-1-3">
                 <input type="radio" name="sc-1-1" id="sc-1-1-4">
-            
-                <label for="sc-1-1-1" data-value="ALL" onclick="filterSelection('all')">ALL</label>
-                <label for="sc-1-1-2" data-value="BIO" onclick="filterSelection('bio')">BIO</label>
-                <label for="sc-1-1-3" data-value="NLP" onclick="filterSelection('nlp')">NLP</label>
-                <label for="sc-1-1-4" data-value="FIN" onclick="filterSelection('fin')">FIN</label>
+                <input type="radio" name="sc-1-1" id="sc-1-1-5">
+                <input type="radio" name="sc-1-1" id="sc-1-1-6">
+                <input type="radio" name="sc-1-1" id="sc-1-1-7">
+
+                <label for="sc-1-1-1" data-value="ALL DOMAINS" onclick="filterSelection1('')">ALL DOMAINS</label>
+                <label for="sc-1-1-2" data-value="BUSINESS" onclick="filterSelection1('bus')">BUSINESS</label>
+                <label for="sc-1-1-3" data-value="HEALTHCARE" onclick="filterSelection1('hea')">HEALTHCARE</label>
+                <label for="sc-1-1-4" data-value="FINANCE" onclick="filterSelection1('fin')">FINANCE</label>
+                <label for="sc-1-1-5" data-value="GIS" onclick="filterSelection1('gis')">GIS</label>
+                <label for="sc-1-1-6" data-value="COMPUTER VISION" onclick="filterSelection1('cv')">COMPUTER VISION</label>
+                <label for="sc-1-1-7" data-value="EDUCATION" onclick="filterSelection1('edu')">EDUCATION</label>
+            </div>
+            <div id="selection2" class="segmented-control" style="width: 100%; color: #5FBAAC">
+                <input type="radio" name="sc-1-2" id="sc-1-2-1" checked>
+                <input type="radio" name="sc-1-2" id="sc-1-2-2">
+                <input type="radio" name="sc-1-2" id="sc-1-2-3">
+                <input type="radio" name="sc-1-2" id="sc-1-2-4">
+                <input type="radio" name="sc-1-2" id="sc-1-2-5">
+                <input type="radio" name="sc-1-2" id="sc-1-2-6">
+                <input type="radio" name="sc-1-2" id="sc-1-2-7">
+
+                <label for="sc-1-2-1" data-value="FULL STACK" onclick="filterSelection2('')">FULL STACK</label>
+                <label for="sc-1-2-2" data-value="MATPLOTLIB" onclick="filterSelection2('mat')">MATPLOTLIB</label>
+                <label for="sc-1-2-3" data-value="TABLEAU" onclick="filterSelection2('tab')">TABLEAU</label>
+                <label for="sc-1-2-4" data-value="D3" onclick="filterSelection2('d3')">D3</label>
+                <label for="sc-1-2-5" data-value="TF-JS" onclick="filterSelection2('tfj')">TF-JS</label>
+                <label for="sc-1-2-6" data-value="OR-TOOLS" onclick="filterSelection2('vrp')">OR-TOOLS</label>
+                <label for="sc-1-2-7" data-value="OPENCV" onclick="filterSelection2('ope')">OPENCV</label>
+            </div>
+            <div id="selection3" class="segmented-control" style="width: 100%; color: #AE556A">
+                <input type="radio" name="sc-1-3" id="sc-1-3-1" checked>
+                <input type="radio" name="sc-1-3" id="sc-1-3-2">
+                <input type="radio" name="sc-1-3" id="sc-1-3-3">
+                <input type="radio" name="sc-1-3" id="sc-1-3-4">
+                <input type="radio" name="sc-1-3" id="sc-1-3-5">
+                <input type="radio" name="sc-1-3" id="sc-1-3-6">
+                <input type="radio" name="sc-1-3" id="sc-1-3-7">
+
+                <label for="sc-1-3-1" data-value="COMPLETE HEURISTICS" onclick="filterSelection3('')">COMPLETE HEURISTICS</label>
+                <label for="sc-1-3-2" data-value="REDUCTION" onclick="filterSelection3('red')">REDUCTION</label>
+                <label for="sc-1-3-3" data-value="CLASSIFICATION" onclick="filterSelection3('cla')">CLASSIFICATION</label>
+                <label for="sc-1-3-4" data-value="REGRESSION" onclick="filterSelection3('reg')">REGRESSION</label>
+                <label for="sc-1-3-5" data-value="CONVOLUTIONAL" onclick="filterSelection3('con')">CONVOLUTIONAL</label>
+                <label for="sc-1-3-6" data-value="RECURRENT" onclick="filterSelection3('rec')">RECURRENT</label>
+                <label for="sc-1-3-7" data-value="REINFORCEMENT" onclick="filterSelection3('rei')">REINFORCEMENT</label>
             </div>
 
             <div class="portfolio">
                 <!-- Portfolio item 01 -->
-                <a href="https://teabraham.github.io/breast_cancer" target="_blank" class="portfolio__item bio">
+                <a id="nuveen" href="https://teabraham.github.io/nuveen/nuveen.pdf" target="_blank" class="portfolio__item bus red reg">
+                    <div class="img__wrap">
+                        <img src="img/rfr3.png" alt="" class="portfolio__img">
+                        <p class="img__description">Nuveen Sales Regression and Lift Analysis Slide Deck</p>
+                    </div>
+                </a>
+                <script>
+                    tippy('#nuveen', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "Acquisition, Development, and Retention Model: The primary goal of the project was to assist sales and marketing by improving their targeting, and allowing them to correctly assign coverage channels.  This would require a prediction of 2020 sales based on data from 2018 and 2019, building data pipelines, feature engineering, and developing appropriate regression models then illustrating the lift that could be achievable with them.",
+                      });
+                </script>
+
+                <!-- Portfolio item 02 -->
+                <a id="rfm_kmeans" href="https://teabraham.github.io/rfm_kmeans" target="_blank" class="portfolio__item bus mat tab red cla">
+                    <div class="img__wrap">
+                        <img src="img/rfm7.png" alt="" class="portfolio__img">
+                        <p class="img__description">Super Store<br>Segmentation and RFM Analysis using Kmeans</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 03 -->
+                <a id="employee_retention" href="https://teabraham.github.io/employee_retention" target="_blank" class="portfolio__item bus mat reg">
+                    <div class="img__wrap">
+                        <img src="img/retention.png" alt="" class="portfolio__img">
+                        <p class="img__description">Employee Retention<br>A/B Testing and Regression Models</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 04 -->
+                <a id="breast_cancer" href="https://teabraham.github.io/breast_cancer" target="_blank" class="portfolio__item hea edu mat red">
                     <div class="img__wrap">
                         <img src="img/EarlyBreastCancer.jpg" alt="" class="portfolio__img">
                         <p class="img__description">Breast Cancer<br>Exploratory Data Analysis</p>
                     </div>
                 </a>
-                
-                <!-- Portfolio item 02 -->
-                <a href="https://teabraham.github.io/brain_tumor" target="_blank" class="portfolio__item bio">
+                <script>
+                    tippy('#breast_cancer', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "Exploratory Data Analysis: This is an exploration of the Breast Cancer Diagnostic data from the UCI Machine Learning Repository.  It is meant to be a tutorial on basic data visualization concepts using seaborn, as well as an introduction univariate feature selection with XGBoost, recursive feature elimination with cross-validation, and Principal Component Analysis with Sci-kit Learn.",
+                      });
+                </script>
+
+                 <!-- Portfolio item 05 -->
+                 <a id="brain_tumor" href="https://teabraham.github.io/brain_tumor" target="_blank" class="portfolio__item hea mat cla con">
                     <div class="img__wrap">
                         <img src="img/BrainTumor.jpg" alt="" class="portfolio__img">
-                        <p class="img__description">Brain Tumor<br>MRI Classification with Transfer Learning</p>
+                        <p class="img__description">Brain Tumor<br>Classification with ResUNet</p>
                     </div>
                 </a>
-                
-                <!-- Portfolio item 03 -->
-                <a href="https://teabraham.github.io/pneumonia" target="_blank" class="portfolio__item bio">
-                    <div class="img__wrap">
-                        <img src="img/Pneumonia.jpg" alt="" class="portfolio__img">
-                        <p class="img__description">Pneumonia<br>Chest X-ray Classification</p>
-                    </div>
-                </a>
-                
-                <!-- Portfolio item 04 -->
-                <a href="https://teabraham.github.io/covid" target="_blank" class="portfolio__item bio">
+
+                <!-- Portfolio item 06 -->
+                <a id="covid" href="https://teabraham.github.io/covid" target="_blank" class="portfolio__item hea mat cla con">
                     <div class="img__wrap">
                         <img src="img/Covid.jpg" alt="" class="portfolio__img">
                         <p class="img__description">Covid and Pneumonia<br>Chest X-ray<br>Multi-Classification</p>
                     </div>
                 </a>
-                
-                <!-- Portfolio item 05 -->
-                <a href="https://colab.research.google.com/github/TEAbraham/Convolutions_Text_Classification/blob/main/Toxic_Comments_Classification.ipynb" target="_blank" class="portfolio__item nlp">
-                    <div class="img__wrap">
-                        <img src="img/1DCNN.png" alt="" class="portfolio__img">
-                        <p class="img__description">Convolutions for Text Classification</p>
-                    </div>
-                </a>
-                
-                <!-- Portfolio item 06 -->
-                <a href="https://colab.research.google.com/github/TEAbraham/Named_Entity_Recognition/blob/main/NER.ipynb" target="_blank" class="portfolio__item nlp">
-                    <div class="img__wrap">
-                        <img src="img/NER.png" alt="" class="portfolio__img">
-                        <p class="img__description">Named Entity Recognition</p>
-                    </div>
-                </a>
-                
+
                 <!-- Portfolio item 07 -->
-                <a href="https://colab.research.google.com/github/TEAbraham/NLP_TF_Hub/blob/main/Transfer_Learning_NLP_TF_Hub.ipynb" target="_blank" class="portfolio__item nlp">
+                <a id="loan_prediction" href="https://teabraham.github.io/loan_prediction" target="_blank" class="portfolio__item fin mat red reg">
                     <div class="img__wrap">
-                        <img src="img/HUB.png" alt="" class="portfolio__img">
-                        <p class="img__description">Transfer Learning and Hyper-parameter tuning with TensorFlow Hub</p>
+                        <img src="img/loans.png" alt="" class="portfolio__img">
+                        <p class="img__description">Loan Prediction<br>with Recursive Feature Elimination and XGBoost</p>
                     </div>
                 </a>
-                
+
                 <!-- Portfolio item 08 -->
-                <a href="https://teabraham.github.io/nuveen/nuveen.pdf" target="_blank" class="portfolio__item fin">
-                    <div class="img__wrap">
-                        <img src="img/rfr.png" alt="" class="portfolio__img">
-                        <p class="img__description">Nuveen Sales Regression Analysis Slide Deck</p>
-                    </div>
-                </a>
-                <!-- Portfolio item 09 -->
-                <a href="https://teabraham.github.io/Portfolio_Optimization/" target="_blank" class="portfolio__item fin d3">
+                <a id="portfolio" href="https://teabraham.github.io/portfolio/" target="_blank" class="portfolio__item fin d3 tfj">
                     <div class="img__wrap">
                         <img src="img/opt.png" alt="" class="portfolio__img">
                         <p class="img__description">Portfolio Optimization with<br>TensorFlow and D3</p>
                     </div>
                 </a>
+
+                <!-- Portfolio item 09 -->
+                <a id="aqi" href="https://teabraham.github.io/aqi" target="_blank" class="portfolio__item gis red d3 ">
+                    <div class="img__wrap">
+                        <img src="img/aqi.gif" alt="" class="portfolio__img">
+                        <p class="img__description">Chicago Air Quality Dashboard<br>EDA using D3</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 09 -->
+                <a id="nola" href="https://teabraham.github.io/nola" target="_blank" class="portfolio__item  gis edu d3">
+                    <div class="img__wrap">
+                        <img src="img/nola.gif" alt="" class="portfolio__img">
+                        <p class="img__description">New Orleans Police Department<br>Bodycam Data with Mapbox</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 10 -->
+                <a id="veho" href="https://teabraham.github.io/veho" target="_blank" class="portfolio__item  gis edu mat vrp">
+                    <div class="img__wrap">
+                        <img src="img/chicago.gif" alt="" class="portfolio__img">
+                        <p class="img__description">Vehicle Routing Problem<br>Case Study with OR-Tools</p>
+                    </div>
+                </a>
+
+
             </div>
         </section>
-        
-        
+
+        <!-- About me -->
+        <section class="about-me" id="about">
+            <h2 class="section__title section__title--about">Who I am</h2>
+            <p class="section__subtitle section__subtitle--about">principal consultant & project manager</p>
+
+            <div class="about-me__body">
+                <p>I am a data scientist and machine learning consultant who prides himself on the principles of perpetual education, humanism, and futurism. As a passionate student of both hard and soft sciences, I believe in an interdisciplinary and interpersonal approach to problem-solving.</p>
+            </div>
+            <div class="about-me__body">
+                <p>According to Andrew Ng, a pioneer of online education and neural networks, "AI is the new electricity."  The rise of electricity transformed every major industry, and in so doing, transformed every culture and the face of our world.  We are witnessing the proliferation of AI at an even faster rate.  As a witness to the power of this technology and the breadth of its application, I am joining the effort to "democratize deep learning."</p>
+            </div>
+            <hr>
+            <div class="about-me__body">
+                <p>As a professional consultant and project manager, I help clients better understand their own data vis-à-vis how it's collected, structured, and processed.  With the clients' domain knowledge and my personal guidance, we decide what business solutions are "machine learnable" as well as scalable for sustainable growth.  It has been my passion and privilege to work across industries educating fellow team members about artificial intelligence as we learn how to build a better world together. </p>
+            </div>
+            
+            <img src="img/Officiant.jpg" alt="Studio" class="about-me__img">
+         </section>
+         
+
         <!-- Footer -->
         <footer class="footer">
             <!-- replace with your own email address -->
