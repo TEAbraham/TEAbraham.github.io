@@ -159,8 +159,8 @@
                 <label for="sc-1-1-3" data-value="HEALTHCARE" onclick="filterSelection1('hea')">HEALTHCARE</label>
                 <label for="sc-1-1-4" data-value="FINANCE" onclick="filterSelection1('fin')">FINANCE</label>
                 <label for="sc-1-1-5" data-value="GIS" onclick="filterSelection1('gis')">GIS</label>
-                <label for="sc-1-1-6" data-value="COMPUTER VISION" onclick="filterSelection1('cv')">COMPUTER VISION</label>
-                <label for="sc-1-1-7" data-value="EDUCATION" onclick="filterSelection1('edu')">EDUCATION</label>
+                <label for="sc-1-1-6" data-value="NLP" onclick="filterSelection1('nlp')">NLP</label>
+                <label for="sc-1-1-7" data-value="COMPUTER VISION" onclick="filterSelection1('cv')">COMPUTER VISION</label>
             </div>
             <div id="selection2" class="segmented-control" style="width: 100%; color: #5FBAAC">
                 <input type="radio" name="sc-1-2" id="sc-1-2-1" checked>
@@ -173,10 +173,10 @@
 
                 <label for="sc-1-2-1" data-value="FULL STACK" onclick="filterSelection2('')">FULL STACK</label>
                 <label for="sc-1-2-2" data-value="MATPLOTLIB" onclick="filterSelection2('mat')">MATPLOTLIB</label>
-                <label for="sc-1-2-3" data-value="TABLEAU" onclick="filterSelection2('tab')">TABLEAU</label>
-                <label for="sc-1-2-4" data-value="D3" onclick="filterSelection2('d3')">D3</label>
-                <label for="sc-1-2-5" data-value="TF-JS" onclick="filterSelection2('tfj')">TF-JS</label>
-                <label for="sc-1-2-6" data-value="OR-TOOLS" onclick="filterSelection2('vrp')">OR-TOOLS</label>
+                <label for="sc-1-2-3" data-value="TABLEAU/D3" onclick="filterSelection2('tad3')">TABLEAU/D3</label>
+                <label for="sc-1-2-4" data-value="TF-JS" onclick="filterSelection2('tfjs')">TF-JS</label>
+                <label for="sc-1-2-5" data-value="OR-TOOLS" onclick="filterSelection2('vrp')">OR-TOOLS</label>
+                <label for="sc-1-2-6" data-value="NLTK" onclick="filterSelection2('nltk')">NLTK</label>
                 <label for="sc-1-2-7" data-value="OPENCV" onclick="filterSelection2('ope')">OPENCV</label>
             </div>
             <div id="selection3" class="segmented-control" style="width: 100%; color: #AE556A">
@@ -223,6 +223,30 @@
                 </a>
 
                 <!-- Portfolio item 03 -->
+                <a id="customer_segmentation" href="https://teabraham.github.io/customer_segmentation" target="_blank" class="portfolio__item bus mat tab red cla">
+                    <div class="img__wrap">
+                        <img src="img/custom_labels.png" alt="" class="portfolio__img">
+                        <p class="img__description">Super Store<br>Segmentation Revisited: Encoding, PCA, and GridSearch</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 04 -->
+                <a id="resume_screening" href="https://teabraham.github.io/resume_screening" target="_blank" class="portfolio__item bus mat tab red cla">
+                    <div class="img__wrap">
+                        <img src="img/resume.png" alt="" class="portfolio__img">
+                        <p class="img__description">Resume Screening<br></p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 05 -->
+                <a id="salary_prediction" href="https://teabraham.github.io/salary_prediction" target="_blank" class="portfolio__item bus mat tab red cla">
+                    <div class="img__wrap">
+                        <img src="img/salary.png" alt="" class="portfolio__img">
+                        <p class="img__description">Salary Prediction<br></p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 06 -->
                 <a id="employee_retention" href="https://teabraham.github.io/employee_retention" target="_blank" class="portfolio__item bus mat reg">
                     <div class="img__wrap">
                         <img src="img/retention.png" alt="" class="portfolio__img">
@@ -230,7 +254,7 @@
                     </div>
                 </a>
 
-                <!-- Portfolio item 04 -->
+                <!-- Portfolio item 07 -->
                 <a id="breast_cancer" href="https://teabraham.github.io/breast_cancer" target="_blank" class="portfolio__item hea edu mat red">
                     <div class="img__wrap">
                         <img src="img/EarlyBreastCancer.jpg" alt="" class="portfolio__img">
@@ -246,23 +270,55 @@
                       });
                 </script>
 
-                 <!-- Portfolio item 05 -->
-                 <a id="brain_tumor" href="https://teabraham.github.io/brain_tumor" target="_blank" class="portfolio__item hea mat cla con">
+                 <!-- Portfolio item 08 -->
+                 <a id="brain_tumor" href="https://teabraham.github.io/brain_tumor" target="_blank" class="portfolio__item hea mat cla con cv">
                     <div class="img__wrap">
                         <img src="img/BrainTumor.jpg" alt="" class="portfolio__img">
                         <p class="img__description">Brain Tumor<br>Classification with ResUNet</p>
                     </div>
                 </a>
 
-                <!-- Portfolio item 06 -->
-                <a id="covid" href="https://teabraham.github.io/covid" target="_blank" class="portfolio__item hea mat cla con">
+                <!-- Portfolio item 09 -->
+                <a id="covid" href="https://teabraham.github.io/covid" target="_blank" class="portfolio__item hea mat cla con cv">
                     <div class="img__wrap">
                         <img src="img/Covid.jpg" alt="" class="portfolio__img">
                         <p class="img__description">Covid and Pneumonia<br>Chest X-ray<br>Multi-Classification</p>
                     </div>
                 </a>
 
-                <!-- Portfolio item 07 -->
+                <!-- Portfolio item 10 -->
+                <a id="citibike" href="https://public.tableau.com/app/profile/thomas.abraham/viz/CitiBike_29/Frequency" target="_blank" class="portfolio__item bus tad3 cla reg">
+                    <div class="img__wrap">
+                        <img src="img/citibike.png" alt="" class="portfolio__img">
+                        <p class="img__description">Citibike<br>EDA and Maintenance Prediction</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 11 -->
+                <a id="singapore" href="https://public.tableau.com/app/profile/thomas.abraham/viz/TheUrbanEconomy/SingaporeTheUrbanEconomy" target="_blank" class="portfolio__item hea tad3 red">
+                    <div class="img__wrap">
+                        <img src="img/singapore.png" alt="" class="portfolio__img">
+                        <p class="img__description">Singapore<br>GDP and Healthcare Analysis</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 12 -->
+                <a id="nyc" href="https://public.tableau.com/app/profile/thomas.abraham/viz/NYCPropertySales2017/PropertySalesinNYC2016-2017" target="_blank" class="portfolio__item fin tad3 cla reg">
+                    <div class="img__wrap">
+                        <img src="img/nyc.png" alt="" class="portfolio__img">
+                        <p class="img__description">NYC<br>Property Sales and Investments</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 13 -->
+                <a id="stocks" href="https://public.tableau.com/app/profile/thomas.abraham/viz/DashboardStockMarketChartsCandlestickVolumeReturns_16627021996100/StockDashboard" target="_blank" class="portfolio__item fin tad3 reg">
+                    <div class="img__wrap">
+                        <img src="img/stocks.png" alt="" class="portfolio__img">
+                        <p class="img__description">Stock<br>Dashboard</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 14 -->
                 <a id="loan_prediction" href="https://teabraham.github.io/loan_prediction" target="_blank" class="portfolio__item fin mat red reg">
                     <div class="img__wrap">
                         <img src="img/loans.png" alt="" class="portfolio__img">
@@ -270,37 +326,213 @@
                     </div>
                 </a>
 
-                <!-- Portfolio item 08 -->
-                <a id="portfolio" href="https://teabraham.github.io/portfolio/" target="_blank" class="portfolio__item fin d3 tfj">
+                <!-- Portfolio item 15 -->
+                <a id="portfolio" href="https://teabraham.github.io/portfolio/" target="_blank" class="portfolio__item fin tad3 tfjs">
                     <div class="img__wrap">
                         <img src="img/opt.png" alt="" class="portfolio__img">
                         <p class="img__description">Portfolio Optimization with<br>TensorFlow and D3</p>
                     </div>
                 </a>
 
-                <!-- Portfolio item 09 -->
-                <a id="aqi" href="https://teabraham.github.io/aqi" target="_blank" class="portfolio__item gis red d3 ">
+                <!-- Portfolio item 16 -->
+                <a id="aqi" href="https://teabraham.github.io/aqi" target="_blank" class="portfolio__item gis red tad3 ">
                     <div class="img__wrap">
                         <img src="img/aqi.gif" alt="" class="portfolio__img">
                         <p class="img__description">Chicago Air Quality Dashboard<br>EDA using D3</p>
                     </div>
                 </a>
 
-                <!-- Portfolio item 09 -->
-                <a id="nola" href="https://teabraham.github.io/nola" target="_blank" class="portfolio__item  gis edu d3">
+                <!-- Portfolio item 17 -->
+                <a id="aqi_prediction" href="https://teabraham.github.io/aqi_prediction" target="_blank" class="portfolio__item gis cla reg mat ">
+                    <div class="img__wrap">
+                        <img src="img/aqi.png" alt="" class="portfolio__img">
+                        <p class="img__description">India<br>Air Quality Prediction</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 18 -->
+                <a id="human_activity" href="https://teabraham.github.io/human_activity" target="_blank" class="portfolio__item cv red tad3 ">
+                    <div class="img__wrap">
+                        <img src="img/activity.png" alt="" class="portfolio__img">
+                        <p class="img__description">Human Activity<br>Classification and Prediction</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 19 -->
+                <a id="airline_passengers" href="https://teabraham.github.io/airline_passengers" target="_blank" class="portfolio__item bus red tad3 ">
+                    <div class="img__wrap">
+                        <img src="img/passengers.png" alt="" class="portfolio__img">
+                        <p class="img__description">Indian<br>Passengers per Flight<br>Prediction</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 20 -->
+                <a id="fare_prediction" href="https://teabraham.github.io/fare_prediction" target="_blank" class="portfolio__item bus red tad3 ">
+                    <div class="img__wrap">
+                        <img src="img/fares.png" alt="" class="portfolio__img">
+                        <p class="img__description">Indian Airline Fare<br>Prediction</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 21 -->
+                <a id="forecasting_sales" href="https://teabraham.github.io/forecasting_sales" target="_blank" class="portfolio__item bus red tad3 ">
+                    <div class="img__wrap">
+                        <img src="img/forecasting.png" alt="" class="portfolio__img">
+                        <p class="img__description">Forecasting Sales with<br>Facebook Prophet</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 22 -->
+                <a id="power_consumption" href="https://teabraham.github.io/power_consumption" target="_blank" class="portfolio__item gis red tad3 ">
+                    <div class="img__wrap">
+                        <img src="img/power.png" alt="" class="portfolio__img">
+                        <p class="img__description">Worldwide Power Consumption<br>LSTM Prediction</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 23 -->
+                <a id="nola" href="https://teabraham.github.io/nola" target="_blank" class="portfolio__item  gis edu tad3">
                     <div class="img__wrap">
                         <img src="img/nola.gif" alt="" class="portfolio__img">
                         <p class="img__description">New Orleans Police Department<br>Bodycam Data with Mapbox</p>
                     </div>
                 </a>
 
-                <!-- Portfolio item 10 -->
+                <!-- Portfolio item 24 -->
                 <a id="veho" href="https://teabraham.github.io/veho" target="_blank" class="portfolio__item  gis edu mat vrp">
                     <div class="img__wrap">
                         <img src="img/chicago.gif" alt="" class="portfolio__img">
                         <p class="img__description">Vehicle Routing Problem<br>Case Study with OR-Tools</p>
                     </div>
                 </a>
+
+                <!-- Portfolio item 25 -->
+                <a id="keyword_extraction" href="https://teabraham.github.io/keyword_extraction" target="_blank" class="portfolio__item nlp red nltk ">
+                    <div class="img__wrap">
+                        <img src="img/keywords.png" alt="" class="portfolio__img">
+                        <p class="img__description">Keyword Extraction<br>using NLTK</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 26 -->
+                <a id="next_word" href="https://teabraham.github.io/next_word" target="_blank" class="portfolio__item nlp nltk rec">
+                    <div class="img__wrap">
+                        <img src="img/next.png" alt="" class="portfolio__img">
+                        <p class="img__description">Next Word Prediction<br>NLTK and LSTM</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 27 -->
+                <a id="article_summary" href="https://teabraham.github.io/article_summary" target="_blank" class="portfolio__item nlp nltk">
+                    <div class="img__wrap">
+                        <img src="img/article.png" alt="" class="portfolio__img">
+                        <p class="img__description">Text Summarization<br>with PageRank</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 28 -->
+                <a id="text_summarization" href="https://teabraham.github.io/text_summarization" target="_blank" class="portfolio__item nlp nltk">
+                    <div class="img__wrap">
+                        <img src="img/summary.png" alt="" class="portfolio__img">
+                        <p class="img__description">Text Summarization<br>Regex and NLTK</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 29 -->
+                <a id="consumer_complaints_nn" href="https://teabraham.github.io/consumer_complaints_nn" target="_blank" class="portfolio__item nlp nltk cla">
+                    <div class="img__wrap">
+                        <img src="img/complaintsa.png" alt="" class="portfolio__img">
+                        <p class="img__description">Consumer Complaints<br>Neural Network Classifier</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 30 -->
+                <a id="consumer_complaints_bigrams" href="https://teabraham.github.io/consumer_complaints_bigrams" target="_blank" class="portfolio__item nlp nltk cla">
+                    <div class="img__wrap">
+                        <img src="img/complaintsb.png" alt="" class="portfolio__img">
+                        <p class="img__description">Consumer Complaints<br>Bigram Score Classifier</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 31 -->
+                <a id="consumer_complaints_lstm" href="https://teabraham.github.io/consumer_complaints_lstm" target="_blank" class="portfolio__item nlp nltk rec">
+                    <div class="img__wrap">
+                        <img src="img/complaintsc.png" alt="" class="portfolio__img">
+                        <p class="img__description">Consumer Complaints<br>LSTM and GloVe Embeddings</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 32 -->
+                <a id="image_analysis" href="https://teabraham.github.io/image_analysis" target="_blank" class="portfolio__item cla ope">
+                    <div class="img__wrap">
+                        <img src="img/mnist.png" alt="" class="portfolio__img">
+                        <p class="img__description">Image Analysis<br>using Kmeans Clustering</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 33 -->
+                <a id="harrison_corners" href="https://teabraham.github.io/harrison_corners" target="_blank" class="portfolio__item cv ope">
+                    <div class="img__wrap">
+                        <img src="img/corners.png" alt="" class="portfolio__img">
+                        <p class="img__description">Harrison Corners Algorithm<br>from Scratch</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 34 -->
+                <a id="image_stitching" href="https://teabraham.github.io/image_stitching" target="_blank" class="portfolio__item cv ope">
+                    <div class="img__wrap">
+                        <img src="img/stitching.png" alt="" class="portfolio__img">
+                        <p class="img__description">Image Stitching<br>with OpenCV</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 35 -->
+                <a id="optical_flow" href="https://teabraham.github.io/optical_flow" target="_blank" class="portfolio__item cv ope">
+                    <div class="img__wrap">
+                        <img src="img/of0.png" alt="" class="portfolio__img">
+                        <p class="img__description">Optical Flow with<br>Lucas-Kanade Algorithm from Scratch</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 36 -->
+                <a id="face_detection" href="https://teabraham.github.io/face_detection" target="_blank" class="portfolio__item cv ope">
+                    <div class="img__wrap">
+                        <img src="img/detection.png" alt="" class="portfolio__img">
+                        <p class="img__description">Face Detection with<br>HAAR Cascade Classifier</p>
+                    </div>
+                </a>
+
+                <!-- Portfolio item 37 -->
+                <!-- <a id="facial_expression_keras" href="https://teabraham.github.io/facial_expression_keras" target="_blank" class="portfolio__item cv ope con">
+                    <div class="img__wrap">
+                        <img src="img/expressiona.png" alt="" class="portfolio__img">
+                        <p class="img__description">Facial Expression Recognition<br>Keras</p>
+                    </div>
+                </a> -->
+
+                <!-- Portfolio item 38 -->
+                <!-- <a id="facial_expression_torch" href="https://teabraham.github.io/facial_expression_torch" target="_blank" class="portfolio__item cv ope con">
+                    <div class="img__wrap">
+                        <img src="img/expressionb.png" alt="" class="portfolio__img">
+                        <p class="img__description">Facial Expression Recognition<br>PyTorch</p>
+                    </div>
+                </a> -->
+
+                <!-- Portfolio item 39 -->
+                <!-- <a id="ocr" href="https://teabraham.github.io/ocr" target="_blank" class="portfolio__item cv ope">
+                    <div class="img__wrap">
+                        <img src="img/ocr.png" alt="" class="portfolio__img">
+                        <p class="img__description">Object Character Recognition<br>with PyTesseract</p>
+                    </div>
+                </a> -->
+
+                <!-- Portfolio item 40 -->
+                <!-- <a id="image_segmentation" href="https://teabraham.github.io/image_segmentation" target="_blank" class="portfolio__item cv ope">
+                    <div class="img__wrap">
+                        <img src="img/segments.png" alt="" class="portfolio__img">
+                        <p class="img__description">Image Segmentation<br>HAAR Cascade Classifier</p>
+                    </div>
+                </a> -->
 
 
             </div>

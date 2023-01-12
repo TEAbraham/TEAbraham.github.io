@@ -77,15 +77,15 @@ var BUS = document.getElementById('sc-1-1-2');
 var HEA = document.getElementById('sc-1-1-3');
 var FIN = document.getElementById('sc-1-1-4');
 var GIS = document.getElementById('sc-1-1-5');
-var CV = document.getElementById('sc-1-1-6');
-var EDU = document.getElementById('sc-1-1-7');
+var NLP = document.getElementById('sc-1-1-6');
+var CV = document.getElementById('sc-1-1-7');
 
 var FULL = document.getElementById('sc-1-2-1');
 var MAT = document.getElementById('sc-1-2-2');
-var TAB = document.getElementById('sc-1-2-3');
-var D3 = document.getElementById('sc-1-2-4');
-var TFJ = document.getElementById('sc-1-2-5');
-var VRP = document.getElementById('sc-1-2-6');
+var TAD3 = document.getElementById('sc-1-2-3');
+var TFJS = document.getElementById('sc-1-2-4');
+var VRP = document.getElementById('sc-1-2-5');
+var NLTK = document.getElementById('sc-1-2-6');
 var OPE = document.getElementById('sc-1-2-7');
 
 var COMP = document.getElementById('sc-1-3-1');
