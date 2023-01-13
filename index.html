@@ -290,12 +290,20 @@
                 </script>
 
                 <!-- Portfolio item 05 -->
-                <a id="salary_prediction" href="https://teabraham.github.io/salary_prediction" target="_blank" class="portfolio__item bus mat tab red cla">
+                <a id="salary_prediction" href="https://teabraham.github.io/salary_prediction" target="_blank" class="portfolio__item bus mat tab red reg">
                     <div class="img__wrap">
                         <img src="img/salary.png" alt="" class="portfolio__img">
-                        <p class="img__description">Salary Prediction<br></p>
+                        <p class="img__description">Salary Prediction with Feature Engineering and Random Forest</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#salary_prediction', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "Salary Prediction with Feature Engineering, Feature Reduction based on Mutual Information Gain and Random Forest Regression: This mathematical model utilized real world data from glassdoor.  The goal of the project was to was to predict the salaries of data scientists, analysts, and engineers based on a few key features about the company they worked for and their role in them.",
+                      });
+                </script>
 
                 <!-- Portfolio item 06 -->
                 <a id="employee_retention" href="https://teabraham.github.io/employee_retention" target="_blank" class="portfolio__item bus mat reg">
