@@ -306,12 +306,21 @@
                 </script>
 
                 <!-- Portfolio item 06 -->
-                <a id="employee_retention" href="https://teabraham.github.io/employee_retention" target="_blank" class="portfolio__item bus mat reg">
+                <a id="employee_retention" href="https://teabraham.github.io/employee_retention" target="_blank" class="portfolio__item bus mat cla reg">
                     <div class="img__wrap">
                         <img src="img/retention.png" alt="" class="portfolio__img">
                         <p class="img__description">Employee Retention<br>A/B Testing and Regression Models</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#employee_retention', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "Employee Retention with Label Encoding, A/B Testing,  and Regression Models: The focus of this particular project was originally exploratory data analysis relating to turnover within each department as well as the average training cost per employee for this particular firm.  The statistical tests and regression predictions evolved beyond the original assignment when we tried to determine whether or not it was the most talented and highest-paid employees that were most likely to leave.",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 07 -->
                 <a id="breast_cancer" href="https://teabraham.github.io/breast_cancer" target="_blank" class="portfolio__item hea edu mat red">
@@ -336,6 +345,14 @@
                         <p class="img__description">Brain Tumor<br>Classification with ResUNet</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#brain_tumor', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "Brain MRI Detection Segmentation with ResUNet Architecture: The 'I Ching' of probabilistic reasoning and neural network architecture in artificial intelligence has always been medical diagnosis, and perhaps more specifically cancer detection.  This project uses a basic classification architecture to determine if a tumor exists in the MRI image, then passes the data through a ResUNet architecture for segmentation and identification of the tumor on a mask of the image. [Blog post on UNet and ResUnet forthcoming]",
+                      });
+                </script>
 
                 <!-- Portfolio item 09 -->
                 <a id="covid" href="https://teabraham.github.io/covid" target="_blank" class="portfolio__item hea mat cla con cv">
