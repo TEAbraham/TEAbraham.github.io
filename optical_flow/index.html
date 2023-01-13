@@ -14598,11 +14598,11 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <li>The Lucas-Kanade Algorithm</li>
 </ul>
 <p>The first step in determining optical flow is edge detection.  Where in the past we have used Harrison Corners, today we are utilizing a Sobel operator.  This is because the operator quickly and efficiently detects abrupt changes in the x and y direction of the image which we will then differentiate to determine our edges.</p>
-<p><img src='inputs/of0.png' style="width: 1000px;">
-<img src='inputs/of01.png' style="width: 1000px;"></p>
+<p><img src='../img/of0.png' style="width: 1000px;">
+<img src='../img/of01.png' style="width: 1000px;"></p>
 <p>Brightness and its derivitives will be recurring themes when discussing optical flow and computer vision, but even when we consider the fundamental elements of movement itself.  Optically, for man and machine, flow can only be determined by either a change in perspective, a change in physical distance, or a visible change in how light reacts to our spatial environment.  And this brings us to the Lucas-Kanade Algorithm and its basic assumptions with respect to our two images...</p>
 <p>The Algorithm assumes spatial coherence between our two frames; pixels move like their neighbors.  It assumes small but constant motion before and after our time step; pixels move in a single direction but they don't move very far.  But mostly it assumes a constancy of brightness; pixels look the same in different frames, which is to say they have approximately the same color values.  This defines a singular equation and its derivitives that we can factor and differentiate to understand flow from literally every angle.</p>
-<p><img src='inputs/of1.png' style="width: 800px;"></p>
+<p><img src='../img/of1.png' style="width: 800px;"></p>
 
 </div>
 </div>
@@ -14733,21 +14733,21 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src='inputs/of2.png' style="width: 800px;">
-<img src='inputs/of3.png' style="width: 800px;">
-<img src='inputs/of4.png' style="width: 800px;">
-<img src='inputs/of5.png' style="width: 800px;">
-<img src='inputs/of6.png' style="width: 800px;">
-<img src='inputs/of7.png' style="width: 800px;">
-<img src='inputs/of8.png' style="width: 800px;">
-<img src='inputs/of9.png' style="width: 800px;"></p>
+<p><img src='../img/of2.png' style="width: 800px;">
+<img src='../img/of3.png' style="width: 800px;">
+<img src='../img/of4.png' style="width: 800px;">
+<img src='../img/of5.png' style="width: 800px;">
+<img src='../img/of6.png' style="width: 800px;">
+<img src='../img/of7.png' style="width: 800px;">
+<img src='../img/of8.png' style="width: 800px;">
+<img src='../img/of9.png' style="width: 800px;"></p>
 <p>The reason we value corners over edges, and the reason we utilize 2-D patches or windows over tracking pixels moving in a single dimension is because of the aperture problem.</p>
 <p>The aperture problem refers to the fact that the motion of a one-dimensional spatial structure, such as a bar or edge, cannot be determined unambiguously if it is viewed through a small aperture such that the ends of the stimulus are not visible. In the context of visual motion processing, the aperture problem is faced by individual neurons with receptive fields that sample only a spatially restricted region of the retinal image. And the same is true of perceptron matrices in machine learning and artificial neural networks!</p>
-<p><img src='inputs/of10.png' style="width: 800px;">
-<img src='inputs/of11.png' style="width: 800px;">
-<img src='inputs/of12.png' style="width: 800px;">
-<img src='inputs/of13.png' style="width: 800px;">
-<img src='inputs/of14.png' style="width: 800px;"></p>
+<p><img src='../img/of10.png' style="width: 800px;">
+<img src='../img/of11.png' style="width: 800px;">
+<img src='../img/of12.png' style="width: 800px;">
+<img src='../img/of13.png' style="width: 800px;">
+<img src='../img/of14.png' style="width: 800px;"></p>
 <p><strong>Part 2 – Visualization:</strong></p>
 <p>To better understand the magnitude and direction of our flow, we will utilize our initial Sobel vector gradients as well as atan2  to  compute  the  angle  of  the  flow  at  a particular pixel based on the flow values in the x 
 and y directions.  atan2 returns an angle between -pi  and  pi.    Map  the  angle  to  values  in  two  color<br>
