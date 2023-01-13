@@ -258,7 +258,7 @@
                 </script>
 
                 <!-- Portfolio item 03 -->
-                <a id="customer_segmentation" href="https://teabraham.github.io/customer_segmentation" target="_blank" class="portfolio__item bus mat nltk red cla">
+                <a id="customer_segmentation" href="https://teabraham.github.io/customer_segmentation" target="_blank" class="portfolio__item bus nlp mat nltk red cla">
                     <div class="img__wrap">
                         <img src="img/custom_labels.png" alt="" class="portfolio__img">
                         <p class="img__description">Segmentation Revisited: Keyword Extraction to Ensemble Voting</p>
@@ -274,12 +274,20 @@
                 </script>
 
                 <!-- Portfolio item 04 -->
-                <a id="resume_screening" href="https://teabraham.github.io/resume_screening" target="_blank" class="portfolio__item bus mat tab red cla">
+                <a id="resume_screening" href="https://teabraham.github.io/resume_screening" target="_blank" class="portfolio__item bus nlp mat nltk red cla">
                     <div class="img__wrap">
                         <img src="img/resume.png" alt="" class="portfolio__img">
-                        <p class="img__description">Resume Screening<br></p>
+                        <p class="img__description">Resume Screening<br>with Word Frequency and KNN</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#resume_screening', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "Resume Cleaning with Regex then Screening with Word Frequency and KNN: ",
+                      });
+                </script>
 
                 <!-- Portfolio item 05 -->
                 <a id="salary_prediction" href="https://teabraham.github.io/salary_prediction" target="_blank" class="portfolio__item bus mat tab red cla">
