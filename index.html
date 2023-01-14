@@ -420,12 +420,21 @@
 
 
                 <!-- Portfolio item 13 -->
-                <a id="nyc" href="https://public.tableau.com/app/profile/thomas.abraham/viz/NYCPropertySales2017/PropertySalesinNYC2016-2017" target="_blank" class="portfolio__item fin tad3 cla reg">
+                <a id="nyc" href="https://public.tableau.com/app/profile/thomas.abraham/viz/NYCPropertySales2017/PropertySalesinNYC2016-2017" target="_blank" class="portfolio__item fin tad3">
                     <div class="img__wrap">
                         <img src="img/nyc.png" alt="" class="portfolio__img">
                         <p class="img__description">NYC<br>Property Sales and Investments</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#nyc', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "Tableau Story: This workspace tracks the commercial and residential investments and purchases in New York City via zip code, neighborhood, borough.",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 14 -->
                 <a id="stocks" href="https://public.tableau.com/app/profile/thomas.abraham/viz/DashboardStockMarketChartsCandlestickVolumeReturns_16627021996100/StockDashboard" target="_blank" class="portfolio__item fin tad3 reg">
@@ -434,14 +443,32 @@
                         <p class="img__description">Stock<br>Dashboard</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#stocks', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "Tableau Dashboard:  This interactive display allows the user to select and individual stock from the NYSE; illustrating historical trends in volume, price, openings and closings.",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 15 -->
-                <a id="loan_prediction" href="https://teabraham.github.io/loan_prediction" target="_blank" class="portfolio__item fin mat red reg">
+                <a id="loan_prediction" href="https://teabraham.github.io/loan_prediction" target="_blank" class="portfolio__item fin mat red cla">
                     <div class="img__wrap">
                         <img src="img/loans.png" alt="" class="portfolio__img">
                         <p class="img__description">Loan Prediction<br>with Recursive Feature Elimination and XGBoost</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#loan_prediction', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "ETL pipeline and Classification model comparison: The model attempts to predict recipients based on various features of their credit history. After data cleaning and preprocessing, the pipeline subjects the data to several dimensionality reduction methods; univariate feature selection, XGBoosting, recursive feature elimination, and principal component analysis.  Then several classifiers are compared with GridSearch.",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 16 -->
                 <a id="portfolio" href="https://teabraham.github.io/portfolio/" target="_blank" class="portfolio__item fin tad3 tfjs">
@@ -450,6 +477,15 @@
                         <p class="img__description">Portfolio Optimization with<br>TensorFlow and D3</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#portfolio', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "Linear Optimization using TensorFlow.js backend and illustrated with D3.js frontend:  Users are able to optimize their investment portfolios after entering their assets and equities into the site; the sharpe ratio is immediately calculated, after which the efficient frontier may be generated, and optimal portfolio is determined (highest return with lowest volatility).",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 17 -->
                 <a id="aqi" href="https://teabraham.github.io/aqi" target="_blank" class="portfolio__item gis red tad3 ">
