@@ -505,7 +505,7 @@
 
 
                 <!-- Portfolio item 18 -->
-                <a id="aqi_prediction" href="https://teabraham.github.io/aqi_prediction" target="_blank" class="portfolio__item gis cla reg mat ">
+                <a id="aqi_prediction" href="https://teabraham.github.io/aqi_prediction" target="_blank" class="portfolio__item gis reg mat ">
                     <div class="img__wrap">
                         <img src="img/aqi.png" alt="" class="portfolio__img">
                         <p class="img__description">India<br>Air Quality Prediction</p>
@@ -522,28 +522,55 @@
 
 
                 <!-- Portfolio item 19 -->
-                <a id="human_activity" href="https://teabraham.github.io/human_activity" target="_blank" class="portfolio__item cv red tad3 ">
+                <a id="human_activity" href="https://teabraham.github.io/human_activity" target="_blank" class="portfolio__item cv cla mat ">
                     <div class="img__wrap">
                         <img src="img/activity.png" alt="" class="portfolio__img">
                         <p class="img__description">Human Activity<br>Classification and Prediction</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#human_activity', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "Feed Forward Neural Network for Multi-Class Classification: This project serves as a precursor to more complex neural networks that inform computer vision models.  Rather than preprocessing image data, human activity (body position and movement) is measured via four dimensional space-time features.  The data can be collected either by video or sensory signal observation, but once collected a basic feed-forward neural network architecture can be used for multi-class classification.",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 20 -->
-                <a id="airline_passengers" href="https://teabraham.github.io/airline_passengers" target="_blank" class="portfolio__item bus red tad3 ">
+                <a id="airline_passengers" href="https://teabraham.github.io/airline_passengers" target="_blank" class="portfolio__item bus reg rec">
                     <div class="img__wrap">
                         <img src="img/passengers.png" alt="" class="portfolio__img">
                         <p class="img__description">Indian<br>Passengers per Flight<br>Prediction</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#airline_passengers', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "LSTM RNN Time-Series Forecasting:  This early implementation of a long short-term memory recurrent neural network predicts airline passenger counts accurately and efficiently, with relatively few features and epochs required.",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 21 -->
-                <a id="fare_prediction" href="https://teabraham.github.io/fare_prediction" target="_blank" class="portfolio__item bus red tad3 ">
+                <a id="fare_prediction" href="https://teabraham.github.io/fare_prediction" target="_blank" class="portfolio__item bus red reg mat ">
                     <div class="img__wrap">
                         <img src="img/fares.png" alt="" class="portfolio__img">
                         <p class="img__description">Indian Airline Fare<br>Prediction</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#fare_prediction', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 22 -->
                 <a id="forecasting_sales" href="https://teabraham.github.io/forecasting_sales" target="_blank" class="portfolio__item bus red tad3 ">
