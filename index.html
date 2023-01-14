@@ -488,12 +488,21 @@
 
 
                 <!-- Portfolio item 17 -->
-                <a id="aqi" href="https://teabraham.github.io/aqi" target="_blank" class="portfolio__item gis red tad3 ">
+                <a id="aqi" href="https://teabraham.github.io/aqi" target="_blank" class="portfolio__item gis tad3">
                     <div class="img__wrap">
                         <img src="img/aqi.gif" alt="" class="portfolio__img">
                         <p class="img__description">Chicago Air Quality Dashboard<br>EDA using D3</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#aqi', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "D3 Interactive Dashboard Design for Analysis of Historical Data:  The page's ETL pipeline backend connected to the EPA's Air Quality Index database via its SODA API.  The frontend combines two separate versions of the D3 library, simultaneously experimenting with cross-functionality, distributing, and displaying the GIS data collected and measured via sensor stations across the city of Chicago.",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 18 -->
                 <a id="aqi_prediction" href="https://teabraham.github.io/aqi_prediction" target="_blank" class="portfolio__item gis cla reg mat ">
@@ -502,6 +511,15 @@
                         <p class="img__description">India<br>Air Quality Prediction</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#aqi_prediction', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "SARIMAX Model: What is SARIMAX? Seasonal Auto-Regressive Integrated Moving Average with eXogenous factors, or SARIMAX, is an extension of the ARIMA class of models. Intuitively, ARIMA models compose 2 parts: the autoregressive term (AR) and the moving-average term.  Using this statistical model, the Air Quality Index for India's five largest cities can be approximated using minimal historical data.",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 19 -->
                 <a id="human_activity" href="https://teabraham.github.io/human_activity" target="_blank" class="portfolio__item cv red tad3 ">
