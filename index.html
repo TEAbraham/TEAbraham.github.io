@@ -573,28 +573,55 @@
 
 
                 <!-- Portfolio item 22 -->
-                <a id="forecasting_sales" href="https://teabraham.github.io/forecasting_sales" target="_blank" class="portfolio__item bus red tad3 ">
+                <a id="forecasting_sales" href="https://teabraham.github.io/forecasting_sales" target="_blank" class="portfolio__item bus reg mat ">
                     <div class="img__wrap">
                         <img src="img/forecasting.png" alt="" class="portfolio__img">
-                        <p class="img__description">Forecasting Sales with<br>Facebook Prophet</p>
+                        <p class="img__description">Forecasting Sales<br>ARIMA to Facebook Prophet</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#forecasting_sales', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "Time Series Sales Forecasting Model Algorithm Comparison: This project is an objective comparison of three Time Series Optimization algorithms; ARIMA, SARIMAX, and the Facebook Prophet algo.  ARIMA is the auto-regressive moving average for segments based on the order of timestamps in the lag chosen for the Time-Series data.  SARIMAX incorporates seasonality and exogenous variables into the aforementioned algorithm.  But Facebook Prophet attempts to parametize all of the above as a General Additive Model that focuses on inflection points. [Blog post forthcoming]",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 23 -->
-                <a id="power_consumption" href="https://teabraham.github.io/power_consumption" target="_blank" class="portfolio__item gis red tad3 ">
+                <a id="power_consumption" href="https://teabraham.github.io/power_consumption" target="_blank" class="portfolio__item bus fin reg rec ">
                     <div class="img__wrap">
                         <img src="img/power.png" alt="" class="portfolio__img">
                         <p class="img__description">Worldwide Power Consumption<br>LSTM Prediction</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#power_consumption', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "LSTM RNN Model Predicting International Energy Consumption based on Time-Series data:  This project initially focuses on Exploratory Data Analysis and Standardization that is necessary before building your neural network; this means establishing a gaussian distribution, scaling the data if it's skewed, and determining if the data has stationarity or not.  After the data is normally distributed and positively stationary, the LSTM model can be applied with a lone hidden dropout layer, and optimize fairly quickly.",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 24 -->
-                <a id="nola" href="https://teabraham.github.io/nola" target="_blank" class="portfolio__item  gis edu tad3">
+                <a id="nola" href="https://teabraham.github.io/nola" target="_blank" class="portfolio__item  gis mat tad3">
                     <div class="img__wrap">
                         <img src="img/nola.gif" alt="" class="portfolio__img">
                         <p class="img__description">New Orleans Police Department<br>Bodycam Data with Mapbox Template</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#nola', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "Scrollytelling with D3, Plotly and Mapbox Studio: In collaboration with post-graduate students at Columbia University and presented to representatives of the New York Times, this project is an experiment with new visualization tools and methodologies.  It is presented using the most recent GIS data from New Orleans Police Department's BodyCam records retrieved using a SODA API. ",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 25 -->
                 <a id="veho" href="https://teabraham.github.io/veho" target="_blank" class="portfolio__item  gis edu mat vrp">
@@ -603,6 +630,15 @@
                         <p class="img__description">Vehicle Routing Problem<br>Case Study with OR-Tools</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#veho', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "A case study in the Vehicle Routing Problem, using Google's OR-Tools and other suboptimal algorithms to manage the unconstrained:  The project itself began in earnest with a consultation with a package delivery start-up.  After preprocessing the delivery data, eliminating erroneous records, and dividing the dataset into to separate primary locations using Kmeans clustering... we approach each cluster as we would a traveling salesman problem.  Algorithms investigated range from the most basic 2-opt algorithm to the self organizing map. [Blog post forthcoming]",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 26 -->
                 <a id="keyword_extraction" href="https://teabraham.github.io/keyword_extraction" target="_blank" class="portfolio__item nlp red nltk ">
