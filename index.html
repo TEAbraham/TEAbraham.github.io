@@ -834,6 +834,15 @@
                         <p class="img__description">Face Detection with<br>HAAR Cascade Classifier</p>
                     </div>
                 </a>
+                <script>
+                    tippy('#face_detection', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "So what is Haar Cascade? It is an Object Detection Algorithm used to identify faces in an image or a real time video. The algorithm uses edge or line detection features proposed by Viola and Jones in their research paper “Rapid Object Detection using a Boosted Cascade of Simple Features” published in 2001. The algorithm is given a lot of positive images consisting of faces, and a lot of negative images not consisting of any face to train on them. The model created from this training is available at the OpenCV GitHub repository.",
+                      });
+                </script>
+
 
                 <!-- Portfolio item 38 -->
                 <a id="facial_expression_keras" href="https://teabraham.github.io/facial_expression_keras" target="_blank" class="portfolio__item cv mat ope con">
