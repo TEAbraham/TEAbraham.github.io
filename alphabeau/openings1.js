@@ -17,7 +17,7 @@ d3.json("Caissa.json").then(function(all){
     
     var format = d3.format(",d");
     
-    var width = 700;
+    var width = 600;
     
     
     var radius = width / 6;

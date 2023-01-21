@@ -86,10 +86,10 @@ body {
   
   #legend {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    margin-top: 40%;
-    margin-left: 46%;
+    height: 90%;
+    width: 90%;
+    /* margin-top: 50%;
+    margin-right: 60%; */
     text-align: center;
     stroke: #fff;
     z-index: -6;
@@ -104,7 +104,7 @@ body {
     color: #000;
     height: 0%;
     width: 95%;
-    margin-top: 43%;
+    margin-top: 44%;
     text-align: right;
     z-index: 3;
     position:absolute;
@@ -115,7 +115,7 @@ body {
     font-size: 2.5em;
     height: 0%;
     width: 100%;
-    margin-top: 42%;
+    margin-top: 43%;
     text-align: center;
     z-index: 3;
     position:absolute;
