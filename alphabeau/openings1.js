@@ -13,7 +13,7 @@ d3.json("Caissa.json").then(function(all){
             (root);
         }
         
-    var color = d3.scaleOrdinal(["#6e40aa","#417de0","#1ac7c2","#40f373","#aff05b"]);
+    var color = d3.scaleOrdinal(['#769656', '#8c6d31', '#843c39', '#7b4173', '#393b79']);
     
     var format = d3.format(",d");
     
