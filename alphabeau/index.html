@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>AlphaBeau</title>
+		<link rel="shortcut icon" type="image/png" href="favicon_io/android-chrome-192x192.png"/>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
@@ -13,6 +14,14 @@
 		<script src="lib/chessboardjs/js/chess.js"></script>
 		<script src="lib/chessboardjs/js/chessboard-0.3.0.js"></script>
 		<script src="lib/jquery/jquery-3.2.1.min.js"></script>
+		<style type="text/css">
+		  body {
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		  }
+		</style>
 	</head>
 	<body data-gr-c-s-loaded="true">
 		<div class="container" id="top">
@@ -175,7 +184,7 @@
 									<br>
 									<br>
 									<br>
-									<div class="cdv-openings" id="openings">
+									<div class="cdv-openings" id="open">
 										<div id="board" class="board" height="300" width="300">
 										</div>
 									</div>
@@ -190,7 +199,7 @@
 									</div>
 							</div>  
 					<script>d3.json('fangol.json', function(err, data) {
-							var openings = new ChessDataViz.Openings('#openings', {
+							var openings = new ChessDataViz.Openings('#open', {
 								arcThreshold: 0.002,
 								textThreshold: 0.03,
 								colors: d3.scale.ordinal().range(['#769656', '#8c6d31', '#843c39', '#7b4173', '#393b79'])

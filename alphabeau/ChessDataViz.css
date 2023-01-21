@@ -138,7 +138,7 @@ body{background:black;}
 #board{position:absolute;width:200px;top:42%;left:40%}
 #board img{padding:0}
 #op-combined span{display:block;text-align:center;position:relative;color:rgba(255,255,255,0.8)}
-#openings{margin-bottom:15px}
+#opening{margin-bottom:15px}
 .op{pointer-events:none !important}
 .op .name{display:block;text-align:center}
 .op .pct{display:block;text-align:center}
