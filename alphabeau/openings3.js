@@ -36,7 +36,7 @@ d3.json("Caissa.json").then(function(root) {
         root.sum(function(d) {  return d.children==false ? d.size : 0; });
         svg.selectAll("path")
             .data(partition(root).descendants())
-            .enter().append("svg:path")
+            .join("svg:path")
             .attr("d", arc)
             .style("fill", function(d){return evenOdd(d)})
             .style("opacity", function (d){return d.depth ? 1 : 0;})
@@ -46,7 +46,7 @@ d3.json("Caissa.json").then(function(root) {
 
         svg.selectAll(".title")
             .data(partition(root).descendants())
-            .enter().append("svg:text")
+            .join("svg:text")
             .attr('class', 'title')
             .attr('dy', '0.35em')
             .attr('text-anchor', 'middle')
@@ -101,18 +101,20 @@ d3.json("Caissa.json").then(function(root) {
         return function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); }
       }
 
-      svg.transition()
+      svg.selectAll("path")
+        .join("path")
+        .transition()
         .tween("scale", s)
-        .selectAll("path")
         .attrTween("d", function (d) { return function () { return arc(d); }; })
         .style("fill", function (d) { return evenOdd(d) })
         .style("visibility", function (e) { if ((e.x1 - e.x0) / (d.x1 - d.x0) < (0.002)) { return "hidden" } else return "visible" })
 
-      svg.transition()
+      svg.selectAll(".title")
+        .join(".title")
+        .transition()
         .tween("scale", s)
-        .selectAll(".title")
-        .attrTween('transform', function (d) { return function(){return 'translate(' + arc.centroid(d) + ')';}})
-        .style("visibility", function (e){if (d.descendants().includes(e) && (e.x1 - e.x0)/(d.x1 - d.x0) > 0.03){return "visible"}else return "hidden"})
+        .attrTween('transform', function (d) { return function () { return 'translate(' + arc.centroid(d) + ')'; } })
+        .style("visibility", function (e) { if (d.descendants().includes(e) && (e.x1 - e.x0) / (d.x1 - d.x0) > 0.03) { return "visible" } else return "hidden" })
 
       if (d.depth > 0){
         d3.select("#legend")
