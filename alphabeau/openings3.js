@@ -37,12 +37,12 @@ d3.json("Caissa.json").then(function(root) {
         svg.selectAll("path")
             .data(partition(root).descendants())
             .enter().append("svg:path")
-            .on("mouseover", mouseover)
-            .on("click", click)
             .attr("d", arc)
             .style("fill", function(d){return evenOdd(d)})
             .style("opacity", function (d){return d.depth ? 1 : 0;})
-            .style("visibility", function(d){if ((d.x1 - d.x0) < (0.002)){return "hidden"}else return "visible"})
+            .style("visibility", function (d) { if ((d.x1 - d.x0) < (0.002)) { return "hidden" } else return "visible" })
+            .on("mouseover", mouseover)
+            .on("click", click)
 
         svg.selectAll(".title")
             .data(partition(root).descendants())
@@ -93,34 +93,30 @@ d3.json("Caissa.json").then(function(root) {
 
   function click(d) {
       mouseover(d)
-      
-      var k = d3.transition()
-          // .duration(1000)
 
-      s = function() {
+      function s() {
         var xd = d3.interpolate(x.domain(), [d.x0, d.x1]),
             yd = d3.interpolate(y.domain(), [d.y0, 1]),
             yr = d3.interpolate(y.range(), [d.y0 ? 50 : 0, radius]);
-        return function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); };
+        return function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); }
       }
 
-      svg.transition(k)
-          .tween("scale", s)
-          .selectAll("path")
-            .attrTween("d", function(d) { return function() { return arc(d); }; })
-            .style("fill", function(d){return evenOdd(d)})
-            .style("visibility", function(e){if ((e.x1 - e.x0)/(d.x1 - d.x0) < (0.002)){return "hidden"}else return "visible"})
-      
-      svg.transition(k)
-          .tween("scale", s)
-          .selectAll(".title")
-            .attr('class', 'title')
-            .attrTween('transform', function (d) { return function(){return 'translate(' + arc.centroid(d) + ')';}})
-            .style("visibility", function (e){if (d.descendants().includes(e) && (e.x1 - e.x0)/(d.x1 - d.x0) > 0.03){return "visible"}else return "hidden"});
-          
+      svg.transition()
+        .tween("scale", s)
+        .selectAll("path")
+        .attrTween("d", function (d) { return function () { return arc(d); }; })
+        .style("fill", function (d) { return evenOdd(d) })
+        .style("visibility", function (e) { if ((e.x1 - e.x0) / (d.x1 - d.x0) < (0.002)) { return "hidden" } else return "visible" })
+
+      svg.transition()
+        .tween("scale", s)
+        .selectAll(".title")
+        .attrTween('transform', function (d) { return function(){return 'translate(' + arc.centroid(d) + ')';}})
+        .style("visibility", function (e){if (d.descendants().includes(e) && (e.x1 - e.x0)/(d.x1 - d.x0) > 0.03){return "visible"}else return "hidden"})
+
       if (d.depth > 0){
         d3.select("#legend")
-          .style("visibility", "hidden");
+          .style("visibility", "hidden")
       }else{
         d3.select("#legend")
           .transition()
@@ -128,7 +124,7 @@ d3.json("Caissa.json").then(function(root) {
           .style("visibility", "visible")
         d3.select("#eco").text(" ")
         d3.select("#variation").text(" ")
-        board.position("start");
+        board.position("start")
       }
 
       game = new Chess()
@@ -140,8 +136,8 @@ d3.json("Caissa.json").then(function(root) {
       mouseleave()
       updateBreadcrumbs(getAncestors(d), d.value)
       d3.select("#explanation")
-        .style("visibility", "visible");
-      d3.selectAll("path").on("mouseover", null);
+        .style("visibility", "visible")
+      d3.selectAll("path").on("mouseover", null)
   };
 
   // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
