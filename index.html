@@ -10,7 +10,7 @@
         <meta property="og:type" content="Website" />
         <meta name="image" property="og:image" content="https://teabraham.github.io/img/Officiant.jpg" />
         <meta name="description" property="og:description" content="Portfolio" /><meta name="author" content="Thomas E. Abraham" />
-        <title>TEAbraham</title>
+        <title>Thomas E. Abraham</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />  
 
@@ -34,6 +34,7 @@
                     <li class="nav__item"><a href="#services" class="nav__link">My Services</a></li>
                     <li class="nav__item"><a href="#work" class="nav__link">My Work</a></li>
                     <li class="nav__item"><a href="#about" class="nav__link">Myself</a></li>
+                    <!-- <li class="nav__item"><a href="/blog" class="nav__link">My Blog</a></li> -->
                 </ul>
             </nav>
         </header>
@@ -469,6 +470,21 @@
                       });
                 </script>
 
+                <!-- Portfolio item 15 -->
+                <a id="credit_risk" href="https://teabraham.github.io/credit_risk" target="_blank" class="portfolio__item fin mat red cla">
+                    <div class="img__wrap">
+                        <img src="img/credit_risk.png" alt="" class="portfolio__img">
+                        <p class="img__description">Credit Risk Modeling</p>
+                    </div>
+                </a>
+                <script>
+                    tippy('#credit_risk', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "<p><b>Credit Risk Modeling comparing XGBoost, LightGBM, and Catboost:</b> Credit risk is associated with the possibility of a client failing to meet contractual obligations, such as mortgages, credit card debts, and other types of loans. Minimizing the risk of default is a major concern for financial institutions. For this reason, commercial and investment banks, venture capital funds, asset management companies and insurance firms, to name a few, are increasingly relying on technology to predict which clients are more prone to not honoring their debts. Machine Learning models have been helping these companies to improve the accuracy of their credit risk analysis, providing a scientific method to identify potential debtors in advance. In this notebook, we will build a model to predict the risk of client default for Nubank, a prominent Brazilian Fintech.",
+                      });
+                </script>
 
                 <!-- Portfolio item 16 -->
                 <a id="portfolio" href="https://teabraham.github.io/portfolio/" target="_blank" class="portfolio__item fin tad3 tfjs">
@@ -924,7 +940,7 @@
                         arrow: false,
                         allowHTML: true,
                         placement: 'top-start',
-                        content: "<p><b>Limitless, Unconventional D3 Visualizations with Big Data:</b> This project is a precursor to reinforcement learning and chess; training AlphaGo then building AlphaZero.  It processes and visualizes the openings of nearly 4 million games between grand masters. The Caissa chess database was the largest open source model for training chess engines that used machine learning, compiling classic to post-modern data from primary text sources and online communities in pgn format.  The display is a sunzoom; all of the games in the database are parsed using Google's Go language into a tree, with the root of the tree being the starting position and center of the chart.  The first concentric circle represents the first possible move, the second concentric circle the second move.  Clicking on any move advances to that node of the tree, the position is displayed on the game board, and the next two moves are inscribed and encircled.  Leaves of the tree are reached when that position represents fewer than one thousand games in the database.  The tooltip shows the game variation by move up to that point, and how many games follow that opening in the database. <i>Golang, Python, D3, HTML, JS, CSS</i>",
+                        content: "<p><b>Limitless, Unconventional D3 Visualizations with Big Data:</b> This project is a precursor to reinforcement learning and chess; training AlphaGo then building AlphaZero.  It processes and visualizes the openings of nearly 4 million games between grand masters. The Caissa chess database was the largest open source model for training chess engines that used machine learning, compiling classic to post-modern data from primary text sources and online communities in pgn format.  The display is a sunzoom; all of the games in the database are parsed using Google's Go language into a tree, with the root of the tree being the starting position and center of the chart.  The first concentric circle represents the first possible move, the second concentric circle the second move.  Clicking on any move advances to that node of the tree, the position is displayed on the game board, and the next two moves are inscribed and encircled.  Leaves of the tree are reached when that position represents fewer than one thousand games in the database.  The tooltip shows the game variation by move up to that point, and how many games follow that opening in the database. <i>Golang, Python, Pandas, D3, HTML, JS, CSS</i>",
                       });
                 </script>
 
@@ -940,7 +956,7 @@
                         arrow: false,
                         allowHTML: true,
                         placement: 'top-start',
-                        content: "<p><b>Limitless, Unconventional D3 Visualizations with Big Data:</b> This smaller but more detailed sun radial sacrifices mobility for greater insight and an additional dimension to the data.",
+                        content: "<p><b>Limitless, Unconventional D3 Visualizations with Big Data:</b> This smaller but more detailed sun radial sacrifices mobility for greater insight and an additional dimension to the data.  Using pandas and some creative concatenation, the Encyclopedia of Chess Openings has been integrated into our database and game tree.  Now every variation has a specific label and ECO encoding to help the user learn which family of openings each position belongs to.  However, you can no longer traverse every level of the tree as explicitly as before; instead the user has complete view over the tree, and hovering over a specific arc will display that position on the board along with its PGN format and ECO title below.  The buttons below the chart allow the user to take one step down the tree to one of the four most popular opening moves for white.<i>Python, Pandas, Beautiful Soup, JSON, D3, HTML, JS, CSS</i>",
                       });
                 </script>
 
@@ -976,21 +992,21 @@
         <section class="about-me" id="about">
             <h2 class="section__title section__title--about">Who I am</h2>
             <p class="section__subtitle section__subtitle--about">principal consultant & project manager</p>
-
             <div class="about-me__body">
-                <p>I am a data scientist and machine learning consultant who prides himself on the principles of perpetual education, humanism, and futurism. As a passionate student of both hard and soft sciences, I believe in an interdisciplinary and interpersonal approach to problem-solving.</p>
+                <div class="about-me__body">
+                    <p>I am a data scientist and machine learning consultant who prides himself on the principles of perpetual education, humanism, and futurism. As a passionate student of both hard and soft sciences, I believe in an interdisciplinary and interpersonal approach to problem-solving.</p>
+                </div>
+                <div class="about-me__body">
+                    <p>According to Andrew Ng, a pioneer of online education and neural networks, "AI is the new electricity."  The rise of electricity transformed every major industry, and in so doing, transformed every culture and the face of our world.  We are witnessing the proliferation of AI at an even faster rate.  As a witness to the power of this technology and the breadth of its application, I am joining the effort to "democratize deep learning."</p>
+                </div>
+                <div class="about-me__body">
+                    <p>As a professional consultant and project manager, I help clients better understand their own data vis-à-vis how it's collected, structured, and processed.  With the clients' domain knowledge and my personal guidance, we decide what business solutions are "machine learnable" as well as scalable for sustainable growth.  It has been my passion and privilege to work across industries educating fellow team members about artificial intelligence as we learn how to build a better world together. </p>
+                </div>
             </div>
-            <div class="about-me__body">
-                <p>According to Andrew Ng, a pioneer of online education and neural networks, "AI is the new electricity."  The rise of electricity transformed every major industry, and in so doing, transformed every culture and the face of our world.  We are witnessing the proliferation of AI at an even faster rate.  As a witness to the power of this technology and the breadth of its application, I am joining the effort to "democratize deep learning."</p>
-            </div>
-            <hr>
-            <div class="about-me__body">
-                <p>As a professional consultant and project manager, I help clients better understand their own data vis-à-vis how it's collected, structured, and processed.  With the clients' domain knowledge and my personal guidance, we decide what business solutions are "machine learnable" as well as scalable for sustainable growth.  It has been my passion and privilege to work across industries educating fellow team members about artificial intelligence as we learn how to build a better world together. </p>
-            </div>
-
             <img src="img/Officiant.jpg" alt="Studio" class="about-me__img">
+            <!-- <div><a href="https://teabraham.github.io/blog" id= "recent_posts" class="btn">Recent Posts</a></div> -->
         </section>
-
+        
         <!-- Footer -->
         <footer class="footer">
             <!-- replace with your own email address -->

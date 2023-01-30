@@ -872,6 +872,12 @@ div.wrapper
     padding-right: calc(200px + 4em);
   }
 
+  .about-me__body {
+    display: block !important;
+    grid-row: 3;
+    z-index: 2;
+  }
+
   /* line 549, ../sass/style.scss */
   /* line 586, ../sass/style.scss */
   .about-me__img {
