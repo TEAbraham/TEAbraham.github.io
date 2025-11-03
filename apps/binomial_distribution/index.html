@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Firebase -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+      import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup, GoogleAuthProvider  } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+      import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+      import { firebaseConfig } from '../../js/firebase-config.js';
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      // Check if user is logged in
+      onAuthStateChanged(auth, (user) => {
+          if (!user) {
+              // User not logged in, save current page before redirecting
+              localStorage.setItem("redirectAfterLogin", window.location.href);
+              window.location.href = "../../index.html";
+          }
+      });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binomial Distribution</title>
+
+    <!-- CSS Imports -->
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/jquery.fullpage.css" />
+    <link rel="stylesheet" href="../../css/home.css">
+    <!--Fonts-->
+    <link href="//fonts.googleapis.com/css?family=Lato:100,200,300,400" rel="stylesheet" type="text/css">
+    <!--Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="../../img/favicon.png" />
+
+    <!-- JavaScript Imports -->
+    <!-- Jquery -->
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <!-- jstat -->
+    <script src="../../js/jStat.js"></script>
+    <!-- LaTeXMathML -->
+    <script src="../../js/LaTeXMathML.js"></script>
+    <!-- D3 -->
+    <script src="../../js/d3.v7.min.js"></script>
+    <script src="../../js/d3.v7.hexbin.min.js"></script>
+    <!-- Module scripts -->
+    <script type="module" src="../../js/script.js"></script>
+    <script type="module" src="../../js/home.js"></script>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 10px; }
+        .tab { padding: 8px 12px; background: #eee; border: 1px solid #ccc; cursor: pointer; }
+        .tab.active { background: #ddd; font-weight: bold; }
+        .tab-content { display: none; margin-top: 10px; }
+        .tab-content.active { display: block; }
+        .layout { display: flex; gap: 20px; }
+        .sidebar { flex: 1; min-width: 240px; }
+        .main { flex: 3; }
+        label { display: block; margin-top: 10px; }
+        input, select { width: 100%; padding: 4px; margin-top: 2px; }
+        table { margin-top: 15px; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 5px 10px; text-align: center; }
+        .input-row { display: flex; justify-content: space-between; gap: 10px; }
+        .bar { cursor: pointer; }
+        .bar:hover { fill: #FF9B3C; }
+        /* The switch - the box around the slider */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+      </style>
+    </head>
+    <body>
+        <header class="menu-top">
+            <ul id="menu">
+                <li class="dropdown">
+                    <a href="../../home/home.html" class="dropbtn">Home</a>
+                    <ul class="dropdown-content">
+                        <li><a href="../../home/home.html#unit1">Unit 1</a></li>
+                        <li><a href="../../home/home.html#unit2">Unit 2</a></li>
+                        <li><a href="../../home/home.html#unit3">Unit 3</a></li>
+                        <li><a href="../../home/home.html#unit4">Unit 4</a></li>
+                        <li><a href="../../home/home.html#unit5">Unit 5</a></li>
+                        <li><a href="../../home/home.html#unit6">Unit 6</a></li>
+                        <li><a href="../../home/home.html#unit7">Unit 7</a></li>
+                        <li><a href="../../home/home.html#unit8">Unit 8</a></li>
+                        <li><a href="../../home/home.html#unit9">Unit 9</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="https://classroom.google.com/u/1/" class="dropbtn" target="_blank">Classroom</a>
+                    <ul class="dropdown-content">
+                        <li><a href="https://classroom.google.com/u/1/c/NzA4OTk2OTI3MzAw" target="_blank">Announcements</a></li>
+                        <li><a href="https://classroom.google.com/u/1/w/NzA4OTk2OTI3MzAw/t/all" target="_blank">Course Documents</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="../../apps" class="dropbtn">Apps</a>
+                  <ul class="dropdown-content">
+                    <li><a href="../../apps/conditional_probability/">Conditional Probability</a></li>
+                    <li><a href="../../apps/galton_board/">Galton Board</a></li>
+                    <li><a href="../../apps/normal_distribution/">Normal Distribution</a></li>
+                    <li><a href="../../apps/binomial_distribution/">Binomial Distribution</a></li>
+                    <li><a href="../../apps/geometric_distribution/">Geometric Distribution</a></li>
+                    <li><a href="../../apps/random_variables/">Random Variables</a></li>
+                    <li><a href="../../apps/sampling_distributions/">Sampling Distributions</a></li>
+                    <li><a href="../../apps/central_limit_theorem/">Central Limit Theorem</a></li>
+                    <li><a href="../../apps/confidence_intervals/">Confidence Intervals</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="../../mcq/" class="dropbtn">MCQ</a>
+                </li>
+                <li class="dropdown">
+                  <a href="../../frq/" class="dropbtn">FRQ</a>
+              </li>
+              <li class="dropdown">
+                  <a href="../../collegeboard/" class="dropbtn">CollegeBoard</a>
+              </li>
+              <li class="dropdown">
+                  <a href="../../prep/" class="dropbtn">Exam Prep</a>
+              </li>
+                <li id="logoutButton" style="display:none;"><a href="../../index.html" onclick="logout('../../index.html')">Logout</a></li>
+            </ul>
+            <a href="../../admin/"><span id="user-email" style="color:darkgreen; margin-left: 1em;"></span></a>
+            <div id="logo"></div>
+        </header>
+        <h2>Binomial Distribution Explorer</h2>
+        <div class="tabs">
+          <div class="tab active" data-tab="explore">Explore Distribution</div>
+          <div class="tab" data-tab="probability">Find Probability</div>
+          <div class="tab" data-tab="percentile">Find Percentile</div>
+        </div>
+        
+        <div id="explore" class="tab-content active">
+          <div class="layout">
+            <div class="sidebar">
+                <label class="switch"><input type="checkbox" id="toggle-manual"><span class="slider round"></span></label>
+                <div id="slider-inputs">
+                <label>Number of Trials (n): <span id="n-label"></span></label>
+                <input id="n" type="range" min="1" max="250" step="1" value="10" />
+                <label>Probability of Success (p): <span id="p-label"></span></label>
+                <input id="p" type="range" min="0" max="1" step="0.01" value="0.5" />
+              </div>
+              <div id="manual-inputs" style="display:none;">
+                <label>n: <input id="n-manual" type="number" min="1" max="250" step="1" value="10" /></label>
+                <label>p: <input id="p-manual" type="number" min="0" max="1" step="0.01" value="0.5" /></label>
+              </div>
+            </div>
+            <div class="main">
+              <svg id="explore-chart" width="1000" height="400"></svg>
+              <p id="explore-desc"></p>
+              <table id="explore-table"></table>
+            </div>
+          </div>
+        </div>
+        
+        <div id="probability" class="tab-content">
+          <div class="layout">
+            <div class="sidebar">
+              <label>n: <input id="prob-n" type="number" min="1" max="250" step="1" value="10"></label>
+              <label>p: <input id="prob-p" type="number" min="0" max="1" step="0.01" value="0.5"></label>
+              <label>Type:
+                <select id="prob-type">
+          <option value="eq">P(X = x)</option>
+          <option value="leq">P(X ≤ x)</option>
+          <option value="gt">P(X > x)</option>
+          <option value="between">P(x₁ < X < x₂)</option>
+        </select>
+              </label>
+              <label id="label-prob-x1"><span>x or x₁:</span> <input id="prob-x1" type="number" value="5" step="1"></label>
+              <label id="label-prob-x2" style="display: none;">x₂: <input id="prob-x2" type="number" value="8" step="1"></label>
+            </div>
+            <div class="main">
+              <svg id="prob-chart" width="1000" height="400"></svg>
+              <p id="prob-desc"></p>
+              <table id="prob-table"></table>
+            </div>
+          </div>
+        </div>
+        
+        <div id="percentile" class="tab-content">
+          <div class="layout">
+            <div class="sidebar">
+              <label>n: <input id="perc-n" type="number" min="1" max="100" step="1" value="10"></label>
+              <label>p: <input id="perc-p" type="number" min="0" max="1" step="0.01" value="0.5"></label>
+              <label>Percentile (%): <input id="perc-prob" type="number" min="0" max="100" step="0.1" value="95"></label>
+            </div>
+            <div class="main">
+              <svg id="perc-chart" width="1000" height="400"></svg>
+              <p id="perc-desc"></p>
+              <table id="perc-table"></table>
+            </div>
+          </div>
+        <script>
+        // === Utility: Binomial PMF ===
+        function binomialPMF(n, p, x) {
+          function factorial(k) {
+            if (k === 0) return 1;
+            let f = 1; for (let i = 1; i <= k; i++) f *= i;
+            return f;
+          }
+          function choose(n, k) {
+            return factorial(n) / (factorial(k) * factorial(n - k));
+          }
+          return choose(n, x) * Math.pow(p, x) * Math.pow(1 - p, n - x);
+        }
+        
+        // === Tab Switching ===
+        document.querySelectorAll(".tab").forEach(tab => {
+          tab.addEventListener("click", () => {
+            document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+            document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+            tab.classList.add("active");
+            document.getElementById(tab.dataset.tab).classList.add("active");
+            update();
+          });
+        });
+        
+        // === Input Toggle ===
+        document.getElementById("toggle-manual").addEventListener("change", e => {
+          const manual = e.target.checked;
+          document.getElementById("slider-inputs").style.display = manual ? "none" : "block";
+          document.getElementById("manual-inputs").style.display = manual ? "block" : "none";
+        });
+        
+        // === Sync Labels ===
+        function syncSliderLabels() {
+          const n = document.getElementById("n").value;
+          const p = document.getElementById("p").value;
+          document.getElementById("n-label").textContent = n;
+          document.getElementById("p-label").textContent = p;
+          document.getElementById("n-manual").value = n;
+          document.getElementById("p-manual").value = p;
+        }
+        ["n", "p"].forEach(id => document.getElementById(id).addEventListener("input", () => {
+          syncSliderLabels();
+          update();
+        }));
+        document.getElementById("n-manual").addEventListener("input", e => {
+          document.getElementById("n").value = e.target.value;
+          syncSliderLabels(); update();
+        });
+        document.getElementById("p-manual").addEventListener("input", e => {
+          document.getElementById("p").value = e.target.value;
+          syncSliderLabels(); update();
+        });
+        
+        // === Conditional Inputs for Probability Tab ===
+        document.getElementById("prob-type").addEventListener("change", () => {
+          const type = document.getElementById("prob-type").value;
+          document.getElementById("label-prob-x2").style.display = (type === "between") ? "block" : "none";
+          document.querySelector("#label-prob-x1 span").textContent = (type === "between") ? "x₁:" : "x:";
+          update();
+        });
+        
+        // === Main Update ===
+        function binomialCDF(n, p, x) {
+          let sum = 0;
+          for (let i = 0; i <= x; i++) {
+            sum += binomialPMF(n, p, i);
+          }
+          return sum;
+        }
+        
+        function update() {
+          const tab = document.querySelector(".tab.active").dataset.tab;
+          if (tab === "explore") {
+            const n = +document.getElementById("n").value;
+            const p = +document.getElementById("p").value;
+            const svg = d3.select("#explore-chart");
+            svg.selectAll("*").remove();
+            const width = +svg.attr("width") - 40, height = +svg.attr("height") - 40;
+            const g = svg.append("g").attr("transform", "translate(40,20)");
+        
+            const data = d3.range(0, n + 1).map(x => ({ x, y: binomialPMF(n, p, x) }));
+            const x = d3.scaleLinear().domain([0, n]).range([0, width]);
+            const y = d3.scaleLinear().domain([0, d3.max(data, d => d.y)]).range([height, 0]);
+        
+            g.selectAll("line")
+              .data(data)
+              .enter()
+              .append("line")
+              .attr("class", "bar")
+              .attr("x1", d => x(d.x))
+              .attr("x2", d => x(d.x))
+              .attr("y1", d => y(d.y))
+              .attr("y2", y(0))
+              .attr("stroke", "#64bdff")
+              .attr("stroke-width", 5)
+              .on("mouseover", function (event, d) {
+                d3.select(this).attr("stroke", "#FF9B3C");
+              })
+              .on("mouseout", function (event, d) {
+                d3.select(this).attr("stroke", "#64bdff");
+              });
+        
+            g.selectAll("circle")
+              .data(data)
+              .enter()
+              .append("circle")
+              .attr("cx", d => x(d.x))
+              .attr("cy", d => y(d.y))
+              .attr("r", 4)
+              .attr("fill", "#444");
+        
+            g.append("g").attr("transform", `translate(0,${height})`).call(d3.axisBottom(x).ticks(Math.min(n, 20)));
+            g.append("g").call(d3.axisLeft(y));
+        
+            const mean = (n * p).toFixed(2);
+            const std = Math.sqrt(n * p * (1 - p)).toFixed(2);
+            const table = `<tr><th>n</th><th>p</th><th>Mean</th><th>Std Dev</th><th>Range</th></tr>
+              <tr><td>${n}</td><td>${p}</td><td>${mean}</td><td>${std}</td><td>0 to ${n}</td></tr>`;
+            document.getElementById("explore-table").innerHTML = table;
+          }
+          // === Probability tab rendering ===
+          else if (tab === "probability") {
+            const n = +document.getElementById("prob-n").value;
+            const p = +document.getElementById("prob-p").value;
+            const x1 = +document.getElementById("prob-x1").value;
+            const x2 = +document.getElementById("prob-x2").value;
+            const type = document.getElementById("prob-type").value;
+        
+            const svg = d3.select("#prob-chart");
+            svg.selectAll("*").remove();
+            const width = +svg.attr("width") - 40, height = +svg.attr("height") - 40;
+            const g = svg.append("g").attr("transform", "translate(40,20)");
+        
+            const data = d3.range(0, n + 1).map(x => ({ x, y: binomialPMF(n, p, x) }));
+            const x = d3.scaleLinear().domain([0, n]).range([0, width]);
+            const y = d3.scaleLinear().domain([0, d3.max(data, d => d.y)]).range([height, 0]);
+        
+            let shadeSet = new Set();
+            if (type === "eq") shadeSet.add(x1);
+            else if (type === "leq") for (let i = 0; i <= x1; i++) shadeSet.add(i);
+            else if (type === "gt") for (let i = x1 + 1; i <= n; i++) shadeSet.add(i);
+            else for (let i = x1 + 1; i < x2; i++) shadeSet.add(i);
+        
+            g.selectAll("line")
+              .data(data)
+              .enter()
+              .append("line")
+              .attr("class", "bar")
+              .attr("x1", d => x(d.x))
+              .attr("x2", d => x(d.x))
+              .attr("y1", d => y(d.y))
+              .attr("y2", y(0))
+              .attr("stroke", d => shadeSet.has(d.x) ? "#FF9B3C" : "#888")
+              .attr("stroke-width", 5);
+        
+            g.selectAll("circle")
+              .data(data)
+              .enter()
+              .append("circle")
+              .attr("cx", d => x(d.x))
+              .attr("cy", d => y(d.y))
+              .attr("r", 4)
+              .attr("fill", d => shadeSet.has(d.x) ? "#FF9B3C" : "#444");
+        
+            g.append("g").attr("transform", `translate(0,${height})`).call(d3.axisBottom(x).ticks(Math.min(n, 20)));
+            g.append("g").call(d3.axisLeft(y));
+        
+            let prob = 0;
+            if (type === "eq") prob = binomialPMF(n, p, x1);
+            else if (type === "leq") prob = d3.sum(data.filter(d => d.x <= x1), d => d.y);
+            else if (type === "gt") prob = d3.sum(data.filter(d => d.x > x1), d => d.y);
+            else prob = d3.sum(data.filter(d => d.x > x1 && d.x < x2), d => d.y);
+        
+            const desc = type === "eq" ? `P(X = ${x1})` :
+                         type === "leq" ? `P(X ≤ ${x1})` :
+                         type === "gt" ? `P(X > ${x1})` : `P(${x1} < X < ${x2})`;
+        
+            document.getElementById("prob-desc").textContent = `${desc} ≈ ${prob.toFixed(4)}`;
+        
+            const mean = (n * p).toFixed(2);
+            const std = Math.sqrt(n * p * (1 - p)).toFixed(2);
+            const table = `<tr><th>n</th><th>p</th><th>Value(s)</th><th>Probability</th><th>Mean</th><th>Std Dev</th></tr>
+              <tr><td>${n}</td><td>${p}</td><td>${type === "between" ? `${x1}, ${x2}` : x1}</td><td>${prob.toFixed(4)}</td><td>${mean}</td><td>${std}</td></tr>`;
+            document.getElementById("prob-table").innerHTML = table;
+        }
+        
+          // === Percentile tab rendering ===
+          else if (tab === "percentile") {
+            const n = +document.getElementById("perc-n").value;
+            const p = +document.getElementById("perc-p").value;
+            const percentile = +document.getElementById("perc-prob").value / 100;
+        
+            const svg = d3.select("#perc-chart");
+            svg.selectAll("*").remove();
+            const width = +svg.attr("width") - 40, height = +svg.attr("height") - 40;
+            const g = svg.append("g").attr("transform", "translate(40,20)");
+        
+            const data = d3.range(0, n + 1).map(x => ({ x, y: binomialPMF(n, p, x) }));
+            const x = d3.scaleLinear().domain([0, n]).range([0, width]);
+            const y = d3.scaleLinear().domain([0, d3.max(data, d => d.y)]).range([height, 0]);
+        
+            let cumulative = 0;
+            let cutoff = n;
+            for (let i = 0; i <= n; i++) {
+              cumulative += binomialPMF(n, p, i);
+              if (cumulative >= percentile) {
+                cutoff = i;
+                break;
+              }
+            }
+        
+            g.selectAll("line")
+              .data(data)
+              .enter()
+              .append("line")
+              .attr("class", "bar")
+              .attr("x1", d => x(d.x))
+              .attr("x2", d => x(d.x))
+              .attr("y1", d => y(d.y))
+              .attr("y2", y(0))
+              .attr("stroke", d => d.x <= cutoff ? "#00d0a1" : "#888")
+              .attr("stroke-width", 5);
+        
+            g.selectAll("circle")
+              .data(data)
+              .enter()
+              .append("circle")
+              .attr("cx", d => x(d.x))
+              .attr("cy", d => y(d.y))
+              .attr("r", 4)
+              .attr("fill", d => d.x <= cutoff ? "#00d0a1" : "#444");
+        
+            g.append("g").attr("transform", `translate(0,${height})`).call(d3.axisBottom(x).ticks(Math.min(n, 20)));
+            g.append("g").call(d3.axisLeft(y));
+        
+            const z = cutoff;
+            const desc = `The ${Math.round(percentile * 100)}th percentile is x = ${cutoff}`;
+            document.getElementById("perc-desc").textContent = desc;
+        
+            const mean = (n * p).toFixed(2);
+            const std = Math.sqrt(n * p * (1 - p)).toFixed(2);
+            const table = `<tr><th>n</th><th>p</th><th>Percentile</th><th>x value</th><th>Mean</th><th>Std Dev</th></tr>
+              <tr><td>${n}</td><td>${p}</td><td>${Math.round(percentile * 100)}%</td><td>${cutoff}</td><td>${mean}</td><td>${std}</td></tr>`;
+            document.getElementById("perc-table").innerHTML = table;
+        }
+    }
+        document.querySelectorAll("input, select").forEach(e => e.addEventListener("input", update));
+        document.getElementById("perc-prob").addEventListener("input", update);
+        document.addEventListener("DOMContentLoaded", () => {
+          document.querySelector(".tab").click();
+          syncSliderLabels();
+        });
+        </script>
+
+        <br><footer>Thomas Abraham © 2025</footer></body>
+        </html>

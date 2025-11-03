@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Firebase -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+      import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup, GoogleAuthProvider  } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+      import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+      import { firebaseConfig } from '../../js/firebase-config.js';
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      // Check if user is logged in
+      onAuthStateChanged(auth, (user) => {
+          if (!user) {
+              // User not logged in, save current page before redirecting
+              localStorage.setItem("redirectAfterLogin", window.location.href);
+              window.location.href = "../../index.html";
+          }
+      });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sampling Distributions</title>
+
+    <!-- CSS Imports -->
+    <link rel="stylesheet" type="text/css" href="../../css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/jquery.fullpage.css" />
+    <link rel="stylesheet" href="../../css/home.css">
+    <!--Fonts-->
+    <link href="//fonts.googleapis.com/css?family=Lato:100,200,300,400" rel="stylesheet" type="text/css">
+    <!--Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="../../img/favicon.png" />
+
+    <!-- JavaScript Imports -->
+    <!-- Jquery -->
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <!-- jstat -->
+    <script src="../../js/jStat.js"></script>
+    <!-- LaTeXMathML -->
+    <script src="../../js/LaTeXMathML.js"></script>
+    <!-- D3 -->
+    <script src="../../js/d3.v7.min.js"></script>
+    <!-- Module scripts -->
+    <script type="module" src="../../js/script.js"></script>
+    <script type="module" src="../../js/home.js"></script>
+    <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body, html {
+  margin: 10px;
+  padding: 10px;
+  overflow-x: hidden;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+}
+
+.Row {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.Column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.visualization-wrapper {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+
+.left {
+  flex: 0 0 35%;
+}
+
+.right {
+  flex: 0 0 65%;
+}
+
+.menu-top {
+  transform: scale(1);
+  will-change: transform;
+  transition: transform 0.25s ease-in-out;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+
+}
+
+.header {
+    background-color: #FFF2E8;
+    background: -webkit-linear-gradient(rgba(255,242,232, 1), rgba(255,242,232, 1), rgba(255,242,232, 0));
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(255,242,232, 1), rgba(255,242,232, 1), rgba(255,242,232, 0));
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(255,242,232, 1), rgba(255,242,232, 1), rgba(255,242,232, 0));
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(255,242,232, 1), rgba(255,242,232, 1), rgba(255,242,232, 0));
+    /* Standard syntax */
+}
+.interactive-wrapper {
+    display: block;
+    width: auto;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+.action-buttons ul a li:hover {
+    color: #FF9B41;
+}
+
+
+.action-buttons ul {
+    border-top: 1px solid rgba(255,155,65, 0.2);
+}
+
+.button-1 {
+    border: 1px solid #D0D0D0;
+    display: inline-block;
+    padding: 0.6em 1em;
+    margin: 2% 1%;
+    color: black;
+    background-color: white;
+    pointer-events: auto;
+    -webkit-transition: background-color 0.5s ease-out;
+    -webkit-transition: border 0.2s ease-out;
+    border-radius: 6px;
+}
+
+.button-1.sample_btn.active,.button-1.sample_btn:hover{
+    border: 1px solid #FF8B22;
+    background-color: #FF8B22;
+    color:white;
+}
+.action-buttons ul {
+
+  border-top: 1px solid rgba(245,216,0, 0.8);
+}
+
+input[type=range].blueSlider::-webkit-slider-thumb {
+
+/* border: 0.5px solid #F5D800;*/
+background: #F5D800;
+/* box-shadow: 0px 0px 5px #F5D800;*/
+
+}
+
+input[type=range].greenSlider::-webkit-slider-thumb {
+
+/* border: 0.5px solid #F5D800;*/
+background: #FF8B22;
+/* box-shadow: 0px 0px 5px #F5D800;*/
+
+}
+
+/*Discrete and Continuous*/
+
+svg g image {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+
+svg g image:hover {
+  opacity: 1;
+}
+
+#descriptionTable td {
+  vertical-align: middle;
+}
+
+#parameters {
+  display: block;
+  align-items: center;
+  text-align: left;
+  margin: 0 auto;
+
+}
+label {
+  padding-right: 10px;
+  font-weight: normal;
+}
+
+
+#cltGraph{
+	height: 500px;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	stroke-width: 1;
+	shape-rendering: crispEdges;
+}
+
+.axis text {
+	font-family: "Helvetica Neue";
+	font-size: 11px;
+	fill: black;
+}
+
+.distribution{
+	display: none;
+}
+
+#shift{
+	cursor: move;
+}
+
+#pdf {
+	fill: none;
+	stroke:	#F5D800;
+  stroke-width: 5;
+}
+#cdf {
+	fill: none;
+	stroke:	#FF8B22;
+  stroke-width: 5;
+}
+
+#pdfArea {
+	fill: #F5D800;
+	opacity: 0.5;
+}
+
+.ticks {
+  display: none;
+}
+.handle {
+  fill: darkgreen;
+}
+
+
+/*Central Limit Theorem*/
+
+circle {
+  fill: #F5D800;
+}
+
+.bar rect {
+  fill: #FF8B22;
+  fill-opacity: 0.5;
+}
+
+.bar text {
+  fill: black;
+}
+
+
+.normal {
+	fill: #FF8B22;
+}
+
+#dt {
+  width: 150px;
+}
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+    pointer-events: none;
+    font-size: 0.9em;
+  }
+
+</style>
+</head>
+    <body>
+        <header class="menu-top">
+            <ul id="menu">
+                <li class="dropdown">
+                    <a href="../../home/home.html" class="dropbtn">Home</a>
+                    <ul class="dropdown-content">
+                        <li><a href="../../home/home.html#unit1">Unit 1</a></li>
+                        <li><a href="../../home/home.html#unit2">Unit 2</a></li>
+                        <li><a href="../../home/home.html#unit3">Unit 3</a></li>
+                        <li><a href="../../home/home.html#unit4">Unit 4</a></li>
+                        <li><a href="../../home/home.html#unit5">Unit 5</a></li>
+                        <li><a href="../../home/home.html#unit6">Unit 6</a></li>
+                        <li><a href="../../home/home.html#unit7">Unit 7</a></li>
+                        <li><a href="../../home/home.html#unit8">Unit 8</a></li>
+                        <li><a href="../../home/home.html#unit9">Unit 9</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="https://classroom.google.com/u/1/" class="dropbtn" target="_blank">Classroom</a>
+                    <ul class="dropdown-content">
+                        <li><a href="https://classroom.google.com/u/1/c/NzA4OTk2OTI3MzAw" target="_blank">Announcements</a></li>
+                        <li><a href="https://classroom.google.com/u/1/w/NzA4OTk2OTI3MzAw/t/all" target="_blank">Course Documents</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="../../apps" class="dropbtn">Apps</a>
+                  <ul class="dropdown-content">
+                    <li><a href="../../apps/conditional_probability/">Conditional Probability</a></li>
+                    <li><a href="../../apps/galton_board/">Galton Board</a></li>
+                    <li><a href="../../apps/normal_distribution/">Normal Distribution</a></li>
+                    <li><a href="../../apps/binomial_distribution/">Binomial Distribution</a></li>
+                    <li><a href="../../apps/geometric_distribution/">Geometric Distribution</a></li>
+                    <li><a href="../../apps/random_variables/">Random Variables</a></li>
+                    <li><a href="../../apps/sampling_distributions/">Sampling Distributions</a></li>
+                    <li><a href="../../apps/central_limit_theorem/">Central Limit Theorem</a></li>
+                    <li><a href="../../apps/confidence_intervals/">Confidence Intervals</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="../../mcq/" class="dropbtn">MCQ</a>
+                </li>
+                <li class="dropdown">
+                  <a href="../../frq/" class="dropbtn">FRQ</a>
+              </li>
+              <li class="dropdown">
+                  <a href="../../collegeboard/" class="dropbtn">CollegeBoard</a>
+              </li>
+              <li class="dropdown">
+                  <a href="../../prep/" class="dropbtn">Exam Prep</a>
+              </li>
+                <li id="logoutButton" style="display:none;"><a href="../../index.html" onclick="logout('../../index.html')">Logout</a></li>
+            </ul>
+            <a href="../../admin/"><span id="user-email" style="color:darkgreen; margin-left: 1em;"></span></a>
+            <div id="logo"></div>
+        </header>
+<!-- Discrete and Continuous Section -->
+<div id="section2" class="Row">
+  <div class="Column left">
+    <h3>Discrete and Continuous</h3>
+    <p>There are two major classes of probability distributions.</p>
+
+    <div class="interactive-wrapper slider-align">
+      <label class="radio-inline">Discrete
+        <input type="radio" name="distributions" value="discrete" checked>
+        <span class="checkmark"></span>
+      </label>
+      <label class="radio-inline">Continuous
+        <input type="radio" name="distributions" value="continuous">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+    <!-- Discrete description and dropdown -->
+    <div class="definition">
+      <p>A discrete random variable has a finite or countable number of possible values.</p>
+      <p>If $ X $ is a discrete random variable, then:</p>
+      <div>
+      $P(X = x) = f(x) $ <br> $ P(X < x) = F(x)$
+      </div>
+      <p>Choose a distribution to visualize:</p>
+      <div class="interactive-wrapper">
+        <select id="discreteSelect" class="distributions st-dropdown">
+
+          <option value="bernoulli" selected>Bernoulli</option>
+          <option value="binomialDiscrete">Binomial</option>
+          <option value="geometric">Geometric</option>
+          <option value="poisson">Poisson</option>
+          <option value="negbin">Negative Binomial</option>
+        </select>
+      </div>
+    </div>
+  
+    <!-- Continuous description and dropdown -->
+    <div class="definition" style="display:none">
+      <p>A continuous random variable takes on an uncountably infinite number of values.</p>
+      <p>If $ X $ is continuous, then:</p>
+      $P(a\leq X\leq b) = \int_{a}^{b} f(x) dx $ <br> $ P(X < x) = F(x)$
+      <p>Choose a distribution to visualize:</p>
+      <div class="interactive-wrapper">
+        <select id="continuousSelect" class="distributions st-dropdown">
+
+          <option value="uniform" selected>Uniform</option>
+          <option value="normal">Normal</option>
+          <option value="studentt">Student T</option>
+          <option value="chisquare">Chi Squared</option>
+          <option value="exponential">Exponential</option>
+          <option value="centralF">F</option>
+          <option value="gamma">Gamma</option>
+          <option value="beta">Beta</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <div id="bernoulli" class="bernoulli distribution">
+        <p>A Bernoulli random variable takes the value 1 with probability of \(p\) and the value 0 with probability of \(1-p\). It is frequently used to represent binary experiments, such as a coin toss.</p>
+    </div>
+    <div id="binomialDiscrete" class="binomialDiscrete distribution">
+        <p>A binomial random variable is the sum of \(n\) independent Bernoulli random variables with parameter \(p\). It is frequently used to model the number of successes in a specified number of identical binary experiments, such as the number of heads in five coin tosses.</p>
+    </div>
+    <div id="negbin" class="negbin distribution">
+        <p>A negative binomial random variable counts the number of successes in a sequence of independent Bernoulli trials with parameter \(p\) before \(r\) failures occur. For example, this distribution could be used to model the number of heads that are flipped before three tails are observed in a sequence of coin tosses.</p>
+    </div>
+    <div id="geometric" class="geometric distribution">
+        <p>A geometric random variable counts the number of trials that are required to observe a single success, where each trial is independent and has success probability \(p\). For example, this distribution can be used to model the number of times a die must be rolled in order for a six to be observed.</p>
+    </div>
+    <div id="poisson" class="poisson distribution">
+        <p>A Poisson random variable counts the number of events occurring in a fixed interval of time or space, given that these events occur with an average rate \(\lambda\). This distribution has been used to model events such as meteor showers and goals in a soccer match.</p>
+    </div>
+    <div id="uniform" class="uniform distribution">
+        <p>The uniform distribution is a continuous distribution such that all intervals of equal length on the distribution's support have equal probability. For example, this distribution might be used to model people's full birth dates, where it is assumed that all times in the calendar year are equally likely.</p>
+    </div>
+    <div id="normal" class="normal distribution">
+        <p>The normal (or Gaussian) distribution has a bell-shaped density function and is used in the sciences to represent real-valued random variables that are assumed to be additively produced by many small effects. For example the normal distribution is used to model people's height, since height can be assumed to be the result of many small genetic and evironmental factors.</p>
+    </div>
+    <div id="studentt" class="studentt distribution">
+        <p>Student's t-distribution, or simply the t-distribution, arises when estimating the mean of a normally distributed population in situations where the sample size is small and population standard deviation is unknown.</p>
+    </div>
+    <div id="chisquare" class="chisquare distribution">
+        <p>A chi-squared random variable with \(k\) degrees of freedom is the sum of \(k\) independent and identically distributed squared standard normal random variables. It is often used in hypothesis testing and in the construction of <a href="../frequentist-inference/index.html#section2">confidence intervals</a>.</p>
+    </div>
+    <div id="exponential" class="exponential distribution">
+        <p>The exponential distribution is the continuous analogue of the geometric distribution. It is often used to model waiting times.</p>
+    </div>
+    <div id="centralF" class="centralF distribution">
+        <p>The F-distribution, also known as the Fisher–Snedecor distribution, arises frequently as the null distribution of a test statistic, most notably in the <a href="../regression-analysis/index.html#section3">analysis of variance</a>.</p>
+    </div>
+    <div id="gamma" class="gamma distribution">
+        <p>The gamma distribution is a general family of continuous probability distributions. The exponential and chi-squared distributions are special cases of the gamma distribution.</p>
+    </div>
+    <div id="beta" class="beta distribution">
+        <p>The beta distribution is a general family of continuous probability distributions bound between 0 and 1. The beta distribution is frequently used as a conjugate prior distribution in Bayesian statistics.</p>
+    </div>
+    <div class="interactive-wrapper">
+
+    <!-- Dynamic sliders + reset -->
+    <div id="parameterSliders" style="display:none;"></div>
+    <button id="resetDist" style="display:none;" class="button-1">Reset</button>
+
+    <!-- Optional placeholder for table -->
+      <table id="descriptionTable" style="display:none" class="table table-bordered">
+        <colgroup></colgroup>
+        <colgroup></colgroup>
+        <colgroup></colgroup>
+        <tbody>
+            <tr>
+                <td>
+                    <span class="definition">PMF</span>
+                    <span class="definition" style="display:none">Distribution</span>
+                </td>
+                <td>Mean</td>
+                <td>Variance</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="bernoulli distribution">\(f(x;p) = \begin{cases} p & \text{if } x = 1 \\ 1-p & \text{if } x = 0 \end{cases}\)
+                    </div>
+                    <div class="binomialDiscrete distribution">\( f(x; n,p) = \binom{n}{x}p^{x}(1-p)^{n-x}\)</div>
+                    <div class="negbin distribution">\(f(x; n,r,p) = \binom{x + r -1}{x}p^{x}(1-p)^{r}\)</div>
+                    <div class="geometric distribution">\( f(x; p) = (1-p)^{x}p\) </div>
+                    <div class="poisson distribution">\( f(x;\lambda) = \dfrac{\lambda^{x}e^{-\lambda}}{x!}\)</div>
+                    <div class="uniform distribution">\(f(x;a,b) = \left\{\begin{array}{ll} \dfrac{1}{b-a} \text{ for } x \in [a,b]\\ 0 \qquad \text{ otherwise } \end{array}\right.\)
+                    </div>
+                    <div class="normal distribution">\( f(x;\mu, \sigma^2) = \dfrac{1}{\sqrt{2\pi\sigma^{2}}} e^{-\dfrac{(x-\mu)^{2}}{2\sigma^{2}}}\)</div>
+                    <div class="studentt distribution">\(\dfrac{Z}{\sqrt{U/k}} \qquad \begin{array}{ll} Z \sim N(0,1)\\ U \sim \chi_{k} \end{array}\)
+                    </div>
+                    <div class="chisquare distribution">\(\sum_{i=1}^{k}Z_{i}^{2} \qquad Z_{i} \overset{i.i.d.}{\sim} N(0,1)\)</div>
+                    <div class="exponential distribution">\( f(x;\lambda) = \begin{cases} \lambda e^{-\lambda x} & \text{if } x \geq 0 \\ 0 & \text{otherwise} \end{cases} \)</div>
+                    <div class="centralF distribution">\(\dfrac{U_{1}/d_{1}}{U_{2}/d_{2}} \qquad \begin{array}{ll} U_{1} \sim \chi_{d_{1}}\\ U_{2} \sim \chi_{d_{2}} \end{array}\)
+                    </div>
+                    <div class="gamma distribution">\( f(x; k,\theta) = \dfrac{1}{\Gamma(k)\theta^{k}}x^{k-1}e^{-\dfrac{x}{\theta}}\)</div>
+                    <div class="beta distribution">\(f(x;\alpha,\beta) = \dfrac{\Gamma(\alpha + \beta)x^{\alpha - 1}(1-x)^{\beta - 1}}{\Gamma(\alpha)\Gamma(\beta)}\)</div>
+                </td>
+                <td>
+                    <div class="bernoulli distribution">\(p\)</div>
+                    <div class="binomialDiscrete distribution">\(np\)</div>
+                    <div class="negbin distribution">\(\dfrac{pr}{1-p}\)</div>
+                    <div class="geometric distribution">\(\dfrac{1}{p}\)</div>
+                    <div class="poisson distribution">\(\lambda\)</div>
+                    <div class="uniform distribution">\(\dfrac{a+b}{2}\)</div>
+                    <div class="normal distribution">\(\mu\)</div>
+                    <div class="studentt distribution">\(0\)</div>
+                    <div class="chisquare distribution">\(k\)</div>
+                    <div class="exponential distribution">\(\frac{1}{\lambda}\)</div>
+                    <div class="centralF distribution">\(\dfrac{d_{2}}{d_{2}-2}\)</div>
+                    <div class="gamma distribution">\(k\theta\)</div>
+                    <div class="beta distribution">\(\dfrac{\alpha}{\alpha + \beta}\)</div>
+                </td>
+                <td>
+                    <div class="bernoulli distribution">\(p(1-p)\)</div>
+                    <div class="binomialDiscrete distribution">\(np(1-p)\)</div>
+                    <div class="negbin distribution">\(\dfrac{pr}{(1-p)^{2}}\)</div>
+                    <div class="geometric distribution">\(\dfrac{1-p}{p^{2}}\)</div>
+                    <div class="poisson distribution">\(\lambda\)</div>
+                    <div class="uniform distribution">\(\dfrac{(b-a)^{2}}{12}\)</div>
+                    <div class="normal distribution">\(\sigma^{2}\)</div>
+                    <div class="studentt distribution">\(\dfrac{k}{k-2}\)</div>
+                    <div class="chisquare distribution">\(2k\)</div>
+                    <div class="exponential distribution">\(\frac{1}{\lambda^{2}}\)</div>
+                    <div class="centralF distribution">\(\dfrac{2d_{2}^{2}(d_{1} + d_{2} -2)}{d_{1}(d_{2}-2)^{2}(d_{2}-4)}\)</div>
+                    <div class="gamma distribution">\(k\theta^{2}\)</div>
+                    <div class="beta distribution">\(\dfrac{\alpha\beta}{(\alpha + \beta)^{2}(\alpha + \beta + 1)}\)</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  </div>
+  <div></div><div></div>
+  <div class="Column right">
+      <!-- Graph container -->
+      <div class="visualization-wrapper">
+        <svg id="distGraph"></svg>
+      </div>
+  </div>
+</div>
+<script>
+// D3 setup for distGraph
+const svgWidth = 600;
+const svgHeight = 400;
+const margin = { top: 20, right: 20, bottom: 50, left: 50 };
+const innerWidth = svgWidth - margin.left - margin.right;
+const innerHeight = svgHeight - margin.top - margin.bottom;
+
+const xScaleDist = d3.scaleLinear()
+  .domain([-5, 5])
+  .range([0, innerWidth]);
+
+const yScaleDist = d3.scaleLinear()
+  .range([innerHeight, 0]);
+
+const xAxisDist = d3.axisBottom(xScaleDist);
+const yAxisDist = d3.axisLeft(yScaleDist);
+
+const svgDist = d3.select("#distGraph")
+  .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
+  .attr("preserveAspectRatio", "xMidYMid meet")
+  .style("width", "100%")
+  .style("height", "100%");
+
+const xDist = svgDist.append("g")
+  .attr("transform", `translate(${margin.left}, ${margin.top + innerHeight})`);
+
+const yDist = svgDist.append("g")
+  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+const graphGroup = svgDist.append("g")
+  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+const pdfPath = graphGroup.append("path")
+  .attr("class", "pdf-line")
+  .attr("fill", "none")
+  .attr("stroke", "steelblue")
+  .attr("stroke-width", 2);
+
+const pdfArea = graphGroup.append("path")
+  .attr("class", "pdf-area")
+  .attr("fill", "lightblue")
+  .attr("opacity", 0.5);
+
+const cdfPath = graphGroup.append("path")
+  .attr("class", "cdf-line")
+  .attr("fill", "none")
+  .attr("stroke", "green")
+  .attr("stroke-width", 2);
+
+// Position the slider below the graphGroup
+const reset_slider_position = create_slider(p => {
+  currentPercent = p;
+  redrawPath();
+}, svgDist, svgWidth, svgHeight, 50);
+
+function reset_slider() {
+  $("#percentDist").val(0);
+  currentPercent = 0;
+}
+
+function create_slider(callback, svgDist, svgWidth, svgHeight, wpad) {
+  const slider = svgDist.append("g")
+    .attr("class", "giant-slider")
+    .attr("transform", `translate(${wpad}, ${svgHeight + 30})`);
+
+  // Dynamically measure available width
+  const containerWidth = svgWidth - wpad * 2;
+
+  // Background track
+  slider.append("line")
+    .attr("x1", 0)
+    .attr("x2", containerWidth)
+    .attr("y1", 0)
+    .attr("y2", 0)
+    .attr("stroke", "#ccc")
+    .attr("stroke-width", 10)
+    .attr("stroke-linecap", "round");
+
+  const filled = slider.append("line")
+    .attr("class", "filled-track")
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x2", 0)
+    .attr("y2", 0)
+    .attr("stroke", "darkgreen")
+    .attr("stroke-width", 10)
+    .attr("stroke-linecap", "round");
+
+  const handle = slider.append("circle")
+    .attr("class", "handle")
+    .attr("r", 8)
+    .attr("cx", 0)
+    .attr("cy", 0)
+    .call(d3.drag()
+      .on("drag", function (event) {
+        let x = Math.max(0, Math.min(containerWidth, event.x));
+        d3.select(this).attr("cx", x);
+        filled.attr("x2", x);
+        const percent = x / containerWidth;
+        callback(percent);
+      })
+    );
+
+  return function reset() {
+    handle.attr("cx", 0);
+    filled.attr("x2", 0);
+  };
+}
+
+
+
+
+const parameters = {
+  bernoulli: ['Probability'],
+  binomialDiscrete: ['Number', 'Probability'],
+  negbin: ['Number', 'Probability'],
+  geometric: ['Probability'],
+  poisson: ['Lambda'],
+  uniform: ['Min', 'Max'],
+  normal: ['Mean', 'Std'],
+  studentt: ['Dof'],
+  chisquare: ['Dof'],
+  exponential: ['Lambda'],
+  centralF: ['Dof1', 'Dof2'],
+  gamma: ['Shape', 'Scale'],
+  beta: ['Alpha', 'Beta']
+};
+
+const initialParameters = {
+  bernoulli: [0.5],
+  binomialDiscrete: [5, 0.5],
+  negbin: [5, 0.5],
+  geometric: [0.5],
+  poisson: [5],
+  uniform: [-5, 5],
+  normal: [0, 1],
+  studentt: [5],
+  chisquare: [5],
+  exponential: [1],
+  centralF: [5, 5],
+  gamma: [1, 1],
+  beta: [1, 1]
+};
+
+const parameterRanges = {
+  Probability: [0.01, 1, 0.01],
+  Number: [1, 50, 1],
+  Lambda: [0.01, 10, 0.01],
+  Min: [-10, 0, 0.1],
+  Max: [0, 10, 0.1],
+  Mean: [-10, 10, 0.1],
+  Std: [0.01, 10, 0.01],
+  Dof: [1, 30, 1],
+  Dof1: [1, 30, 1],
+  Dof2: [1, 30, 1],
+  Shape: [0.1, 10, 0.1],
+  Scale: [0.1, 10, 0.1],
+  Alpha: [0.1, 10, 0.1],
+  Beta: [0.1, 10, 0.1]
+};
+
+const initialView = {
+  bernoulli: [-1, 5],
+  binomialDiscrete: [-1, 5],
+  negbin: [-1, 5],
+  geometric: [-1, 5],
+  poisson: [-1, 5],
+  uniform: [-6, 6],
+  normal: [-5, 5],
+  studentt: [-5, 5],
+  chisquare: [-1, 8],
+  exponential: [-1, 5],
+  centralF: [-1, 5],
+  gamma: [-1, 5],
+  beta: [-0.5, 1.5]
+};
+
+let currentDist = "";
+let currentView = [-5, 5];
+let currentPercent = 0;
+
+const zoom = d3.zoom().scaleExtent([0.25, 4]).on("zoom", () => {});
+
+function updateRangeInput(n, id) {
+  const value = parseFloat(n);
+  if (!isNaN(value)) {
+    document.getElementById(id + "-value").textContent = value.toFixed(2);
+  }
+}
+
+function redrawPath() {
+  const dist = currentDist;
+  const paramKeys = parameters[dist];
+  const paramValues = paramKeys.map(k => parseFloat(document.getElementById(dist + k).value));
+  paramValues.unshift(0);
+
+  if (!jStat[dist] || typeof jStat[dist].mean !== "function" || typeof jStat[dist].variance !== "function") {
+    console.warn(`Distribution "${dist}" is missing mean/variance definition.`);
+    return;
+  }
+
+  const isDiscrete = ["bernoulli", "binomialDiscrete", "negbin", "geometric", "poisson"].includes(dist);
+
+  let mean = jStat[dist].mean.apply(null, paramValues.slice(1));
+  let variance = jStat[dist].variance.apply(null, paramValues.slice(1));
+  let stdDev = Math.sqrt(variance);
+
+  let rangeMin = Math.floor(mean - 4 * stdDev);
+  let rangeMax = Math.ceil(mean + 4 * stdDev);
+
+  // Avoid negatives for non-negative distributions
+  if (["poisson", "negbin", "geometric", "chisquare", "gamma", "exponential"].includes(dist)) {
+    rangeMin = Math.max(0, rangeMin);
+  }
+
+  const area = d3.area()
+    .x(d => xScaleDist(d[0]))
+    .y0(yScaleDist(0))
+    .y1(d => yScaleDist(d[1]))
+    .curve(d3.curveLinear);
+
+  const line = d3.line()
+    .x(d => xScaleDist(d[0]))
+    .y(d => yScaleDist(d[1]))
+    .curve(isDiscrete ? d3.curveStepAfter : d3.curveLinear);
+
+
+
+  const previewData = d3.range(rangeMin, rangeMax + 0.1, 0.1).map(x => {
+    paramValues[0] = x;
+    return [x, Math.min(jStat[dist].pdf.apply(null, paramValues), 5)];
+  });
+
+  if (currentView[0] < rangeMin || currentView[1] > rangeMax) {
+    currentView = [rangeMin, rangeMax];
+    xScaleDist.domain(currentView);
+    xDist.call(xAxisDist);
+  }
+
+
+  const pdfData = d3.range(currentView[0], currentView[1] + 0.01, 0.01).map(x => {
+    paramValues[0] = x;
+    return [x, Math.min(jStat[dist].pdf.apply(null, paramValues), 5)];
+  });
+
+const xStart = Math.ceil(currentView[0]);
+const xEnd = Math.floor(currentView[0] + (currentView[1] - currentView[0]) * currentPercent);
+
+const cdfData = isDiscrete
+  ? d3.range(xStart, xEnd + 1).map(k => {
+      if (!Number.isInteger(k) || k < 0) return [k, 0];
+      paramValues[0] = k;
+      return [k, jStat[dist].cdf.apply(null, paramValues)];
+    })
+  : d3.range(currentView[0], currentView[0] + (currentView[1] - currentView[0]) * currentPercent + 0.01, 0.01).map(x => {
+      paramValues[0] = x;
+      return [x, jStat[dist].cdf.apply(null, paramValues)];
+    });
+
+
+  pdfPath
+    .datum(pdfData)
+    .attr("d", line);
+
+  pdfArea
+    .datum(d3.range(currentView[0], currentView[0] + (currentView[1] - currentView[0]) * currentPercent + 0.01, 0.01).map(x => {
+      paramValues[0] = x;
+      return [x, Math.min(jStat[dist].pdf.apply(null, paramValues), 5)];
+    }))
+    .attr("d", area);
+
+  cdfPath
+    .datum(cdfData)
+    .attr("d", d3.line()
+      .x(d => xScaleDist(d[0]))
+      .y(d => yScaleDist(d[1]))
+      .curve(isDiscrete ? d3.curveStepAfter : d3.curveLinear)
+    );
+
+}
+
+function discrete_continuous() {
+  const defaultDiscrete = "bernoulli";
+  const defaultContinuous = "uniform";
+  $("input[name='distributions']").on("change", function () {
+    const value = $(this).val();
+    if (value === "discrete") {
+      $("#discreteSelect").parent().parent().show();
+      $("#continuousSelect").parent().parent().hide();
+      $("#discreteSelect").val(defaultDiscrete).trigger("change");
+      $(".distribution").hide();
+      $("#" + defaultDiscrete).show();
+      $("#descriptionTable").show();
+      $("#descriptionTable ." + defaultContinuous).show();
+
+    } else {
+      $("#discreteSelect").parent().parent().hide();
+      $("#continuousSelect").parent().parent().show();
+      $("#continuousSelect").val(defaultContinuous).trigger("change");
+      $(".distribution").hide();
+      $("#" + defaultContinuous).show();
+      $("#descriptionTable").show();
+      $("#descriptionTable ." + defaultContinuous).show();
+
+    }
+  });
+
+  $('.distributions').on('change', function () {
+    const dist = $(this).val();
+    if (!parameters[dist]) return;
+    currentDist = dist;
+    $('#parameterSliders').empty().show();
+    $('#resetDist').show();
+    $("#descriptionTable .distribution").hide();
+    $(".distribution").hide();
+    $("#descriptionTable ." + dist).show();
+    $("#descriptionTable").show();
+    $("#" + dist).show();
+    reset_slider_position(); // 👈 reset giant slider
+
+
+    const paramNames = parameters[dist];
+    const paramValues = initialParameters[dist];
+
+    paramNames.forEach((param, i) => {
+      const id = dist + param;
+      const value = paramValues[i];
+      const [min, max, step] = parameterRanges[param] || [0.01, 10, 0.01];
+
+      const inputHTML = `
+        <div style="margin: 10px 0;">
+          <label for="${id}">${param} = <span id="${id}-value">${value}</span></label><br>
+          <input
+            type="range"
+            min="${min}"
+            max="${max}"
+            step="${step}"
+            value="${value}"
+            id="${id}"
+            class="inputDist"
+          >
+        </div>
+      `;
+      $('#parameterSliders').append(inputHTML);
+    });
+
+    $(".inputDist").on("input", function () {
+      const id = this.id;
+      const value = parseFloat(this.value);
+      if (!isNaN(value)) {
+        $("#" + id + "-value").text(value.toFixed(2));
+        if (!currentDist || !(currentDist in parameters)) return;
+        reset_slider_position(); // 👈 reset giant slider
+        redrawPath();
+
+      }
+    });
+
+    currentView = initialView[dist] || [-5, 5];
+    xScaleDist.domain(currentView);
+    yScaleDist.domain([0, 1]);
+    xDist.call(xAxisDist);
+    yDist.call(yAxisDist);
+    currentPercent = 0;
+    reset_slider();
+    redrawPath(dist);
+  });
+
+  $('#resetDist').on('click', function () {
+    $('.distributions:visible').trigger('change');
+    reset_slider_position(); // 👈 reset giant slider
+  });
+}
+
+$(function () {
+  discrete_continuous();
+  setTimeout(() => {
+    $('.distributions:visible').trigger('change');
+  }, 10);
+});
+
+window.addEventListener("resize", () => {
+  $('.distributions:visible').trigger('change');
+});
+
+</script>
+
+<br><footer>Thomas Abraham © 2025</footer></body>
+</html>
