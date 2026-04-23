@@ -51,10 +51,47 @@
     }
 
     .wrap {
-      max-width: 1120px;
+      max-width: 1440px;
       margin: 0 auto;
       display: grid;
       gap: 18px;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 620px;
+      gap: 0;
+    }
+
+    .viz-panel {
+      padding: 180px 18px 18px;
+      min-width: 0;
+    }
+
+    .trig-pair-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .trig-pair-row .stat {
+      min-width: 0;
+    }
+
+    .trig-pair-row .stat-plot-layout {
+      grid-template-columns: 68px minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .trig-pair-row .stat-plot-layout .stat-value {
+      width: 68px;
+      min-width: 68px;
+    }
+
+    .trig-pair-row .mini-plot {
+      width: 100%;
+      max-width: 150px;
     }
 
     .header {
@@ -80,17 +117,6 @@
       border-radius: 20px;
       box-shadow: var(--card-shadow);
       overflow: hidden;
-    }
-
-    .content {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 360px;
-      gap: 0;
-    }
-
-    .viz-panel {
-      padding: 18px;
-      min-width: 0;
     }
 
     .viz-shell {
@@ -518,6 +544,193 @@
       text-anchor: middle;
     }
 
+    .trig-double-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .trig-subblock {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .trig-subtitle {
+      font-size: 0.78rem;
+      font-weight: 700;
+      opacity: 0.9;
+      white-space: nowrap;
+    }
+
+    .trig-subtitle.sin { color: var(--sin); }
+    .trig-subtitle.cos { color: var(--cos); }
+    .trig-subtitle.tan { color: var(--tan); }
+    .trig-subtitle.csc { color: var(--csc); }
+    .trig-subtitle.sec { color: var(--sec); }
+    .trig-subtitle.cot { color: var(--cot); }
+
+    .stat-plot-layout {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .stat-plot-layout .stat-value {
+      width: 72px;
+      min-width: 72px;
+      text-align: right;
+    }
+
+    .mini-plot {
+      width: 150px;
+      height: 64px;
+      display: block;
+      overflow: visible;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.55);
+    }
+
+    .sin2-square {
+      fill: rgba(16, 185, 129, 0.16);
+      stroke: var(--sin);
+      stroke-width: 2.4;
+      stroke-linejoin: round;
+    }
+
+    .sin2-square-label {
+      fill: white;
+      font-size: 15px;
+      font-weight: 800;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      paint-order: stroke;
+      stroke: rgba(0, 0, 0, 0.28);
+      stroke-width: 3px;
+    }
+
+    .cos2-square {
+      fill: rgba(239, 68, 68, 0.16);
+      stroke: var(--cos);
+      stroke-width: 2.4;
+      stroke-linejoin: round;
+    }
+
+    .cos2-square-label {
+      fill: white;
+      font-size: 15px;
+      font-weight: 800;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      paint-order: stroke;
+      stroke: rgba(0, 0, 0, 0.28);
+      stroke-width: 3px;
+    }
+
+    .tan2-square {
+      fill: rgba(139, 92, 246, 0.16);
+      stroke: var(--tan);
+      stroke-width: 2.4;
+      stroke-linejoin: round;
+    }
+
+    .tan2-square-label {
+      fill: white;
+      font-size: 15px;
+      font-weight: 800;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      paint-order: stroke;
+      stroke: rgba(0, 0, 0, 0.28);
+      stroke-width: 3px;
+    }    
+
+    .csc2-square {
+      fill: rgba(239, 125, 68, 0.16);
+      stroke: var(--csc);
+      stroke-width: 2.4;
+      stroke-linejoin: round;
+    }
+
+    .csc2-square-label {
+      fill: white;
+      font-size: 15px;
+      font-weight: 800;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      paint-order: stroke;
+      stroke: rgba(0, 0, 0, 0.28);
+      stroke-width: 3px;
+    }
+
+    .sec2-square {
+      fill: rgba(245, 179, 11, 0.16);
+      stroke: var(--sec);
+      stroke-width: 2.4;
+      stroke-linejoin: round;
+    }
+
+    .sec2-square-label {
+      fill: white;
+      font-size: 15px;
+      font-weight: 800;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      paint-order: stroke;
+      stroke: rgba(0, 0, 0, 0.28);
+      stroke-width: 3px;
+    }
+
+    .cot2-square {
+      fill: rgba(6, 182, 212, 0.16);
+      stroke: var(--cot);
+      stroke-width: 2.4;
+      stroke-linejoin: round;
+    }
+
+    .cot2-square-label {
+      fill: white;
+      font-size: 15px;
+      font-weight: 800;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      paint-order: stroke;
+      stroke: rgba(0, 0, 0, 0.28);
+      stroke-width: 3px;
+    }
+
+    .zoom-controls {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      display: flex;
+      gap: 8px;
+      padding: 10px 12px;
+      border: 1px solid #dbe4ef;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.92);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+    }
+
+    .zoom-controls button {
+      width: 34px;
+      height: 34px;
+      border: 1px solid #d8e1ec;
+      border-radius: 10px;
+      background: white;
+      color: var(--text);
+      font-size: 1.25rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .zoom-controls button:hover {
+      background: #f4f8fd;
+    }
+
     @media (max-width: 920px) {
       .content {
         grid-template-columns: 1fr;
@@ -546,8 +759,13 @@
             <svg id="unitCircle" viewBox="0 0 760 760" aria-label="Interactive unit circle visualization"></svg>
 
             <div class="plot-toggles">
-            <label><input type="checkbox" id="ticksToggle" checked> Ticks</label>
-            <label><input type="checkbox" id="specialToggle" checked> Special</label>
+              <label><input type="checkbox" id="ticksToggle" checked> Ticks</label>
+              <label><input type="checkbox" id="specialToggle" checked> Special</label>
+            </div>
+
+            <div class="zoom-controls">
+              <button id="zoomInBtn" type="button">+</button>
+              <button id="zoomOutBtn" type="button">−</button>
             </div>
         </div>
         </div>
@@ -578,54 +796,116 @@
               <div class="stat-value" id="coordValue">(0.707, 0.707)</div>
             </div>
 
-            <div class="stat sin" data-key="sin">
-              <div class="stat-label sin">sin(θ)</div>
-              <div class="stat-plot-layout">
-                <div class="stat-value" id="sinValue">0.707</div>
-                <svg class="mini-plot" id="sinPlot" viewBox="0 0 150 64" aria-label="sin over time"></svg>
-              </div>
-            </div>
+<!-- Replace your current trig-card section with this structure. -->
+<!-- This goes inside <div class="stat-list">, below the coordinates card. -->
 
-            <div class="stat cos" data-key="cos">
-              <div class="stat-label cos">cos(θ)</div>
-              <div class="stat-plot-layout">
-                <div class="stat-value" id="cosValue">0.707</div>
-                <svg class="mini-plot" id="cosPlot" viewBox="0 0 150 64" aria-label="cos over time"></svg>
-              </div>
-            </div>
+<div class="trig-pair-row">
+  <div class="stat sin" data-key="sin">
+    <div class="stat-label sin">sin(θ)</div>
+    <div class="stat-plot-layout">
+      <div class="stat-value" id="sinValue">0.707</div>
+      <svg class="mini-plot" id="sinPlot" viewBox="0 0 150 64" aria-label="sin over time"></svg>
+    </div>
+  </div>
 
-            <div class="stat tan" data-key="tan">
-              <div class="stat-label tan">tan(θ)</div>
-              <div class="stat-plot-layout">
-                <div class="stat-value" id="tanValue">1</div>
-                <svg class="mini-plot" id="tanPlot" viewBox="0 0 150 64" aria-label="tan over time"></svg>
-              </div>
-            </div>
+  <div class="stat sin off" data-key="sin2">
+    <div class="stat-label sin">sin²(θ)</div>
+    <div class="stat-plot-layout">
+      <div class="stat-value" id="sin2Value"></div>
+      <svg class="mini-plot" id="sin2Plot" viewBox="0 0 150 64" aria-label="sin squared over time"></svg>
+    </div>
+  </div>
+</div>
 
-            <div class="stat csc" data-key="csc">
-              <div class="stat-label csc">csc(θ)</div>
-              <div class="stat-plot-layout">
-                <div class="stat-value" id="cscValue">1.414</div>
-                <svg class="mini-plot" id="cscPlot" viewBox="0 0 150 64" aria-label="csc over time"></svg>
-              </div>
-            </div>
+<div class="trig-pair-row">
+  <div class="stat cos" data-key="cos">
+    <div class="stat-label cos">cos(θ)</div>
+    <div class="stat-plot-layout">
+      <div class="stat-value" id="cosValue">0.707</div>
+      <svg class="mini-plot" id="cosPlot" viewBox="0 0 150 64" aria-label="cos over time"></svg>
+    </div>
+  </div>
 
-            <div class="stat sec" data-key="sec">
-              <div class="stat-label sec">sec(θ)</div>
-              <div class="stat-plot-layout">
-                <div class="stat-value" id="secValue">1.414</div>
-                <svg class="mini-plot" id="secPlot" viewBox="0 0 150 64" aria-label="sec over time"></svg>
-              </div>
-            </div>
+  <div class="stat cos off" data-key="cos2">
+    <div class="stat-label cos">cos²(θ)</div>
+    <div class="stat-plot-layout">
+      <div class="stat-value" id="cos2Value"></div>
+      <svg class="mini-plot" id="cos2Plot" viewBox="0 0 150 64" aria-label="cos squared over time"></svg>
+    </div>
+  </div>
+</div>
 
-            <div class="stat cot" data-key="cot">
-              <div class="stat-label cot">cot(θ)</div>
-              <div class="stat-plot-layout">
-                <div class="stat-value" id="cotValue">1</div>
-                <svg class="mini-plot" id="cotPlot" viewBox="0 0 150 64" aria-label="cot over time"></svg>
-              </div>
-            </div>
-          </div>
+<div class="trig-pair-row">
+  <div class="stat tan off" data-key="tan">
+    <div class="stat-label tan">tan(θ)</div>
+    <div class="stat-plot-layout">
+      <div class="stat-value" id="tanValue">1</div>
+      <svg class="mini-plot" id="tanPlot" viewBox="0 0 150 64" aria-label="tan over time"></svg>
+    </div>
+  </div>
+
+  <div class="stat tan off" data-key="tan2">
+    <div class="stat-label tan">tan²(θ)</div>
+    <div class="stat-plot-layout">
+      <div class="stat-value" id="tan2Value"></div>
+      <svg class="mini-plot" id="tan2Plot" viewBox="0 0 150 64" aria-label="tan squared over time"></svg>
+    </div>
+  </div>
+</div>
+
+<div class="trig-pair-row">
+  <div class="stat csc off" data-key="csc">
+    <div class="stat-label csc">csc(θ)</div>
+    <div class="stat-plot-layout">
+      <div class="stat-value" id="cscValue">1.414</div>
+      <svg class="mini-plot" id="cscPlot" viewBox="0 0 150 64" aria-label="csc over time"></svg>
+    </div>
+  </div>
+
+  <div class="stat csc off" data-key="csc2">
+    <div class="stat-label csc">csc²(θ)</div>
+    <div class="stat-plot-layout">
+      <div class="stat-value" id="csc2Value"></div>
+      <svg class="mini-plot" id="csc2Plot" viewBox="0 0 150 64" aria-label="csc squared over time"></svg>
+    </div>
+  </div>
+</div>
+
+<div class="trig-pair-row">
+  <div class="stat sec off" data-key="sec">
+    <div class="stat-label sec">sec(θ)</div>
+    <div class="stat-plot-layout">
+      <div class="stat-value" id="secValue">1.414</div>
+      <svg class="mini-plot" id="secPlot" viewBox="0 0 150 64" aria-label="sec over time"></svg>
+    </div>
+  </div>
+
+  <div class="stat sec off" data-key="sec2">
+    <div class="stat-label sec">sec²(θ)</div>
+    <div class="stat-plot-layout">
+      <div class="stat-value" id="sec2Value"></div>
+      <svg class="mini-plot" id="sec2Plot" viewBox="0 0 150 64" aria-label="sec squared over time"></svg>
+    </div>
+  </div>
+</div>
+
+<div class="trig-pair-row">
+  <div class="stat cot off" data-key="cot">
+    <div class="stat-label cot">cot(θ)</div>
+    <div class="stat-plot-layout">
+      <div class="stat-value" id="cotValue">1</div>
+      <svg class="mini-plot" id="cotPlot" viewBox="0 0 150 64" aria-label="cot over time"></svg>
+    </div>
+  </div>
+
+  <div class="stat cot off" data-key="cot2">
+    <div class="stat-label cot">cot²(θ)</div>
+    <div class="stat-plot-layout">
+      <div class="stat-value" id="cot2Value"></div>
+      <svg class="mini-plot" id="cot2Plot" viewBox="0 0 150 64" aria-label="cot squared over time"></svg>
+    </div>
+  </div>
+</div>          </div>
         </aside>
       </div>
     </div>
@@ -638,7 +918,7 @@
     const cx = width / 2;
     const cy = height / 2;
 
-    const SCREEN_RADIUS = 250;
+    let SCREEN_RADIUS = 250;
     const GRID_BASE = 50;
     const LABEL_PAD = 18;
     const DEGREES_PER_SECOND = 12;
@@ -658,23 +938,41 @@
 
     const history = {
       sin: [],
+      sin2: [],
       cos: [],
+      cos2: [],
       tan: [],
+      tan2: [],
       csc: [],
+      csc2: [],
       sec: [],
-      cot: []
+      sec2: [],
+      cot: [],
+      cot2: []
     };
 
     const visibility = {
       radius: true,
       angle: true,
       coords: true,
+
       sin: true,
+      sin2: false,
+
       cos: true,
-      tan: true,
-      csc: true,
-      sec: true,
-      cot: true
+      cos2: false,
+
+      tan: false,
+      tan2: false,
+
+      csc: false,
+      csc2: false,
+
+      sec: false,
+      sec2: false,
+
+      cot: false,
+      cot2: false
     };
 
     const radiusCard = document.getElementById("radiusCard");
@@ -688,9 +986,17 @@
     const cscValue = document.getElementById("cscValue");
     const secValue = document.getElementById("secValue");
     const cotValue = document.getElementById("cotValue");
+    const sin2Value = document.getElementById("sin2Value");
+    const cos2Value = document.getElementById("cos2Value");
+    const tan2Value = document.getElementById("tan2Value");
+    const csc2Value = document.getElementById("csc2Value");
+    const sec2Value = document.getElementById("sec2Value");
+    const cot2Value = document.getElementById("cot2Value");
     const toggleBtn = document.getElementById("toggleBtn");
     const ticksToggle = document.getElementById("ticksToggle");
     const specialToggle = document.getElementById("specialToggle");
+    const zoomInBtn = document.getElementById("zoomInBtn");
+    const zoomOutBtn = document.getElementById("zoomOutBtn");
 
     const g = svg.append("g");
     const gridLayer = g.append("g");
@@ -932,9 +1238,44 @@
       .attr("class", "theta-arc-outline");
 
     const tangentLine = dynamicLayer.append("line").attr("class", "tangent-line");
+    const tan2SquareGroup = dynamicLayer.append("g")
+      .attr("class", "tan2-square-group");
+
+    const tan2Square = tan2SquareGroup.append("polygon")
+      .attr("class", "tan2-square");
+
+    const tan2SquareLabel = tan2SquareGroup.append("text")
+      .attr("class", "tan2-square-label");
+
     const secantLine = dynamicLayer.append("line").attr("class", "secant-line");
+    const sec2SquareGroup = dynamicLayer.append("g")
+      .attr("class", "sec2-square-group");
+
+    const sec2Square = sec2SquareGroup.append("polygon")
+      .attr("class", "sec2-square");
+
+    const sec2SquareLabel = sec2SquareGroup.append("text")
+      .attr("class", "sec2-square-label");
+    
     const cscLine = dynamicLayer.append("line").attr("class", "csc-line");
+    const csc2SquareGroup = dynamicLayer.append("g")
+      .attr("class", "csc2-square-group");
+
+    const csc2Square = csc2SquareGroup.append("polygon")
+      .attr("class", "csc2-square");
+
+    const csc2SquareLabel = csc2SquareGroup.append("text")
+      .attr("class", "csc2-square-label");
+
     const cotLine = dynamicLayer.append("line").attr("class", "cot-line");
+    const cot2SquareGroup = dynamicLayer.append("g")
+      .attr("class", "cot2-square-group");
+
+    const cot2Square = cot2SquareGroup.append("polygon")
+      .attr("class", "cot2-square");
+
+    const cot2SquareLabel = cot2SquareGroup.append("text")
+      .attr("class", "cot2-square-label");
 
     const radiusLine = dynamicLayer.append("line")
       .attr("class", "radius-line")
@@ -942,7 +1283,24 @@
       .attr("y1", cy);
 
     const cosProjection = dynamicLayer.append("line").attr("class", "cos-line");
+    const cos2SquareGroup = dynamicLayer.append("g")
+      .attr("class", "cos2-square-group");
+
+    const cos2Square = cos2SquareGroup.append("polygon")
+      .attr("class", "cos2-square");
+
+    const cos2SquareLabel = cos2SquareGroup.append("text")
+      .attr("class", "cos2-square-label");
+
     const sinProjection = dynamicLayer.append("line").attr("class", "sin-line");
+    const sin2SquareGroup = dynamicLayer.append("g")
+      .attr("class", "sin2-square-group");
+
+    const sin2Square = sin2SquareGroup.append("polygon")
+      .attr("class", "sin2-square");
+
+    const sin2SquareLabel = sin2SquareGroup.append("text")
+      .attr("class", "sin2-square-label");
 
     const pointGlow = dynamicLayer.append("circle")
       .attr("class", "draggable-glow")
@@ -1004,20 +1362,36 @@
 
     const miniPlots = {
       sin: createMiniPlot("#sinPlot", "sin"),
+      sin2: createMiniPlot("#sin2Plot", "sin"),
       cos: createMiniPlot("#cosPlot", "cos"),
+      cos2: createMiniPlot("#cos2Plot", "cos"),
       tan: createMiniPlot("#tanPlot", "tan"),
+      tan2: createMiniPlot("#tan2Plot", "tan"),
       csc: createMiniPlot("#cscPlot", "csc"),
+      csc2: createMiniPlot("#csc2Plot", "csc"),
       sec: createMiniPlot("#secPlot", "sec"),
-      cot: createMiniPlot("#cotPlot", "cot")
+      sec2: createMiniPlot("#sec2Plot", "sec"),
+      cot: createMiniPlot("#cotPlot", "cot"),
+      cot2: createMiniPlot("#cot2Plot", "cot")
     };
 
     const plotConfig = {
-      sin: { domain: [-1.2, 1.2], clip: 1.2 },
-      cos: { domain: [-1.2, 1.2], clip: 1.2 },
-      tan: { domain: [-4, 4], clip: 4 },
-      csc: { domain: [-4, 4], clip: 4 },
-      sec: { domain: [-4, 4], clip: 4 },
-      cot: { domain: [-4, 4], clip: 4 }
+      sin:  { domain: [-1.2, 1.2], clip: 1.2 },
+      sin2: { domain: [-0.1, 1.2], clip: 1.2 },
+      cos:  { domain: [-1.2, 1.2], clip: 1.2 },
+      cos2: { domain: [-0.1, 1.2], clip: 1.2 },
+
+      tan:  { domain: [-4, 4], clip: 4 },
+      tan2: { domain: [0, 6], clip: 6 },
+
+      csc:  { domain: [-4, 4], clip: 4 },
+      csc2: { domain: [0, 6], clip: 6 },
+
+      sec:  { domain: [-4, 4], clip: 4 },
+      sec2: { domain: [0, 6], clip: 6 },
+
+      cot:  { domain: [-4, 4], clip: 4 },
+      cot2: { domain: [0, 6], clip: 6 }
     };
 
     function renderMiniPlot(plotObj, values, currentValue, cfg) {
@@ -1049,13 +1423,26 @@
       const x = Math.cos(rad);
       const y = Math.sin(rad);
 
+      const sin = y;
+      const cos = x;
+      const tan = Math.abs(x) < 0.00001 ? NaN : y / x;
+      const csc = Math.abs(y) < 0.00001 ? NaN : 1 / y;
+      const sec = Math.abs(x) < 0.00001 ? NaN : 1 / x;
+      const cot = Math.abs(y) < 0.00001 ? NaN : x / y;
+
       return {
-        sin: y,
-        cos: x,
-        tan: Math.abs(x) < 0.00001 ? NaN : y / x,
-        csc: Math.abs(y) < 0.00001 ? NaN : 1 / y,
-        sec: Math.abs(x) < 0.00001 ? NaN : 1 / x,
-        cot: Math.abs(y) < 0.00001 ? NaN : x / y
+        sin,
+        sin2: Number.isFinite(sin) ? sin * sin : NaN,
+        cos,
+        cos2: Number.isFinite(cos) ? cos * cos : NaN,
+        tan,
+        tan2: Number.isFinite(tan) ? tan * tan : NaN,
+        csc,
+        csc2: Number.isFinite(csc) ? csc * csc : NaN,
+        sec,
+        sec2: Number.isFinite(sec) ? sec * sec : NaN,
+        cot,
+        cot2: Number.isFinite(cot) ? cot * cot : NaN
       };
     }
 
@@ -1068,16 +1455,16 @@
     }
 
     function renderMiniPlots() {
-    const vals = currentTrigValues();
+      const vals = currentTrigValues();
 
-    for (const key of Object.keys(miniPlots)) {
+      for (const key of Object.keys(miniPlots)) {
         if (!visibility[key]) {
-        clearMiniPlot(miniPlots[key]);
-        continue;
+          clearMiniPlot(miniPlots[key]);
+          continue;
         }
 
         renderMiniPlot(miniPlots[key], history[key], vals[key], plotConfig[key]);
-    }
+      }
     }
 
     function createMathArcPath(radius, thetaRad) {
@@ -1198,6 +1585,355 @@
     });
     }
 
+    function updateSin2Square(px, py, x, y) {
+      if (!visibility.sin2) {
+        sin2SquareGroup.style("opacity", 0);
+        return;
+      }
+
+      const sideLength = Math.abs(y) * SCREEN_RADIUS;
+
+      if (sideLength < 0.5) {
+        sin2SquareGroup.style("opacity", 0);
+        return;
+      }
+
+      sin2SquareGroup.style("opacity", 1);
+
+      const sinBottomX = px;
+      const sinBottomY = cy;
+      const sinTopX = px;
+      const sinTopY = py;
+
+      // Draw the square away from the y-axis.
+      const away = x >= 0 ? 1 : -1;
+
+      const x0 = sinBottomX;
+      const x1 = sinBottomX + away * sideLength;
+
+      const y0 = sinBottomY;
+      const y1 = sinTopY;
+
+      sin2SquareGroup.attr("transform", null);
+
+      sin2Square.attr(
+        "points",
+        [
+          [x0, y0],
+          [x1, y0],
+          [x1, y1],
+          [x0, y1]
+        ].map(p => p.join(",")).join(" ")
+      );
+
+      sin2SquareLabel
+        .attr("x", (x0 + x1) / 2)
+        .attr("y", (y0 + y1) / 2)
+        .text(`sin² = ${formatNumber(y * y)}`);
+    }
+
+    function updateCos2Square(px, py, x, y) {
+      if (!visibility.cos2) {
+        cos2SquareGroup.style("opacity", 0);
+        return;
+      }
+
+      const sideLength = Math.abs(x) * SCREEN_RADIUS;
+
+      if (sideLength < 0.5) {
+        cos2SquareGroup.style("opacity", 0);
+        return;
+      }
+
+      cos2SquareGroup.style("opacity", 1);
+
+      // The cos projection runs horizontally from the origin to the point's x-coordinate.
+      const cosStartX = cx;
+      const cosEndX = px;
+      const cosY = cy;
+
+      // From 0° to 180°, keep cos projection as the TOP edge.
+      // From 180° to 360°, keep cos projection as the BOTTOM edge.
+      const theta = normalizeDegrees(thetaDeg);
+      const extendDown = theta >= 0 && theta <= 180;
+
+      const y0 = cosY;
+      const y1 = extendDown ? cosY + sideLength : cosY - sideLength;
+
+      cos2SquareGroup.attr("transform", null);
+
+      cos2Square.attr(
+        "points",
+        [
+          [cosStartX, y0],
+          [cosEndX, y0],
+          [cosEndX, y1],
+          [cosStartX, y1]
+        ].map(p => p.join(",")).join(" ")
+      );
+
+      cos2SquareLabel
+        .attr("x", (cosStartX + cosEndX) / 2)
+        .attr("y", (y0 + y1) / 2)
+        .text(`cos² = ${formatNumber(x * x)}`);
+    }
+
+    function updateTan2Square(px, py, x, y) {
+      if (!visibility.tan2 || Math.abs(x) < 0.00001) {
+        tan2SquareGroup.style("opacity", 0);
+        return;
+      }
+
+      const sec = 1 / x;
+      const secX = cx + SCREEN_RADIUS * sec;
+
+      // Tan projection segment:
+      // A is the point on the circle.
+      // B is the secant endpoint on the x-axis.
+      const ax = px;
+      const ay = py;
+      const bx = secX;
+      const by = cy;
+
+      const dx = bx - ax;
+      const dy = by - ay;
+      const sideLength = Math.sqrt(dx * dx + dy * dy);
+
+      if (sideLength < 0.5 || sideLength > 2000) {
+        tan2SquareGroup.style("opacity", 0);
+        return;
+      }
+
+      // Unit vector along the tan projection.
+      const ux = dx / sideLength;
+      const uy = dy / sideLength;
+
+      // Perpendicular unit vector.
+      let nx = -uy;
+      let ny = ux;
+
+      // Choose the side of the tan segment that keeps the square outside the triangle.
+      // Test both possible square centers and choose the one farther from the origin.
+      const center1 = {
+        x: (ax + bx) / 2 + nx * sideLength / 2,
+        y: (ay + by) / 2 + ny * sideLength / 2
+      };
+
+      const center2 = {
+        x: (ax + bx) / 2 - nx * sideLength / 2,
+        y: (ay + by) / 2 - ny * sideLength / 2
+      };
+
+      const d1 = Math.hypot(center1.x - cx, center1.y - cy);
+      const d2 = Math.hypot(center2.x - cx, center2.y - cy);
+
+      if (d2 > d1) {
+        nx *= -1;
+        ny *= -1;
+      }
+
+      const p1 = [ax, ay];
+      const p2 = [bx, by];
+      const p3 = [bx + nx * sideLength, by + ny * sideLength];
+      const p4 = [ax + nx * sideLength, ay + ny * sideLength];
+
+      const labelX = (p1[0] + p2[0] + p3[0] + p4[0]) / 4;
+      const labelY = (p1[1] + p2[1] + p3[1] + p4[1]) / 4;
+
+      tan2SquareGroup.style("opacity", 1);
+
+      tan2Square.attr(
+        "points",
+        [p1, p2, p3, p4].map(p => p.join(",")).join(" ")
+      );
+
+      tan2SquareLabel
+        .attr("x", clamp(labelX, LABEL_PAD, width - LABEL_PAD))
+        .attr("y", clamp(labelY, LABEL_PAD, height - LABEL_PAD))
+        .text(`tan² = ${formatNumber((y / x) * (y / x))}`);
+    }
+
+    function updateCsc2Square(x, y) {
+      if (!visibility.csc2 || Math.abs(y) < 0.00001) {
+        csc2SquareGroup.style("opacity", 0);
+        return;
+      }
+
+      const csc = 1 / y;
+      const cscY = cy - SCREEN_RADIUS * csc;
+
+      const sideLength = Math.abs(csc) * SCREEN_RADIUS;
+
+      if (sideLength < 0.5 || sideLength > 2000) {
+        csc2SquareGroup.style("opacity", 0);
+        return;
+      }
+
+      csc2SquareGroup.style("opacity", 1);
+
+      const cscBottomX = cx;
+      const cscBottomY = cy;
+      const cscTopX = cx;
+      const cscTopY = cscY;
+
+      const theta = normalizeDegrees(thetaDeg);
+
+      // From 90° to 270°, csc projection is the LEFT side.
+      // Otherwise, csc projection is the RIGHT side.
+      const projectionIsLeftSide = theta >= 90 && theta <= 270;
+
+      const direction = projectionIsLeftSide ? 1 : -1;
+
+      const x0 = cscBottomX;
+      const x1 = cscBottomX + direction * sideLength;
+
+      const y0 = cscBottomY;
+      const y1 = cscTopY;
+
+      csc2SquareGroup.attr("transform", null);
+
+      csc2Square.attr(
+        "points",
+        [
+          [x0, y0],
+          [x1, y0],
+          [x1, y1],
+          [x0, y1]
+        ].map(p => p.join(",")).join(" ")
+      );
+
+      csc2SquareLabel
+        .attr("x", clamp((x0 + x1) / 2, LABEL_PAD, width - LABEL_PAD))
+        .attr("y", clamp((y0 + y1) / 2, LABEL_PAD, height - LABEL_PAD))
+        .text(`csc² = ${formatNumber(csc * csc)}`);
+    }
+
+    function updateSec2Square(x, y) {
+      if (!visibility.sec2 || Math.abs(x) < 0.00001) {
+        sec2SquareGroup.style("opacity", 0);
+        return;
+      }
+
+      const sec = 1 / x;
+      const secX = cx + SCREEN_RADIUS * sec;
+
+      const sideLength = Math.abs(sec) * SCREEN_RADIUS;
+
+      if (sideLength < 0.5 || sideLength > 2000) {
+        sec2SquareGroup.style("opacity", 0);
+        return;
+      }
+
+      sec2SquareGroup.style("opacity", 1);
+
+      // Sec projection is horizontal from the origin to the secant endpoint.
+      const secStartX = cx;
+      const secEndX = secX;
+      const secY = cy;
+
+      const theta = normalizeDegrees(thetaDeg);
+
+      // Mirror cos²:
+      // From 0° to 180°, the sec projection is the TOP edge.
+      // From 180° to 360°, the sec projection is the BOTTOM edge.
+      const projectionIsTopEdge = theta >= 0 && theta <= 180;
+
+      const direction = projectionIsTopEdge ? 1 : -1;
+
+      const y0 = secY;
+      const y1 = secY + direction * sideLength;
+
+      sec2SquareGroup.attr("transform", null);
+
+      sec2Square.attr(
+        "points",
+        [
+          [secStartX, y0],
+          [secEndX, y0],
+          [secEndX, y1],
+          [secStartX, y1]
+        ].map(p => p.join(",")).join(" ")
+      );
+
+      sec2SquareLabel
+        .attr("x", clamp((secStartX + secEndX) / 2, LABEL_PAD, width - LABEL_PAD))
+        .attr("y", clamp((y0 + y1) / 2, LABEL_PAD, height - LABEL_PAD))
+        .text(`sec² = ${formatNumber(sec * sec)}`);
+    }
+
+    function updateCot2Square(px, py, x, y) {
+      if (!visibility.cot2 || Math.abs(y) < 0.00001) {
+        cot2SquareGroup.style("opacity", 0);
+        return;
+      }
+
+      const csc = 1 / y;
+      const cscY = cy - SCREEN_RADIUS * csc;
+
+      // Cot projection segment:
+      // A is the point on the circle.
+      // B is the cosecant endpoint on the y-axis.
+      const ax = px;
+      const ay = py;
+      const bx = cx;
+      const by = cscY;
+
+      const dx = bx - ax;
+      const dy = by - ay;
+      const sideLength = Math.sqrt(dx * dx + dy * dy);
+
+      if (sideLength < 0.5 || sideLength > 2000) {
+        cot2SquareGroup.style("opacity", 0);
+        return;
+      }
+
+      const ux = dx / sideLength;
+      const uy = dy / sideLength;
+
+      let nx = -uy;
+      let ny = ux;
+
+      // Mirror tan² behavior:
+      // choose the side farther from the origin so it sits outside the base triangle.
+      const center1 = {
+        x: (ax + bx) / 2 + nx * sideLength / 2,
+        y: (ay + by) / 2 + ny * sideLength / 2
+      };
+
+      const center2 = {
+        x: (ax + bx) / 2 - nx * sideLength / 2,
+        y: (ay + by) / 2 - ny * sideLength / 2
+      };
+
+      const d1 = Math.hypot(center1.x - cx, center1.y - cy);
+      const d2 = Math.hypot(center2.x - cx, center2.y - cy);
+
+      if (d2 > d1) {
+        nx *= -1;
+        ny *= -1;
+      }
+
+      const p1 = [ax, ay];
+      const p2 = [bx, by];
+      const p3 = [bx + nx * sideLength, by + ny * sideLength];
+      const p4 = [ax + nx * sideLength, ay + ny * sideLength];
+
+      const labelX = (p1[0] + p2[0] + p3[0] + p4[0]) / 4;
+      const labelY = (p1[1] + p2[1] + p3[1] + p4[1]) / 4;
+
+      cot2SquareGroup.style("opacity", 1);
+
+      cot2Square.attr(
+        "points",
+        [p1, p2, p3, p4].map(p => p.join(",")).join(" ")
+      );
+
+      cot2SquareLabel
+        .attr("x", clamp(labelX, LABEL_PAD, width - LABEL_PAD))
+        .attr("y", clamp(labelY, LABEL_PAD, height - LABEL_PAD))
+        .text(`cot² = ${formatNumber((x / y) * (x / y))}`);
+    }
+
     function update(thetaDegrees) {
       thetaDeg = normalizeDegrees(thetaDegrees);
       const thetaRad = degToRad(thetaDeg);
@@ -1207,6 +1943,8 @@
 
       const px = cx + SCREEN_RADIUS * x;
       const py = cy - SCREEN_RADIUS * y;
+
+      unitCircle.attr("r", SCREEN_RADIUS);
 
       angleSector.attr("d", createSectorPath(58, thetaRad));
       thetaArcOutline.attr("d", createMathArcPath(58, thetaRad));
@@ -1222,6 +1960,7 @@
         .attr("y1", cy)
         .attr("x2", px)
         .attr("y2", cy);
+      updateCos2Square(px, py, x, y);
 
       sinProjection
         .transition().duration(90)
@@ -1229,6 +1968,8 @@
         .attr("y1", cy)
         .attr("x2", px)
         .attr("y2", py);
+      updateSin2Square(px, py, x, y);  
+
 
       pointGlow
         .transition().duration(90)
@@ -1259,6 +2000,8 @@
           .attr("y2", cy);
       }
 
+      updateTan2Square(px, py, x, y);
+
       if (!secDefined) {
         secantLine.transition().duration(90).style("opacity", 0);
       } else {
@@ -1272,6 +2015,8 @@
           .attr("y2", cy)
           .style("opacity", visibility.sec ? 0.9 : 0);
       }
+
+      updateSec2Square(x, y);
 
       if (!cscDefined) {
         cscLine.transition().duration(90).style("opacity", 0);
@@ -1287,6 +2032,8 @@
           .style("opacity", visibility.csc ? 0.9 : 0);
       }
 
+      updateCsc2Square(x, y);
+
       if (!cotDefined) {
         cotLine.transition().duration(90).style("opacity", 0);
       } else {
@@ -1300,6 +2047,8 @@
           .attr("y2", cscY)
           .style("opacity", visibility.cot ? 0.9 : 0);
       }
+
+      updateCot2Square(px, py, x, y);
 
       const midAngle = thetaRad / 2;
 
@@ -1416,6 +2165,15 @@
       setStatValue(secValue, visibility.sec ? (!secDefined ? "undefined" : formatNumber(1 / x)) : "");
       setStatValue(cotValue, visibility.cot ? (!cotDefined ? "undefined" : formatNumber(x / y)) : "");
 
+      const vals = currentTrigValues();
+
+      setStatValue(sin2Value, visibility.sin2 ? (Number.isFinite(vals.sin2) ? formatNumber(vals.sin2) : "undefined") : "");
+      setStatValue(cos2Value, visibility.cos2 ? (Number.isFinite(vals.cos2) ? formatNumber(vals.cos2) : "undefined") : "");
+      setStatValue(tan2Value, visibility.tan2 ? (Number.isFinite(vals.tan2) ? formatNumber(vals.tan2) : "undefined") : "");
+      setStatValue(csc2Value, visibility.csc2 ? (Number.isFinite(vals.csc2) ? formatNumber(vals.csc2) : "undefined") : "");
+      setStatValue(sec2Value, visibility.sec2 ? (Number.isFinite(vals.sec2) ? formatNumber(vals.sec2) : "undefined") : "");
+      setStatValue(cot2Value, visibility.cot2 ? (Number.isFinite(vals.cot2) ? formatNumber(vals.cot2) : "undefined") : "");
+      
       renderMiniPlots();
       applyVisibility();
     }
@@ -1590,6 +2348,18 @@
       updateAnimationButtons();
     }
 
+    function isSquaredKey(key) {
+      return key.endsWith("2");
+    }
+
+    function baseKeyOf(key) {
+      return isSquaredKey(key) ? key.slice(0, -1) : key;
+    }
+
+    function squareKeyOf(baseKey) {
+      return baseKey + "2";
+    }
+
     draggablePoint.call(
       d3.drag().on("drag", draggedPoint)
     );
@@ -1611,10 +2381,20 @@
         redrawScaleDependentElements();
         });
 
-        specialToggle.addEventListener("change", () => {
+    specialToggle.addEventListener("change", () => {
         showSpecial = specialToggle.checked;
         redrawScaleDependentElements();
         });
+
+    zoomInBtn.addEventListener("click", () => {
+      SCREEN_RADIUS = Math.min(SCREEN_RADIUS * 1.12, 520);
+      redrawForRadiusChange();
+    });
+
+    zoomOutBtn.addEventListener("click", () => {
+      SCREEN_RADIUS = Math.max(SCREEN_RADIUS / 1.12, 80);
+      redrawForRadiusChange();
+    });
 
     document.querySelectorAll(".stat").forEach(card => {
       const key = card.dataset.key;
@@ -1630,7 +2410,33 @@
           return;
         }
 
+        if (isSquaredKey(key)) {
+          const base = baseKeyOf(key);
+          visibility[key] = !visibility[key];
+
+          // Turning on sin² also turns on sin.
+          if (visibility[key]) {
+            visibility[base] = true;
+          }
+
+          document.querySelector("[data-key=\"" + base + "\"]")?.classList.toggle("off", !visibility[base]);
+          card.classList.toggle("off", !visibility[key]);
+          update(thetaDeg);
+          return;
+        }
+
+        // Base function card.
         visibility[key] = !visibility[key];
+
+        // Turning off sin also turns off sin².
+        if (!visibility[key]) {
+          const squared = squareKeyOf(key);
+          if (squared in visibility) {
+            visibility[squared] = false;
+            document.querySelector("[data-key=\"" + squared + "\"]")?.classList.add("off");
+          }
+        }
+
         card.classList.toggle("off", !visibility[key]);
         update(thetaDeg);
       });
