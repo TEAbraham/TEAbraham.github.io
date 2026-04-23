@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Polished Unit Circle</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --axis: #b8c2d1;
+      --grid: #e7ecf3;
+      --circle: #2f72dc;
+      --radius: #3b82f6;
+      --sin: #10b981;
+      --cos: #ef4444;
+      --tan: #8b5cf6;
+      --csc: #ef7d44;
+      --sec: #f5b30b;
+      --cot: #06b6d4;
+      --point: #348543;
+      --point-stroke: #1f5f2a;
+      --arc-fill: rgba(47, 114, 220, 0.16);
+      --arc-stroke: rgba(47, 114, 220, 0.55);
+      --tick: #94a3b8;
+      --special: #111827;
+      --card-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      --glow: rgba(52, 133, 67, 0.28);
+      --button-bg: #ffffff;
+      --button-border: #d8e1ec;
+      --button-hover: #f4f8fd;
+      --play: #10b981;
+      --pause: #ef4444;
+      --mini-axis: #b6c3d5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+      color: var(--text);
+      padding: 24px;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .header {
+      display: grid;
+      gap: 6px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid #e5ebf3;
+      border-radius: 20px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 0;
+    }
+
+    .viz-panel {
+      padding: 18px;
+      min-width: 0;
+    }
+
+    .viz-shell {
+    position: relative;
+    }
+
+    .plot-toggles {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    display: grid;
+    gap: 6px;
+    padding: 10px 12px;
+    border: 1px solid #dbe4ef;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.92);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+    font-size: 0.9rem;
+    }
+
+    .plot-toggles label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+    user-select: none;
+    }
+
+    .plot-toggles input {
+    margin: 0;
+    }
+
+    .side-panel {
+      border-left: 1px solid #e5ebf3;
+      padding: 18px;
+      background: linear-gradient(180deg, #fcfdff 0%, #f8fbff 100%);
+    }
+
+    .side-panel h2 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+    }
+
+    .panel-help {
+      margin: 0 0 14px;
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .stat-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .top-controls-wrap {
+      display: grid;
+      gap: 12px;
+    }
+
+    .top-controls {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      gap: 12px;
+    }
+
+    .control-btn {
+      appearance: none;
+      border: 1px solid var(--button-border);
+      background: var(--button-bg);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font: inherit;
+      font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease, border-color 140ms ease;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .control-btn:hover {
+      transform: translateY(-1px);
+      background: var(--button-hover);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+    }
+
+    .control-btn:active {
+      transform: translateY(0);
+    }
+
+    .control-btn.play {
+      color: var(--play);
+    }
+
+    .control-btn.pause {
+      color: var(--pause);
+    }
+
+    .control-btn.active {
+      border-color: currentColor;
+      box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.06);
+      background: #fff;
+    }
+
+    .stat {
+      padding: 12px 14px;
+      border: 1px solid #e7edf5;
+      border-radius: 14px;
+      background: white;
+      transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, opacity 140ms ease;
+      border-left-width: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .stat:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+    }
+
+    .stat.off {
+      opacity: 0.45;
+      filter: grayscale(0.12);
+    }
+
+    .stat.off .stat-label,
+    .stat.off .stat-value {
+      text-decoration: none;
+    }
+
+    .stat.editing {
+      box-shadow: 0 0 0 2px rgba(47, 114, 220, 0.18);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .stat-value {
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .stat-value.undefined {
+      color: #9ca3af;
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .card-input {
+      width: 100%;
+      border: 1px solid #cfd8e3;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font: inherit;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text);
+      outline: none;
+      background: #fff;
+    }
+
+    .card-input:focus {
+      border-color: var(--radius);
+      box-shadow: 0 0 0 3px rgba(47, 114, 220, 0.12);
+    }
+
+    .stat.radius {
+      border-left-color: var(--radius);
+      background: linear-gradient(90deg, rgba(47, 114, 220, 0.06), white 28%);
+    }
+
+    .stat.angle {
+      border-left-color: var(--radius);
+      background: linear-gradient(90deg, rgba(47, 114, 220, 0.06), white 28%);
+    }
+
+    .stat.coords {
+      border-left-color: #64748b;
+      background: linear-gradient(90deg, rgba(100, 116, 139, 0.06), white 28%);
+    }
+
+    .stat.sin {
+      border-left-color: var(--sin);
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.06), white 28%);
+    }
+
+    .stat.cos {
+      border-left-color: var(--cos);
+      background: linear-gradient(90deg, rgba(239, 68, 68, 0.06), white 28%);
+    }
+
+    .stat.tan {
+      border-left-color: var(--tan);
+      background: linear-gradient(90deg, rgba(139, 92, 246, 0.06), white 28%);
+    }
+
+    .stat.csc {
+      border-left-color: var(--csc);
+      background: linear-gradient(90deg, rgba(239, 125, 68, 0.06), white 28%);
+    }
+
+    .stat.sec {
+      border-left-color: var(--sec);
+      background: linear-gradient(90deg, rgba(245, 179, 11, 0.07), white 28%);
+    }
+
+    .stat.cot {
+      border-left-color: var(--cot);
+      background: linear-gradient(90deg, rgba(6, 182, 212, 0.06), white 28%);
+    }
+
+    .stat-label.radius { color: var(--radius); }
+    .stat-label.angle { color: var(--radius); }
+    .stat-label.coords { color: #64748b; }
+    .stat-label.sin { color: var(--sin); }
+    .stat-label.cos { color: var(--cos); }
+    .stat-label.tan { color: var(--tan); }
+    .stat-label.csc { color: var(--csc); }
+    .stat-label.sec { color: var(--sec); }
+    .stat-label.cot { color: var(--cot); }
+
+    .stat-plot-layout {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      align-items: center;
+      gap: 20px;
+      min-width: 0;
+    }
+
+    .stat-plot-layout .stat-value {
+      width: 72px;
+      min-width: 72px;
+      text-align: right;
+    }
+
+    .mini-plot {
+      width: 150px;
+      height: 64px;
+      display: block;
+      overflow: visible;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.55);
+    }
+
+    .mini-axis {
+      stroke: var(--mini-axis);
+      stroke-width: 1.2;
+      stroke-dasharray: 3 3;
+    }
+
+    .mini-trace {
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .mini-trace.sin { stroke: var(--sin); }
+    .mini-trace.cos { stroke: var(--cos); }
+    .mini-trace.tan { stroke: var(--tan); }
+    .mini-trace.csc { stroke: var(--csc); }
+    .mini-trace.sec { stroke: var(--sec); }
+    .mini-trace.cot { stroke: var(--cot); }
+
+    .mini-point.sin { fill: var(--sin); }
+    .mini-point.cos { fill: var(--cos); }
+    .mini-point.tan { fill: var(--tan); }
+    .mini-point.csc { fill: var(--csc); }
+    .mini-point.sec { fill: var(--sec); }
+    .mini-point.cot { fill: var(--cot); }
+
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at top left, rgba(47,114,220,0.035), transparent 35%),
+        linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+      touch-action: none;
+    }
+
+    .grid-line {
+      stroke: var(--grid);
+      stroke-width: 1;
+    }
+
+    .axis-line {
+      stroke: var(--axis);
+      stroke-width: 1.8;
+    }
+
+    .unit-circle {
+      fill: none;
+      stroke: var(--circle);
+      stroke-width: 3.2;
+    }
+
+    .radius-line {
+      stroke: var(--radius);
+      stroke-width: 3.5;
+      stroke-linecap: round;
+    }
+
+    .sin-line {
+      stroke: var(--sin);
+      stroke-width: 2.8;
+      stroke-linecap: round;
+    }
+
+    .cos-line {
+      stroke: var(--cos);
+      stroke-width: 2.8;
+      stroke-linecap: round;
+    }
+
+    .angle-sector {
+      fill: var(--arc-fill);
+      stroke: var(--arc-stroke);
+      stroke-width: 1.6;
+    }
+
+    .theta-arc-outline {
+      fill: none;
+      stroke: var(--radius);
+      stroke-width: 2.4;
+      stroke-linecap: round;
+    }
+
+    .tick-mark {
+      stroke: var(--tick);
+      stroke-width: 1.4;
+    }
+
+    .tick-label {
+      font-size: 12px;
+      fill: #64748b;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+
+    .special-point {
+      fill: #111827;
+      opacity: 0.88;
+    }
+
+    .special-label {
+      font-size: 12px;
+      fill: var(--special);
+      font-weight: 600;
+      text-anchor: middle;
+    }
+
+    .tangent-line {
+      stroke: var(--tan);
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      opacity: 0.9;
+    }
+
+    .secant-line {
+      stroke: var(--sec);
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      opacity: 0.9;
+    }
+
+    .csc-line {
+      stroke: var(--csc);
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      opacity: 0.9;
+    }
+
+    .cot-line {
+      stroke: var(--cot);
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      opacity: 0.9;
+    }
+
+    .origin-dot {
+      fill: #111827;
+    }
+
+    .draggable-glow {
+      fill: var(--glow);
+      filter: blur(6px);
+    }
+
+    .draggable-point {
+      fill: var(--point);
+      stroke: var(--point-stroke);
+      stroke-width: 2;
+      cursor: grab;
+    }
+
+    .draggable-point:active {
+      cursor: grabbing;
+    }
+
+    .coord-label,
+    .func-label,
+    .theta-label {
+      font-size: 13px;
+      fill: var(--text);
+      font-weight: 600;
+    }
+
+    .theta-label {
+      font-size: 18px;
+      fill: var(--radius);
+    }
+
+    .axis-end-label {
+      font-size: 12px;
+      fill: #64748b;
+      font-weight: 700;
+      text-anchor: middle;
+    }
+
+    @media (max-width: 920px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
+
+      .side-panel {
+        border-left: 0;
+        border-top: 1px solid #e5ebf3;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <h1>Interactive Unit Circle</h1>
+      <p class="subtitle">
+        Drag the green point to change θ. Click the Radius or Angle card to edit values, then press Enter.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="content">
+        <div class="viz-panel">
+        <div class="viz-shell">
+            <svg id="unitCircle" viewBox="0 0 760 760" aria-label="Interactive unit circle visualization"></svg>
+
+            <div class="plot-toggles">
+            <label><input type="checkbox" id="ticksToggle" checked> Ticks</label>
+            <label><input type="checkbox" id="specialToggle" checked> Special</label>
+            </div>
+        </div>
+        </div>
+
+        <aside class="side-panel">
+          <h2>Live values</h2>
+          <p class="panel-help">Click any card to show or hide its line and label. Click Radius or Angle to type a new value.</p>
+
+          <div class="stat-list">
+            <div class="top-controls-wrap">
+              <button id="toggleBtn" class="control-btn play" type="button">▶ Play</button>
+
+              <div class="top-controls">
+                <div class="stat radius" data-key="radius" id="radiusCard">
+                  <div class="stat-label radius">Radius</div>
+                  <div class="stat-value" id="radiusValue">r = 1</div>
+                </div>
+
+                <div class="stat angle" data-key="angle" id="angleCard">
+                  <div class="stat-label angle">Angle</div>
+                  <div class="stat-value" id="angleValue">θ = 45°</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="stat coords" data-key="coords">
+              <div class="stat-label coords">Coordinates</div>
+              <div class="stat-value" id="coordValue">(0.707, 0.707)</div>
+            </div>
+
+            <div class="stat sin" data-key="sin">
+              <div class="stat-label sin">sin(θ)</div>
+              <div class="stat-plot-layout">
+                <div class="stat-value" id="sinValue">0.707</div>
+                <svg class="mini-plot" id="sinPlot" viewBox="0 0 150 64" aria-label="sin over time"></svg>
+              </div>
+            </div>
+
+            <div class="stat cos" data-key="cos">
+              <div class="stat-label cos">cos(θ)</div>
+              <div class="stat-plot-layout">
+                <div class="stat-value" id="cosValue">0.707</div>
+                <svg class="mini-plot" id="cosPlot" viewBox="0 0 150 64" aria-label="cos over time"></svg>
+              </div>
+            </div>
+
+            <div class="stat tan" data-key="tan">
+              <div class="stat-label tan">tan(θ)</div>
+              <div class="stat-plot-layout">
+                <div class="stat-value" id="tanValue">1</div>
+                <svg class="mini-plot" id="tanPlot" viewBox="0 0 150 64" aria-label="tan over time"></svg>
+              </div>
+            </div>
+
+            <div class="stat csc" data-key="csc">
+              <div class="stat-label csc">csc(θ)</div>
+              <div class="stat-plot-layout">
+                <div class="stat-value" id="cscValue">1.414</div>
+                <svg class="mini-plot" id="cscPlot" viewBox="0 0 150 64" aria-label="csc over time"></svg>
+              </div>
+            </div>
+
+            <div class="stat sec" data-key="sec">
+              <div class="stat-label sec">sec(θ)</div>
+              <div class="stat-plot-layout">
+                <div class="stat-value" id="secValue">1.414</div>
+                <svg class="mini-plot" id="secPlot" viewBox="0 0 150 64" aria-label="sec over time"></svg>
+              </div>
+            </div>
+
+            <div class="stat cot" data-key="cot">
+              <div class="stat-label cot">cot(θ)</div>
+              <div class="stat-plot-layout">
+                <div class="stat-value" id="cotValue">1</div>
+                <svg class="mini-plot" id="cotPlot" viewBox="0 0 150 64" aria-label="cot over time"></svg>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const svg = d3.select("#unitCircle");
+    const width = 760;
+    const height = 760;
+    const cx = width / 2;
+    const cy = height / 2;
+
+    const SCREEN_RADIUS = 250;
+    const GRID_BASE = 50;
+    const LABEL_PAD = 18;
+    const DEGREES_PER_SECOND = 12;
+    const HISTORY_MAX = 120;
+    const HISTORY_SAMPLE_MS = 180;
+    let historyAccumulatorMs = 0;
+
+    let thetaDeg = 45;
+    let radiusValueModel = 1;
+    let radiusEditMode = false;
+    let angleEditMode = false;
+    let isPlaying = false;
+    let animationFrameId = null;
+    let lastFrameTime = null;
+    let showTicks = true;
+    let showSpecial = true;
+
+    const history = {
+      sin: [],
+      cos: [],
+      tan: [],
+      csc: [],
+      sec: [],
+      cot: []
+    };
+
+    const visibility = {
+      radius: true,
+      angle: true,
+      coords: true,
+      sin: true,
+      cos: true,
+      tan: true,
+      csc: true,
+      sec: true,
+      cot: true
+    };
+
+    const radiusCard = document.getElementById("radiusCard");
+    const angleCard = document.getElementById("angleCard");
+    const radiusValueEl = document.getElementById("radiusValue");
+    const angleValueEl = document.getElementById("angleValue");
+    const coordValue = document.getElementById("coordValue");
+    const sinValue = document.getElementById("sinValue");
+    const cosValue = document.getElementById("cosValue");
+    const tanValue = document.getElementById("tanValue");
+    const cscValue = document.getElementById("cscValue");
+    const secValue = document.getElementById("secValue");
+    const cotValue = document.getElementById("cotValue");
+    const toggleBtn = document.getElementById("toggleBtn");
+    const ticksToggle = document.getElementById("ticksToggle");
+    const specialToggle = document.getElementById("specialToggle");
+
+    const g = svg.append("g");
+    const gridLayer = g.append("g");
+    const axisLayer = g.append("g");
+    const tickLayer = g.append("g");
+    const specialLayer = g.append("g");
+    const circleLayer = g.append("g");
+    const dynamicLayer = g.append("g");
+    const labelLayer = g.append("g");
+
+    const gridLines = [];
+    const tickItems = [];
+    const specialItems = [];
+
+    function roundToTenth(value) {
+      return Math.round(value * 10) / 10;
+    }
+
+    function degToRad(deg) {
+      return deg * Math.PI / 180;
+    }
+
+    function radToDeg(rad) {
+      return rad * 180 / Math.PI;
+    }
+
+    function normalizeDegrees(deg) {
+      return ((deg % 360) + 360) % 360;
+    }
+
+    function formatNumber(n) {
+      if (!Number.isFinite(n)) return "undefined";
+      if (Math.abs(n) < 1e-10) return "0";
+      return (+n.toFixed(3)).toString();
+    }
+
+    function formatTenth(n) {
+      return roundToTenth(n).toFixed(1).replace(/\.0$/, "");
+    }
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function specialCoordinatePieces(deg) {
+      const d = Math.round(normalizeDegrees(deg));
+      const map = {
+        0: ["1", "0"],
+        30: ["√3/2", "1/2"],
+        45: ["√2/2", "√2/2"],
+        60: ["1/2", "√3/2"],
+        90: ["0", "1"],
+        120: ["-1/2", "√3/2"],
+        135: ["-√2/2", "√2/2"],
+        150: ["-√3/2", "1/2"],
+        180: ["-1", "0"],
+        210: ["-√3/2", "-1/2"],
+        225: ["-√2/2", "-√2/2"],
+        240: ["-1/2", "-√3/2"],
+        270: ["0", "-1"],
+        300: ["1/2", "-√3/2"],
+        315: ["√2/2", "-√2/2"],
+        330: ["√3/2", "-1/2"]
+      };
+      return map[d] || null;
+    }
+
+    function scalePiece(piece, r) {
+      if (r === 1) return piece;
+      if (piece === "0") return "0";
+
+      const sign = piece.startsWith("-") ? "-" : "";
+      const core = sign ? piece.slice(1) : piece;
+
+      if (core === "1") return `${sign}${formatTenth(r)}`;
+      if (core === "1/2") return `${sign}${formatTenth(r)}/2`;
+      if (core === "√2/2") return `${sign}${formatTenth(r)}√2/2`;
+      if (core === "√3/2") return `${sign}${formatTenth(r)}√3/2`;
+
+      return `${sign}${formatTenth(r)}(${core})`;
+    }
+
+    function specialCoordinateLabelScaled(deg, r) {
+      const pieces = specialCoordinatePieces(deg);
+      if (!pieces) return null;
+      const [xPiece, yPiece] = pieces;
+      return `(${scalePiece(xPiece, r)}, ${scalePiece(yPiece, r)})`;
+    }
+
+    function setStatValue(el, text) {
+      el.textContent = text;
+      el.classList.toggle("undefined", text === "undefined");
+    }
+
+    function setVisible(selection, show) {
+      selection
+        .style("opacity", show ? 1 : 0)
+        .style("pointer-events", show ? "auto" : "none");
+    }
+
+    function getPixelsPerUnit() {
+      return SCREEN_RADIUS / radiusValueModel;
+    }
+
+    function modelToPixels(value) {
+      return value * getPixelsPerUnit();
+    }
+
+    function getGridSpacingUnits() {
+      const ppu = getPixelsPerUnit();
+      const candidates = [0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100];
+      let best = candidates[0];
+      let bestDist = Infinity;
+
+      for (const c of candidates) {
+        const px = c * ppu;
+        const dist = Math.abs(px - GRID_BASE);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = c;
+        }
+      }
+      return best;
+    }
+
+    function snapAngleRad(angleRad) {
+      const threshold = Math.PI / 180;
+      const specialDegrees = [0, 30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330];
+      const tickDegrees = d3.range(0, 360, 15);
+      const specialRads = specialDegrees.map(degToRad);
+      const tickRads = tickDegrees.map(degToRad);
+
+      function circularDistance(a, b) {
+        let diff = Math.abs(a - b) % (2 * Math.PI);
+        return Math.min(diff, 2 * Math.PI - diff);
+      }
+
+      let bestSpecial = null;
+      let bestSpecialDist = Infinity;
+      for (const target of specialRads) {
+        const dist = circularDistance(angleRad, target);
+        if (dist < bestSpecialDist) {
+          bestSpecialDist = dist;
+          bestSpecial = target;
+        }
+      }
+      if (bestSpecialDist <= threshold) return bestSpecial;
+
+      let bestTick = null;
+      let bestTickDist = Infinity;
+      for (const target of tickRads) {
+        const dist = circularDistance(angleRad, target);
+        if (dist < bestTickDist) {
+          bestTickDist = dist;
+          bestTick = target;
+        }
+      }
+      if (bestTickDist <= threshold) return bestTick;
+
+      return angleRad;
+    }
+
+    function buildGridAndAxes() {
+      for (let i = -60; i <= 60; i++) {
+        const vLine = gridLayer.append("line").attr("class", "grid-line");
+        const hLine = gridLayer.append("line").attr("class", "grid-line");
+        gridLines.push({ i, vLine, hLine });
+      }
+
+      axisLayer.append("line")
+        .attr("class", "axis-line")
+        .attr("x1", 40)
+        .attr("y1", cy)
+        .attr("x2", width - 40)
+        .attr("y2", cy);
+
+      axisLayer.append("line")
+        .attr("class", "axis-line")
+        .attr("x1", cx)
+        .attr("y1", 40)
+        .attr("x2", cx)
+        .attr("y2", height - 40);
+
+      axisLayer.append("text")
+        .attr("class", "axis-end-label")
+        .attr("x", width - 26)
+        .attr("y", cy - 12)
+        .text("x");
+
+      axisLayer.append("text")
+        .attr("class", "axis-end-label")
+        .attr("x", cx + 14)
+        .attr("y", 26)
+        .text("y");
+
+      axisLayer.append("circle")
+        .attr("class", "origin-dot")
+        .attr("cx", cx)
+        .attr("cy", cy)
+        .attr("r", 4.2);
+    }
+
+    function buildTickAndSpecialLayers() {
+      const degrees = d3.range(0, 360, 15);
+      degrees.forEach(deg => {
+        const line = tickLayer.append("line").attr("class", "tick-mark");
+        const label = deg % 30 === 0
+          ? tickLayer.append("text").attr("class", "tick-label").text(`${deg}°`)
+          : null;
+        tickItems.push({ deg, line, label });
+      });
+
+      const specialDegrees = [0, 30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330];
+      specialDegrees.forEach(deg => {
+        const point = specialLayer.append("circle")
+          .attr("class", "special-point")
+          .attr("r", 3.8);
+
+        const label = specialLayer.append("text")
+          .attr("class", "special-label");
+
+        specialItems.push({ deg, point, label });
+      });
+    }
+
+    buildGridAndAxes();
+    buildTickAndSpecialLayers();
+
+    const unitCircle = circleLayer.append("circle")
+      .attr("class", "unit-circle")
+      .attr("cx", cx)
+      .attr("cy", cy)
+      .attr("r", SCREEN_RADIUS);
+
+    const angleSector = dynamicLayer.append("path")
+      .attr("class", "angle-sector");
+
+    const thetaArcOutline = dynamicLayer.append("path")
+      .attr("class", "theta-arc-outline");
+
+    const tangentLine = dynamicLayer.append("line").attr("class", "tangent-line");
+    const secantLine = dynamicLayer.append("line").attr("class", "secant-line");
+    const cscLine = dynamicLayer.append("line").attr("class", "csc-line");
+    const cotLine = dynamicLayer.append("line").attr("class", "cot-line");
+
+    const radiusLine = dynamicLayer.append("line")
+      .attr("class", "radius-line")
+      .attr("x1", cx)
+      .attr("y1", cy);
+
+    const cosProjection = dynamicLayer.append("line").attr("class", "cos-line");
+    const sinProjection = dynamicLayer.append("line").attr("class", "sin-line");
+
+    const pointGlow = dynamicLayer.append("circle")
+      .attr("class", "draggable-glow")
+      .attr("r", 16);
+
+    const draggablePoint = dynamicLayer.append("circle")
+      .attr("class", "draggable-point")
+      .attr("r", 8.5);
+
+    const thetaLabel = labelLayer.append("text").attr("class", "theta-label");
+    const coordLabel = labelLayer.append("text").attr("class", "coord-label");
+    const cosLabel = labelLayer.append("text").attr("class", "func-label");
+    const sinLabel = labelLayer.append("text").attr("class", "func-label");
+    const tanLabel = labelLayer.append("text").attr("class", "func-label");
+    const secLabel = labelLayer.append("text").attr("class", "func-label");
+    const cscLabel = labelLayer.append("text").attr("class", "func-label");
+    const cotLabel = labelLayer.append("text").attr("class", "func-label");
+
+    function createMiniPlot(plotId, colorClass) {
+      const plot = d3.select(plotId);
+      const axisX = 20;
+      const midY = 32;
+      const rightX = 144;
+      const topY = 8;
+      const bottomY = 56;
+
+      plot.append("line")
+        .attr("class", "mini-axis")
+        .attr("x1", axisX)
+        .attr("y1", topY)
+        .attr("x2", axisX)
+        .attr("y2", bottomY);
+
+      plot.append("line")
+        .attr("class", "mini-axis")
+        .attr("x1", axisX)
+        .attr("y1", midY)
+        .attr("x2", rightX)
+        .attr("y2", midY);
+
+      const path = plot.append("path")
+        .attr("class", `mini-trace ${colorClass}`);
+
+      const point = plot.append("circle")
+        .attr("class", `mini-point ${colorClass}`)
+        .attr("r", 3.6);
+
+      return { plot, path, point, axisX, midY, rightX, topY, bottomY };
+    }
+
+    function clearMiniPlot(plotObj) {
+    plotObj.path.attr("d", null);
+    plotObj.point.style("opacity", 0);
+    }
+
+    function isPlottedFunction(key) {
+    return ["sin", "cos", "tan", "csc", "sec", "cot"].includes(key);
+    }
+
+    const miniPlots = {
+      sin: createMiniPlot("#sinPlot", "sin"),
+      cos: createMiniPlot("#cosPlot", "cos"),
+      tan: createMiniPlot("#tanPlot", "tan"),
+      csc: createMiniPlot("#cscPlot", "csc"),
+      sec: createMiniPlot("#secPlot", "sec"),
+      cot: createMiniPlot("#cotPlot", "cot")
+    };
+
+    const plotConfig = {
+      sin: { domain: [-1.2, 1.2], clip: 1.2 },
+      cos: { domain: [-1.2, 1.2], clip: 1.2 },
+      tan: { domain: [-4, 4], clip: 4 },
+      csc: { domain: [-4, 4], clip: 4 },
+      sec: { domain: [-4, 4], clip: 4 },
+      cot: { domain: [-4, 4], clip: 4 }
+    };
+
+    function renderMiniPlot(plotObj, values, currentValue, cfg) {
+      const { path, point, axisX, rightX, topY, bottomY } = plotObj;
+      const yScale = d3.scaleLinear().domain(cfg.domain).range([bottomY, topY]);
+      const xScale = d3.scaleLinear().domain([0, HISTORY_MAX - 1]).range([axisX, rightX]);
+
+      const padded = values.slice(-HISTORY_MAX);
+      const line = d3.line()
+        .defined(d => Number.isFinite(d) && Math.abs(d) <= cfg.clip)
+        .x((d, i) => xScale(i + (HISTORY_MAX - padded.length)))
+        .y(d => yScale(clamp(d, cfg.domain[0], cfg.domain[1])));
+
+      path.attr("d", line(padded));
+
+      if (Number.isFinite(currentValue) && Math.abs(currentValue) <= cfg.clip) {
+        const currentIndex = Math.max(HISTORY_MAX - 1, HISTORY_MAX - padded.length + padded.length - 1);
+        point
+          .style("opacity", 1)
+          .attr("cx", xScale(Math.min(HISTORY_MAX - 1, currentIndex)))
+          .attr("cy", yScale(currentValue));
+      } else {
+        point.style("opacity", 0);
+      }
+    }
+
+    function currentTrigValues() {
+      const rad = degToRad(thetaDeg);
+      const x = Math.cos(rad);
+      const y = Math.sin(rad);
+
+      return {
+        sin: y,
+        cos: x,
+        tan: Math.abs(x) < 0.00001 ? NaN : y / x,
+        csc: Math.abs(y) < 0.00001 ? NaN : 1 / y,
+        sec: Math.abs(x) < 0.00001 ? NaN : 1 / x,
+        cot: Math.abs(y) < 0.00001 ? NaN : x / y
+      };
+    }
+
+    function pushHistory() {
+      const vals = currentTrigValues();
+      for (const key of Object.keys(history)) {
+        history[key].push(vals[key]);
+        if (history[key].length > HISTORY_MAX) history[key].shift();
+      }
+    }
+
+    function renderMiniPlots() {
+    const vals = currentTrigValues();
+
+    for (const key of Object.keys(miniPlots)) {
+        if (!visibility[key]) {
+        clearMiniPlot(miniPlots[key]);
+        continue;
+        }
+
+        renderMiniPlot(miniPlots[key], history[key], vals[key], plotConfig[key]);
+    }
+    }
+
+    function createMathArcPath(radius, thetaRad) {
+      if (thetaRad <= 0.0001) return "";
+      const samples = Math.max(12, Math.ceil(thetaRad * 32));
+      const points = [];
+      for (let i = 0; i <= samples; i++) {
+        const t = (thetaRad * i) / samples;
+        points.push([cx + radius * Math.cos(t), cy - radius * Math.sin(t)]);
+      }
+      return d3.line().curve(d3.curveBasis)(points);
+    }
+
+    function createSectorPath(radius, thetaRad) {
+      if (thetaRad <= 0.0001) return "";
+      const samples = Math.max(16, Math.ceil(thetaRad * 36));
+      const pts = [[cx, cy]];
+      for (let i = 0; i <= samples; i++) {
+        const t = (thetaRad * i) / samples;
+        pts.push([cx + radius * Math.cos(t), cy - radius * Math.sin(t)]);
+      }
+      pts.push([cx, cy]);
+      return d3.line()(pts) + "Z";
+    }
+
+    function applyVisibility() {
+      setVisible(radiusLine, visibility.radius);
+      setVisible(unitCircle, true);
+
+      setVisible(angleSector, visibility.angle);
+      setVisible(thetaArcOutline, visibility.angle);
+      setVisible(thetaLabel, visibility.angle);
+
+      setVisible(coordLabel, visibility.coords);
+
+      setVisible(sinProjection, visibility.sin);
+      setVisible(sinLabel, visibility.sin);
+
+      setVisible(cosProjection, visibility.cos);
+      setVisible(cosLabel, visibility.cos);
+
+      setVisible(tangentLine, visibility.tan);
+      setVisible(tanLabel, visibility.tan);
+
+      setVisible(cscLine, visibility.csc);
+      setVisible(cscLabel, visibility.csc);
+
+      setVisible(secantLine, visibility.sec);
+      setVisible(secLabel, visibility.sec);
+
+      setVisible(cotLine, visibility.cot);
+      setVisible(cotLabel, visibility.cot);
+    }
+
+    function redrawScaleDependentElements() {
+      const stepUnits = getGridSpacingUnits();
+      const stepPx = modelToPixels(stepUnits);
+
+      gridLines.forEach(({ i, vLine, hLine }) => {
+        const x = cx + i * stepPx;
+        const y = cy + i * stepPx;
+        const showV = x >= 0 && x <= width;
+        const showH = y >= 0 && y <= height;
+
+        vLine
+          .attr("x1", x).attr("y1", 0)
+          .attr("x2", x).attr("y2", height)
+          .style("opacity", showV ? 1 : 0);
+
+        hLine
+          .attr("x1", 0).attr("y1", y)
+          .attr("x2", width).attr("y2", y)
+          .style("opacity", showH ? 1 : 0);
+      });
+
+      tickItems.forEach(({ deg, line, label }) => {
+        const rad = degToRad(deg);
+        const outerX = cx + (SCREEN_RADIUS + 12) * Math.cos(rad);
+        const outerY = cy - (SCREEN_RADIUS + 12) * Math.sin(rad);
+        const innerLength = deg % 45 === 0 ? 18 : 10;
+        const innerX = cx + (SCREEN_RADIUS + 12 - innerLength) * Math.cos(rad);
+        const innerY = cy - (SCREEN_RADIUS + 12 - innerLength) * Math.sin(rad);
+
+        line
+            .attr("x1", innerX)
+            .attr("y1", innerY)
+            .attr("x2", outerX)
+            .attr("y2", outerY)
+            .style("opacity", showTicks ? 1 : 0);
+
+        if (label) {
+            const lx = cx + (SCREEN_RADIUS + 36) * Math.cos(rad);
+            const ly = cy - (SCREEN_RADIUS + 36) * Math.sin(rad);
+            label
+            .attr("x", lx)
+            .attr("y", ly)
+            .style("opacity", showTicks ? 1 : 0);
+        }
+    });
+
+    specialItems.forEach(({ deg, point, label }) => {
+        const rad = degToRad(deg);
+        const x = cx + SCREEN_RADIUS * Math.cos(rad);
+        const y = cy - SCREEN_RADIUS * Math.sin(rad);
+        const lx = clamp(cx + (SCREEN_RADIUS + 62) * Math.cos(rad), LABEL_PAD, width - LABEL_PAD);
+        const ly = clamp(cy - (SCREEN_RADIUS + 62) * Math.sin(rad), LABEL_PAD, height - LABEL_PAD);
+
+        point
+            .attr("cx", x)
+            .attr("cy", y)
+            .style("opacity", showSpecial ? 0.88 : 0);
+
+        label
+            .attr("x", lx)
+            .attr("y", ly)
+            .text(specialCoordinateLabelScaled(deg, radiusValueModel))
+            .style("opacity", showSpecial ? 1 : 0);
+    });
+    }
+
+    function update(thetaDegrees) {
+      thetaDeg = normalizeDegrees(thetaDegrees);
+      const thetaRad = degToRad(thetaDeg);
+
+      const x = Math.cos(thetaRad);
+      const y = Math.sin(thetaRad);
+
+      const px = cx + SCREEN_RADIUS * x;
+      const py = cy - SCREEN_RADIUS * y;
+
+      angleSector.attr("d", createSectorPath(58, thetaRad));
+      thetaArcOutline.attr("d", createMathArcPath(58, thetaRad));
+
+      radiusLine
+        .transition().duration(90)
+        .attr("x2", px)
+        .attr("y2", py);
+
+      cosProjection
+        .transition().duration(90)
+        .attr("x1", cx)
+        .attr("y1", cy)
+        .attr("x2", px)
+        .attr("y2", cy);
+
+      sinProjection
+        .transition().duration(90)
+        .attr("x1", px)
+        .attr("y1", cy)
+        .attr("x2", px)
+        .attr("y2", py);
+
+      pointGlow
+        .transition().duration(90)
+        .attr("cx", px)
+        .attr("cy", py);
+
+      draggablePoint
+        .transition().duration(90)
+        .attr("cx", px)
+        .attr("cy", py);
+
+      const tanDefined = Math.abs(x) >= 0.00001;
+      const cscDefined = Math.abs(y) >= 0.00001;
+      const secDefined = Math.abs(x) >= 0.00001;
+      const cotDefined = Math.abs(y) >= 0.00001;
+
+      if (!tanDefined) {
+        tangentLine.transition().duration(90).style("opacity", 0);
+      } else {
+        const sec = 1 / x;
+        const secX = cx + SCREEN_RADIUS * sec;
+        tangentLine
+          .transition().duration(90)
+          .style("opacity", visibility.tan ? 0.9 : 0)
+          .attr("x1", px)
+          .attr("y1", py)
+          .attr("x2", secX)
+          .attr("y2", cy);
+      }
+
+      if (!secDefined) {
+        secantLine.transition().duration(90).style("opacity", 0);
+      } else {
+        const sec = 1 / x;
+        const secX = cx + SCREEN_RADIUS * sec;
+        secantLine
+          .transition().duration(90)
+          .attr("x1", cx)
+          .attr("y1", cy)
+          .attr("x2", secX)
+          .attr("y2", cy)
+          .style("opacity", visibility.sec ? 0.9 : 0);
+      }
+
+      if (!cscDefined) {
+        cscLine.transition().duration(90).style("opacity", 0);
+      } else {
+        const csc = 1 / y;
+        const cscY = cy - SCREEN_RADIUS * csc;
+        cscLine
+          .transition().duration(90)
+          .attr("x1", cx)
+          .attr("y1", cy)
+          .attr("x2", cx)
+          .attr("y2", cscY)
+          .style("opacity", visibility.csc ? 0.9 : 0);
+      }
+
+      if (!cotDefined) {
+        cotLine.transition().duration(90).style("opacity", 0);
+      } else {
+        const csc = 1 / y;
+        const cscY = cy - SCREEN_RADIUS * csc;
+        cotLine
+          .transition().duration(90)
+          .attr("x1", px)
+          .attr("y1", py)
+          .attr("x2", cx)
+          .attr("y2", cscY)
+          .style("opacity", visibility.cot ? 0.9 : 0);
+      }
+
+      const midAngle = thetaRad / 2;
+
+      thetaLabel
+        .transition().duration(90)
+        .attr("x", clamp(cx + 82 * Math.cos(midAngle), LABEL_PAD, width - LABEL_PAD))
+        .attr("y", clamp(cy - 82 * Math.sin(midAngle), LABEL_PAD, height - LABEL_PAD))
+        .text("θ");
+
+      const maybeSpecial = specialCoordinateLabelScaled(thetaDeg, radiusValueModel);
+
+      coordLabel
+        .transition().duration(90)
+        .attr("x", clamp(px + (x >= 0 ? 14 : -14), LABEL_PAD, width - LABEL_PAD))
+        .attr("y", clamp(py - 12, LABEL_PAD, height - LABEL_PAD))
+        .attr("text-anchor", x >= 0 ? "start" : "end")
+        .text(maybeSpecial || `(${formatNumber(radiusValueModel * x)}, ${formatNumber(radiusValueModel * y)})`);
+
+      cosLabel
+        .transition().duration(90)
+        .attr("x", clamp((cx + px) / 2, LABEL_PAD, width - LABEL_PAD))
+        .attr("y", clamp(cy + (y >= 0 ? 24 : -14), LABEL_PAD, height - LABEL_PAD))
+        .attr("text-anchor", "middle")
+        .text(`cos(θ) = ${formatNumber(x)}`);
+
+      sinLabel
+        .transition().duration(90)
+        .attr("x", clamp(px + (x >= 0 ? 14 : -14), LABEL_PAD, width - LABEL_PAD))
+        .attr("y", clamp((cy + py) / 2, LABEL_PAD, height - LABEL_PAD))
+        .attr("text-anchor", x >= 0 ? "start" : "end")
+        .text(`sin(θ) = ${formatNumber(y)}`);
+
+      if (!tanDefined) {
+        tanLabel
+          .transition().duration(90)
+          .attr("x", clamp(cx + 14, LABEL_PAD, width - LABEL_PAD))
+          .attr("y", clamp(cy + 40, LABEL_PAD, height - LABEL_PAD))
+          .attr("text-anchor", "start")
+          .text("tan(θ) undefined");
+      } else {
+        const sec = 1 / x;
+        const secX = cx + SCREEN_RADIUS * sec;
+        tanLabel
+          .transition().duration(90)
+          .attr("x", clamp((px + secX) / 2, LABEL_PAD, width - LABEL_PAD))
+          .attr("y", clamp((py + cy) / 2 - 10, LABEL_PAD, height - LABEL_PAD))
+          .attr("text-anchor", "middle")
+          .text(`tan(θ) = ${formatNumber(y / x)}`);
+      }
+
+      if (!secDefined) {
+        secLabel
+          .transition().duration(90)
+          .attr("x", clamp(cx + 90, LABEL_PAD, width - LABEL_PAD))
+          .attr("y", clamp(cy - 14, LABEL_PAD, height - LABEL_PAD))
+          .attr("text-anchor", "start")
+          .text("sec(θ) undefined");
+      } else {
+        const sec = 1 / x;
+        const secX = cx + SCREEN_RADIUS * sec;
+        secLabel
+          .transition().duration(90)
+          .attr("x", clamp((cx + secX) / 2, LABEL_PAD, width - LABEL_PAD))
+          .attr("y", clamp(cy - 12, LABEL_PAD, height - LABEL_PAD))
+          .attr("text-anchor", "middle")
+          .text(`sec(θ) = ${formatNumber(1 / x)}`);
+      }
+
+      if (!cscDefined) {
+        cscLabel
+          .transition().duration(90)
+          .attr("x", clamp(cx + 14, LABEL_PAD, width - LABEL_PAD))
+          .attr("y", clamp(cy - 20, LABEL_PAD, height - LABEL_PAD))
+          .attr("text-anchor", "start")
+          .text("csc(θ) undefined");
+
+        cotLabel
+          .transition().duration(90)
+          .attr("x", clamp(cx + 14, LABEL_PAD, width - LABEL_PAD))
+          .attr("y", clamp(cy + 22, LABEL_PAD, height - LABEL_PAD))
+          .attr("text-anchor", "start")
+          .text("cot(θ) undefined");
+      } else {
+        const csc = 1 / y;
+        const cscY = cy - SCREEN_RADIUS * csc;
+
+        cscLabel
+          .transition().duration(90)
+          .attr("x", clamp(cx + 14, LABEL_PAD, width - LABEL_PAD))
+          .attr("y", clamp((cy + cscY) / 2, LABEL_PAD, height - LABEL_PAD))
+          .attr("text-anchor", "start")
+          .text(`csc(θ) = ${formatNumber(csc)}`);
+
+        cotLabel
+          .transition().duration(90)
+          .attr("x", clamp((px + cx) / 2, LABEL_PAD, width - LABEL_PAD))
+          .attr("y", clamp(cscY - 10, LABEL_PAD, height - LABEL_PAD))
+          .attr("text-anchor", "middle")
+          .text(`cot(θ) = ${formatNumber(x / y)}`);
+      }
+
+      if (!radiusEditMode) {
+        setStatValue(radiusValueEl, `r = ${formatTenth(radiusValueModel)}`);
+      }
+      if (!angleEditMode) {
+        setStatValue(angleValueEl, `θ = ${formatTenth(thetaDeg)}°`);
+      }
+
+      setStatValue(coordValue, maybeSpecial || `(${formatNumber(radiusValueModel * x)}, ${formatNumber(radiusValueModel * y)})`);
+      setStatValue(sinValue, visibility.sin ? formatNumber(y) : "");
+      setStatValue(cosValue, visibility.cos ? formatNumber(x) : "");
+      setStatValue(tanValue, visibility.tan ? (!tanDefined ? "undefined" : formatNumber(y / x)) : "");
+      setStatValue(cscValue, visibility.csc ? (!cscDefined ? "undefined" : formatNumber(1 / y)) : "");
+      setStatValue(secValue, visibility.sec ? (!secDefined ? "undefined" : formatNumber(1 / x)) : "");
+      setStatValue(cotValue, visibility.cot ? (!cotDefined ? "undefined" : formatNumber(x / y)) : "");
+
+      renderMiniPlots();
+      applyVisibility();
+    }
+
+    function redrawForRadiusChange() {
+      redrawScaleDependentElements();
+      update(thetaDeg);
+    }
+
+    function enterRadiusEditMode() {
+      if (radiusEditMode || angleEditMode || isPlaying) return;
+      radiusEditMode = true;
+      radiusCard.classList.add("editing");
+
+      radiusValueEl.innerHTML = "";
+      const input = document.createElement("input");
+      input.type = "text";
+      input.inputMode = "decimal";
+      input.className = "card-input";
+      input.value = formatTenth(radiusValueModel);
+      input.setAttribute("aria-label", "Radius");
+      radiusValueEl.appendChild(input);
+      input.focus();
+      input.select();
+
+      function commit() {
+        const parsed = Number(input.value.trim());
+        radiusCard.classList.remove("editing");
+        radiusEditMode = false;
+
+        if (Number.isFinite(parsed) && parsed > 0) {
+          radiusValueModel = roundToTenth(parsed);
+          redrawForRadiusChange();
+        } else {
+          radiusValueEl.textContent = `r = ${formatTenth(radiusValueModel)}`;
+        }
+      }
+
+      function cancel() {
+        radiusCard.classList.remove("editing");
+        radiusEditMode = false;
+        radiusValueEl.textContent = `r = ${formatTenth(radiusValueModel)}`;
+      }
+
+      input.addEventListener("keydown", (e) => {
+        e.stopPropagation();
+        if (e.key === "Enter") {
+          commit();
+        } else if (e.key === "Escape") {
+          cancel();
+        }
+      });
+
+      input.addEventListener("blur", commit, { once: true });
+    }
+
+    function enterAngleEditMode() {
+      if (angleEditMode || radiusEditMode || isPlaying) return;
+      angleEditMode = true;
+      angleCard.classList.add("editing");
+
+      angleValueEl.innerHTML = "";
+      const input = document.createElement("input");
+      input.type = "text";
+      input.inputMode = "decimal";
+      input.className = "card-input";
+      input.value = formatTenth(thetaDeg);
+      input.setAttribute("aria-label", "Angle in degrees");
+      angleValueEl.appendChild(input);
+      input.focus();
+      input.select();
+
+      function commit() {
+        const parsed = Number(input.value.trim());
+        angleCard.classList.remove("editing");
+        angleEditMode = false;
+
+        if (Number.isFinite(parsed)) {
+          thetaDeg = roundToTenth(normalizeDegrees(parsed));
+          update(thetaDeg);
+        } else {
+          angleValueEl.textContent = `θ = ${formatTenth(thetaDeg)}°`;
+        }
+      }
+
+      function cancel() {
+        angleCard.classList.remove("editing");
+        angleEditMode = false;
+        angleValueEl.textContent = `θ = ${formatTenth(thetaDeg)}°`;
+      }
+
+      input.addEventListener("keydown", (e) => {
+        e.stopPropagation();
+        if (e.key === "Enter") {
+          commit();
+        } else if (e.key === "Escape") {
+          cancel();
+        }
+      });
+
+      input.addEventListener("blur", commit, { once: true });
+    }
+
+    function draggedPoint(event) {
+      if (isPlaying) return;
+      const [mx, my] = d3.pointer(event, svg.node());
+      const dx = mx - cx;
+      const dy = cy - my;
+      let angleRad = Math.atan2(dy, dx);
+      if (angleRad < 0) angleRad += 2 * Math.PI;
+      angleRad = snapAngleRad(angleRad);
+      thetaDeg = roundToTenth(radToDeg(angleRad));
+      update(thetaDeg);
+    }
+
+    function updateAnimationButtons() {
+      if (isPlaying) {
+        toggleBtn.textContent = "⏸ Pause";
+        toggleBtn.classList.remove("play");
+        toggleBtn.classList.add("pause", "active");
+      } else {
+        toggleBtn.textContent = "▶ Play";
+        toggleBtn.classList.remove("pause", "active");
+        toggleBtn.classList.add("play");
+      }
+    }
+
+    function animationStep(timestamp) {
+      if (!isPlaying) return;
+
+      if (lastFrameTime == null) {
+        lastFrameTime = timestamp;
+      }
+
+      const deltaMs = timestamp - lastFrameTime;
+      const deltaSeconds = deltaMs / 1000;
+      lastFrameTime = timestamp;
+
+      thetaDeg = normalizeDegrees(thetaDeg + DEGREES_PER_SECOND * deltaSeconds);
+      update(thetaDeg);
+
+      historyAccumulatorMs += deltaMs;
+      if (historyAccumulatorMs >= HISTORY_SAMPLE_MS) {
+        pushHistory();
+        historyAccumulatorMs = 0;
+      }
+
+      renderMiniPlots();
+      animationFrameId = requestAnimationFrame(animationStep);
+    }
+
+    function startAnimation() {
+      historyAccumulatorMs = 0;
+      if (isPlaying) return;
+      if (radiusEditMode || angleEditMode) return;
+      isPlaying = true;
+      lastFrameTime = null;
+      pushHistory();
+      renderMiniPlots();
+      updateAnimationButtons();
+      animationFrameId = requestAnimationFrame(animationStep);
+    }
+
+    function stopAnimation() {
+      historyAccumulatorMs = 0;
+      isPlaying = false;
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+      lastFrameTime = null;
+      updateAnimationButtons();
+    }
+
+    draggablePoint.call(
+      d3.drag().on("drag", draggedPoint)
+    );
+
+    pointGlow.call(
+      d3.drag().on("drag", draggedPoint)
+    );
+
+    toggleBtn.addEventListener("click", () => {
+      if (isPlaying) {
+        stopAnimation();
+      } else {
+        startAnimation();
+      }
+    });
+
+    ticksToggle.addEventListener("change", () => {
+        showTicks = ticksToggle.checked;
+        redrawScaleDependentElements();
+        });
+
+        specialToggle.addEventListener("change", () => {
+        showSpecial = specialToggle.checked;
+        redrawScaleDependentElements();
+        });
+
+    document.querySelectorAll(".stat").forEach(card => {
+      const key = card.dataset.key;
+
+      card.addEventListener("click", () => {
+        if (key === "radius") {
+          enterRadiusEditMode();
+          return;
+        }
+
+        if (key === "angle") {
+          enterAngleEditMode();
+          return;
+        }
+
+        visibility[key] = !visibility[key];
+        card.classList.toggle("off", !visibility[key]);
+        update(thetaDeg);
+      });
+    });
+
+    redrawForRadiusChange();
+    pushHistory();
+    renderMiniPlots();
+    updateAnimationButtons();
+  </script>
+</body>
+</html>
