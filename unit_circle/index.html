@@ -1319,10 +1319,10 @@
     const cscLabel = labelLayer.append("text").attr("class", "func-label");
     const cotLabel = labelLayer.append("text").attr("class", "func-label");
 
-    function createMiniPlot(plotId, colorClass) {
+    function createMiniPlot(plotId, colorClass, isSquared = false) {
       const plot = d3.select(plotId);
       const axisX = 20;
-      const midY = 32;
+      const midY = isSquared ? 56 : 32;
       const rightX = 144;
       const topY = 8;
       const bottomY = 56;
@@ -1362,17 +1362,22 @@
 
     const miniPlots = {
       sin: createMiniPlot("#sinPlot", "sin"),
-      sin2: createMiniPlot("#sin2Plot", "sin"),
+      sin2: createMiniPlot("#sin2Plot", "sin", true),
+
       cos: createMiniPlot("#cosPlot", "cos"),
-      cos2: createMiniPlot("#cos2Plot", "cos"),
+      cos2: createMiniPlot("#cos2Plot", "cos", true),
+
       tan: createMiniPlot("#tanPlot", "tan"),
-      tan2: createMiniPlot("#tan2Plot", "tan"),
+      tan2: createMiniPlot("#tan2Plot", "tan", true),
+
       csc: createMiniPlot("#cscPlot", "csc"),
-      csc2: createMiniPlot("#csc2Plot", "csc"),
+      csc2: createMiniPlot("#csc2Plot", "csc", true),
+
       sec: createMiniPlot("#secPlot", "sec"),
-      sec2: createMiniPlot("#sec2Plot", "sec"),
+      sec2: createMiniPlot("#sec2Plot", "sec", true),
+
       cot: createMiniPlot("#cotPlot", "cot"),
-      cot2: createMiniPlot("#cot2Plot", "cot")
+      cot2: createMiniPlot("#cot2Plot", "cot", true)
     };
 
     const plotConfig = {
