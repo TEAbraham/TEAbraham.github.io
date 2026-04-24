@@ -1634,7 +1634,7 @@
       sin2SquareLabel
         .attr("x", (x0 + x1) / 2)
         .attr("y", (y0 + y1) / 2)
-        .text(`sin² = ${formatNumber(y * y)}`);
+        .text(`sin²(θ) = ${formatNumber(y * y)}`);
     }
 
     function updateCos2Square(px, py, x, y) {
@@ -1680,7 +1680,7 @@
       cos2SquareLabel
         .attr("x", (cosStartX + cosEndX) / 2)
         .attr("y", (y0 + y1) / 2)
-        .text(`cos² = ${formatNumber(x * x)}`);
+        .text(`cos²(θ) = ${formatNumber(x * x)}`);
     }
 
     function updateTan2Square(px, py, x, y) {
@@ -1755,7 +1755,7 @@
       tan2SquareLabel
         .attr("x", clamp(labelX, LABEL_PAD, width - LABEL_PAD))
         .attr("y", clamp(labelY, LABEL_PAD, height - LABEL_PAD))
-        .text(`tan² = ${formatNumber((y / x) * (y / x))}`);
+        .text(`tan²(θ) = ${formatNumber((y / x) * (y / x))}`);
     }
 
     function updateCsc2Square(x, y) {
@@ -1810,7 +1810,7 @@
       csc2SquareLabel
         .attr("x", clamp((x0 + x1) / 2, LABEL_PAD, width - LABEL_PAD))
         .attr("y", clamp((y0 + y1) / 2, LABEL_PAD, height - LABEL_PAD))
-        .text(`csc² = ${formatNumber(csc * csc)}`);
+        .text(`csc²(θ) = ${formatNumber(csc * csc)}`);
     }
 
     function updateSec2Square(x, y) {
@@ -1863,7 +1863,7 @@
       sec2SquareLabel
         .attr("x", clamp((secStartX + secEndX) / 2, LABEL_PAD, width - LABEL_PAD))
         .attr("y", clamp((y0 + y1) / 2, LABEL_PAD, height - LABEL_PAD))
-        .text(`sec² = ${formatNumber(sec * sec)}`);
+        .text(`sec²(θ) = ${formatNumber(sec * sec)}`);
     }
 
     function updateCot2Square(px, py, x, y) {
@@ -1936,7 +1936,7 @@
       cot2SquareLabel
         .attr("x", clamp(labelX, LABEL_PAD, width - LABEL_PAD))
         .attr("y", clamp(labelY, LABEL_PAD, height - LABEL_PAD))
-        .text(`cot² = ${formatNumber((x / y) * (x / y))}`);
+        .text(`cot²(θ) = ${formatNumber((x / y) * (x / y))}`);
     }
 
     function update(thetaDegrees) {
