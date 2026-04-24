@@ -1991,6 +1991,11 @@
       const secDefined = Math.abs(x) >= 0.00001;
       const cotDefined = Math.abs(y) >= 0.00001;
 
+      const maybeSpecial = specialCoordinateLabelScaled(thetaDeg, radiusValueModel);
+      const thetaForLabelOffset = normalizeDegrees(thetaDeg);
+      const towardXAxisOffset =
+        thetaForLabelOffset >= 0 && thetaForLabelOffset <= 180 ? 20 : -20;      
+
       if (!tanDefined) {
         tangentLine.transition().duration(90).style("opacity", 0);
       } else {
@@ -2063,8 +2068,6 @@
         .attr("y", clamp(cy - 82 * Math.sin(midAngle), LABEL_PAD, height - LABEL_PAD))
         .text("θ");
 
-      const maybeSpecial = specialCoordinateLabelScaled(thetaDeg, radiusValueModel);
-
       coordLabel
         .transition().duration(90)
         .attr("x", clamp(px + (x >= 0 ? 14 : -14), LABEL_PAD, width - LABEL_PAD))
@@ -2082,7 +2085,7 @@
       sinLabel
         .transition().duration(90)
         .attr("x", clamp(px + (x >= 0 ? 14 : -14), LABEL_PAD, width - LABEL_PAD))
-        .attr("y", clamp((cy + py) / 2, LABEL_PAD, height - LABEL_PAD))
+        .attr("y", clamp((cy + py) / 2 + towardXAxisOffset, LABEL_PAD, height - LABEL_PAD))
         .attr("text-anchor", x >= 0 ? "start" : "end")
         .text(`sin(θ) = ${formatNumber(y)}`);
 
@@ -2143,7 +2146,7 @@
         cscLabel
           .transition().duration(90)
           .attr("x", clamp(cx + 14, LABEL_PAD, width - LABEL_PAD))
-          .attr("y", clamp((cy + cscY) / 2, LABEL_PAD, height - LABEL_PAD))
+          .attr("y", clamp((cy + cscY) / 2 + towardXAxisOffset, LABEL_PAD, height - LABEL_PAD))
           .attr("text-anchor", "start")
           .text(`csc(θ) = ${formatNumber(csc)}`);
 
