@@ -52,8 +52,7 @@
             <h1 class="section__title section__title--intro">
                 Hello, I am <strong>Thomas Abraham</strong>
             </h1>
-            <p class="section__subtitle section__subtitle--intro">data scientist | machine learning engineer</p>
-            <img src="img/Headshot.jpg" alt="TEDtalk" class="intro__img">
+<p class="section__subtitle section__subtitle--intro">data scientist | applied statistics &amp; machine learning</p>            <img src="img/Headshot.jpg" alt="TEDtalk" class="intro__img">
         </section>
 
 
@@ -189,6 +188,7 @@
                 <input type="radio" name="sc-1-1" id="sc-1-1-5">
                 <input type="radio" name="sc-1-1" id="sc-1-1-6">
                 <input type="radio" name="sc-1-1" id="sc-1-1-7">
+                <input type="radio" name="sc-1-1" id="sc-1-1-8">
 
                 <label for="sc-1-1-1" data-value="ALL DOMAINS" onclick="filterSelection1('')">ALL DOMAINS</label>
                 <label for="sc-1-1-2" data-value="BUSINESS" onclick="filterSelection1('bus')">BUSINESS</label>
@@ -197,6 +197,7 @@
                 <label for="sc-1-1-5" data-value="GIS" onclick="filterSelection1('gis')">GIS</label>
                 <label for="sc-1-1-6" data-value="NLP" onclick="filterSelection1('nlp')">NLP</label>
                 <label for="sc-1-1-7" data-value="COMPUTER VISION" onclick="filterSelection1('cv')">COMPUTER VISION</label>
+                <label for="sc-1-1-8" data-value="EDUCATION" onclick="filterSelection1('edu')">EDUCATION</label>
             </div>
             <div id="selection2" class="segmented-control" style="width: 100%; color: #5FBAAC">
                 <input type="radio" name="sc-1-2" id="sc-1-2-1" checked>
@@ -234,6 +235,21 @@
             </div>
 
             <div class="portfolio">
+                <!-- Portfolio item 00 -->
+                <a id="ap_statistics" href="https://ap-statistics.web.app" target="_blank" class="portfolio__item edu bus tad3 ">
+                    <div class="img__wrap">
+                        <img src="img/ap_statistics.gif" alt="" class="portfolio__img">
+                        <p class="img__description">AP Statistics<br>Learning Platform</p>
+                    </div>
+                </a>
+                <script>
+                    tippy('#ap_statistics', {
+                        arrow: false,
+                        allowHTML: true,
+                        placement: 'top-start',
+                        content: "<p><b>Full-stack statistics learning platform built for a live AP Statistics classroom:</b> A complete web application covering the AP Statistics curriculum, with over thirty interactive D3.js simulations built to make abstract probabilistic concepts visually self-evident: Galton boards, sampling distributions, confidence intervals, conditional probability, and random variable arithmetic. The platform includes a multiple-choice and free-response assessment engine, Firebase Authentication with role-based student and administrator views, and per-student progress analytics stored in Firestore. Designed, built, and deployed solo, and used by students over two academic years. <i>javascript, d3.js, firebase auth, firestore, jquery, jstat, html/css</i>",
+                      });
+                </script>                
                 <!-- Portfolio item 01 -->
                 <a id="power_consumption" href="https://teabraham.github.io/power_consumption" target="_blank" class="portfolio__item bus fin reg rec ">
                     <div class="img__wrap">

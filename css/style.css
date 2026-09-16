@@ -1045,3 +1045,80 @@ div.wrapper
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ---------------------------------------------------------------------------
+   Eight-item segmented control.
+   The compiled Sass only generated rules for up to 7 labels, so an 8th label
+   got no width rule and the control collapsed. These follow the same generated
+   pattern: width = 100/N%, slider offset = (M-1)/N * 100% for item M of N.
+   --------------------------------------------------------------------------- */
+
+/* Width of each label when there are 8 of them */
+.segmented-control > label:first-of-type:nth-last-of-type(8),
+.segmented-control > label:first-of-type:nth-last-of-type(8):after,
+.segmented-control > label:first-of-type:nth-last-of-type(8):before,
+.segmented-control > label:first-of-type:nth-last-of-type(8) ~ label,
+.segmented-control > label:first-of-type:nth-last-of-type(8) ~ label:after,
+.segmented-control > label:first-of-type:nth-last-of-type(8) ~ label:before {
+  width: 12.5%;
+}
+
+/* Disabled and checked states for the 8th input */
+.segmented-control > input:disabled:nth-child(8) ~ label:nth-of-type(8) {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.segmented-control > input:nth-child(8):checked ~ label:nth-of-type(8):after,
+.segmented-control > input:nth-child(8):checked ~ label:nth-of-type(8):before {
+  opacity: 1;
+}
+
+/* Slider position for each of the 8 inputs, when 8 labels are present */
+.segmented-control > input:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(8):after,
+.segmented-control > input:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(8):before,
+.segmented-control > input:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:after,
+.segmented-control > input:nth-child(1):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:before {
+  left: 0%;
+}
+.segmented-control > input:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(8):after,
+.segmented-control > input:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(8):before,
+.segmented-control > input:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:after,
+.segmented-control > input:nth-child(2):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:before {
+  left: 12.5%;
+}
+.segmented-control > input:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(8):after,
+.segmented-control > input:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(8):before,
+.segmented-control > input:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:after,
+.segmented-control > input:nth-child(3):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:before {
+  left: 25%;
+}
+.segmented-control > input:nth-child(4):checked ~ label:first-of-type:nth-last-of-type(8):after,
+.segmented-control > input:nth-child(4):checked ~ label:first-of-type:nth-last-of-type(8):before,
+.segmented-control > input:nth-child(4):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:after,
+.segmented-control > input:nth-child(4):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:before {
+  left: 37.5%;
+}
+.segmented-control > input:nth-child(5):checked ~ label:first-of-type:nth-last-of-type(8):after,
+.segmented-control > input:nth-child(5):checked ~ label:first-of-type:nth-last-of-type(8):before,
+.segmented-control > input:nth-child(5):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:after,
+.segmented-control > input:nth-child(5):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:before {
+  left: 50%;
+}
+.segmented-control > input:nth-child(6):checked ~ label:first-of-type:nth-last-of-type(8):after,
+.segmented-control > input:nth-child(6):checked ~ label:first-of-type:nth-last-of-type(8):before,
+.segmented-control > input:nth-child(6):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:after,
+.segmented-control > input:nth-child(6):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:before {
+  left: 62.5%;
+}
+.segmented-control > input:nth-child(7):checked ~ label:first-of-type:nth-last-of-type(8):after,
+.segmented-control > input:nth-child(7):checked ~ label:first-of-type:nth-last-of-type(8):before,
+.segmented-control > input:nth-child(7):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:after,
+.segmented-control > input:nth-child(7):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:before {
+  left: 75%;
+}
+.segmented-control > input:nth-child(8):checked ~ label:first-of-type:nth-last-of-type(8):after,
+.segmented-control > input:nth-child(8):checked ~ label:first-of-type:nth-last-of-type(8):before,
+.segmented-control > input:nth-child(8):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:after,
+.segmented-control > input:nth-child(8):checked ~ label:first-of-type:nth-last-of-type(8) ~ label:before {
+  left: 87.5%;
+}
