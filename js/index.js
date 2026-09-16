@@ -79,6 +79,8 @@ var FIN = document.getElementById('sc-1-1-4');
 var GIS = document.getElementById('sc-1-1-5');
 var NLP = document.getElementById('sc-1-1-6');
 var CV = document.getElementById('sc-1-1-7');
+var EDU = document.getElementById('sc-1-1-8');
+
 
 var FULL = document.getElementById('sc-1-2-1');
 var MAT = document.getElementById('sc-1-2-2');
