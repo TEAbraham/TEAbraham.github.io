@@ -13,9 +13,9 @@
       
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.12/d3.min.js"></script>
             <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-            <link rel="stylesheet" type="text/css" href="https://ebemunk.com/chess-dataviz/vendor/ChessDataViz.min.css">
-            <script type="text/javascript" src="https://ebemunk.com/chess-dataviz/vendor/ChessDataViz.min.js"></script>
-            <link rel="stylesheet" type="text/css" href="https://ebemunk.com/chess-dataviz/style.css">
+            <link rel="stylesheet" type="text/css" href="ChessDataViz.min.css">
+            <script type="text/javascript" src="ChessDataViz.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="cdv-demo.css">
             <link rel="stylesheet" href="style.css">
       
         <style type="text/css">
@@ -34,7 +34,7 @@
       
           window.onload=function(){
             
-      d3.json('https://ebemunk.com/chess-dataviz/data/london-chess-classic-2015.json', function(err, data) {
+      d3.json('london-chess-classic-2015.json', function(err, data) {
         var evalAndTime = new ChessDataViz.EvalAndTime('#evalandtime', {
           width: 1000,
           height: 600

@@ -1,0 +1,102 @@
+body {
+	position: relative;
+}
+
+.row {
+	display: flex;
+}
+.row h3 small {
+	font-size: 0.5em;
+	color: gray;
+}
+.row h4 {
+	font-size: 1.4em;
+}
+
+.flex {
+	display: flex;
+	flex-direction: column;
+}
+
+table td {
+	vertical-align: top;
+}
+
+.menu-wrap {
+	position: relative;
+	flex: 1;
+}
+.menu li {
+	margin-bottom: 0;
+}
+.menu a {
+	text-decoration: none;
+	color: inherit;
+	transition: color 250ms;
+}
+.menu a:hover {
+	color: #1EAEDB;
+}
+.menu h4 {
+	margin-bottom: 0;
+}
+.menu h6 {
+	margin-bottom: 0;
+}
+
+.main-nav {
+	display: inline-block;
+	z-index: 99;
+}
+.main-nav li {
+	list-style-type: none;
+	display: block;
+	float: right;
+	background: white;
+	margin-bottom: 0;
+}
+.main-nav li a {
+	margin-bottom: 0;
+}
+
+.caption {
+	width: 80%;
+	margin: auto;
+	font-style: italic;
+	text-align: center;
+}
+
+.cdv-heatmap {
+	text-align: center;
+}
+
+.d3-tip {
+	pointer-events: none;
+	font-size: 1.2em;
+}
+
+.plunker-embed {
+	width: 100%;
+}
+
+.heading .fa {
+	font-size: 2.2em;
+	vertical-align: middle;
+}
+
+.credits p {
+	margin-bottom: 0;
+}
+.credits ul:last-of-type {
+	margin-bottom: 0;
+}
+.credits li {
+	margin-bottom: 0;
+}
+
+.footer {
+	color: darkgray;
+}
+.footer p {
+	margin: 0;
+}
