@@ -38,11 +38,44 @@ img{
     z-index: 0 !important;
 }
 
-.button-primary{
-    color:#fff;
-    background-color:#769656 !important;
-    border-color: #fff !important;
-    }
+/* Shared button look (Skeleton's .button, in white with black text) */
+.button,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]{
+    display: inline-block;
+    box-sizing: border-box;
+    height: 38px;
+    padding: 0 30px;
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 38px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #000 !important;
+    background-color: #fff !important;
+}
+
+.button:hover, button:hover,
+.button:focus, button:focus{
+    border-color: #888;
+    outline: 0;
+}
+
+/* Selected button: keep it white, mark it with a green ring */
+.button-primary,
+button.active{
+    border-color: #769656 !important;
+    box-shadow: inset 0 0 0 2px #769656;
+}
 
 .info {
     width: 600px;
