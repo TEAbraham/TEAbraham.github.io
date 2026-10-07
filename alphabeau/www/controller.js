@@ -63,6 +63,7 @@ var Controller = function() {
       draggable: true,
       showNotation: true,
       position: 'start',
+      pieceTheme: '../img/chesspieces/wikipedia/{piece}.png',
       onDragStart: this.onDragStart.bind(this),
       onDrop: this.onDrop.bind(this),
       onSnapEnd: this.onSnapEnd.bind(this)
