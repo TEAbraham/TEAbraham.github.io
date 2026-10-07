@@ -200,6 +200,10 @@ function update(source) {
     // Normalize for fixed-depth.
     nodes.forEach(function(d) { d.y = d.depth * 80; });
 
+    // Center the root node horizontally in the svg (nodes are drawn at d.x + 100).
+    var svgWidth = width + margin.left + margin.right;
+    svg.attr("transform", "translate(" + (svgWidth / 2 - (source.x + 100)) + "," + margin.top + ")");
+
     // Declare the nodes…
     var node = svg.selectAll("g.node")
     .data(nodes, function(d) { return d.id || (d.id = ++i); });
